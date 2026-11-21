@@ -12,7 +12,27 @@ index.html        Single-page site: hero, services, work, why us, process, prici
 css/style.css     All styles (light + automatic dark mode, responsive down to small phones)
 js/main.js        Contact details, mobile menu, scroll effects, work filters, contact form
 assets/favicon.svg
+templates/        Industry demo websites to show clients (see below)
 ```
+
+## Website templates (client demos)
+
+`templates/index.html` is a gallery page with live previews of eight demo websites, each for a fictional business with its own look:
+
+| Folder | Industry | Highlights |
+|---|---|---|
+| `pharmacy/` | Pharmacy / medical shop | Prescription upload, categories, offers, store locator |
+| `restaurant/` | Restaurant / café | Tabbed menu with ₹ prices, veg/non-veg marks, gallery, reservations |
+| `hospital/` | Hospital / clinic | Appointment booking, departments, doctors, health packages |
+| `bakery/` | Bakery / cake shop | Bestsellers, custom cake order form, eggless tags |
+| `salon/` | Salon & spa | Service price list, bridal packages, team, booking |
+| `school/` | School / college | Admissions, academics, facilities, notice board |
+| `gym/` | Gym & fitness | Plans, class schedule, BMI calculator, free trial |
+| `real-estate/` | Builders & realty | Property filters, amenities, EMI calculator, site visits |
+
+All templates share `templates/shared.css` and `templates/shared.js` (header, mobile menu, forms, tabs, footer). Each sets its own colours and fonts in a `<style>` block at the top. Every template has a dark bar at the top linking back to the gallery, plus a **Get this website** button. That button opens the main site's contact form with the template already filled in (`index.html?template=Name#contact`). The bar is hidden automatically when a template is shown as a preview in the gallery.
+
+Forms in the templates are demo-only: they show a thank-you message and don't send anything. To turn a template into a client's real site, copy its folder, replace the names, contact details and content, swap the emoji/gradient visuals for real photos, and remove the demo bar.
 
 ## Run locally
 

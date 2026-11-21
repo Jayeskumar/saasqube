@@ -53,7 +53,7 @@ nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setNa
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
 
 /* ---------- Active nav link on scroll ---------- */
-const navLinks = [...nav.querySelectorAll("ul a")];
+const navLinks = [...nav.querySelectorAll('ul a[href^="#"]')];
 const sections = navLinks.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
 if ("IntersectionObserver" in window) {
   const spy = new IntersectionObserver((entries) => {
@@ -112,6 +112,15 @@ document.querySelectorAll("[data-plan]").forEach((btn) => {
     if (!msg.value) msg.value = `I'm interested in the ${plan} package.`;
   });
 });
+
+/* ---------- Prefill from a template's "Use this design" link (?template=Name) ---------- */
+const chosenTemplate = new URLSearchParams(location.search).get("template");
+if (chosenTemplate) {
+  form.elements.service.value = "Business website";
+  if (!form.elements.message.value) {
+    form.elements.message.value = `I'd like a website based on your ${chosenTemplate} template.`;
+  }
+}
 
 /* ---------- Contact form → WhatsApp or email ---------- */
 const statusEl = form.querySelector(".form-status");
