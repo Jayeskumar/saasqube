@@ -70,6 +70,13 @@ p { margin: 0 0 1em; }
   .g4.stack { grid-template-columns: 1fr; }
 }
 
+/* Let grid children shrink below their content's natural width on small phones. */
+.grid > *, [class*="-grid"] > * { min-width: 0; }
+@media (max-width: 400px) {
+  .card { padding: 18px; }
+  .search .btn { padding-inline: 16px; }
+}
+
 /* ---------- Demo bar (links back to SaaSQube) ---------- */
 .demo-bar { background: #0f0e2e; color: #c7cdf5; font: 500 .82rem/1.3 "Plus Jakarta Sans", system-ui, sans-serif; position: relative; z-index: 60; }
 .demo-bar .container { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; }
