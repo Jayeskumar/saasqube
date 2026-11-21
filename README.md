@@ -1,6 +1,6 @@
 # SaaSQube Solutions — Website
 
-Marketing website for **SaaSQube Solutions**, a website design & development company in Tamil Nadu, India.
+Marketing website for **SaaSQube Solutions**, a website design & development company based in Tamil Nadu, serving businesses across India.
 
 It's a static site: plain HTML, CSS and JavaScript with no build step and no dependencies apart from Google Fonts.
 

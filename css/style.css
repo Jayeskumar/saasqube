@@ -24,7 +24,7 @@
   --shadow: 0 10px 30px -12px rgba(15, 23, 42, .18);
   --shadow-lg: 0 30px 60px -20px rgba(30, 27, 75, .35);
   --font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-ta: "Noto Sans Tamil", var(--font);
+  --font-ta: "Noto Sans Tamil", "Noto Sans Devanagari", var(--font);
   --header-h: 72px;
 }
 
@@ -114,6 +114,9 @@ p { margin: 0 0 1em; }
 
 .tamil-line { font-family: var(--font-ta); font-weight: 700; color: var(--accent-dark); font-size: 1.05rem; margin-bottom: 14px; }
 .tamil-line.light { color: var(--accent); }
+.tamil-line .sep { display: none; }
+.tamil-line span[lang] { display: block; }
+.tamil-line span[lang="hi"] { margin-top: 2px; opacity: .85; }
 
 /* ---------- Header ---------- */
 .site-header {
