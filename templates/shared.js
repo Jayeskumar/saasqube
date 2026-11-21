@@ -53,7 +53,7 @@ document.querySelectorAll("form[data-demo]").forEach((form) => {
     e.preventDefault();
     const msg = form.querySelector(".form-msg");
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    if (msg) msg.textContent = "Thank you! This is a demo — on your live website, this goes straight to your WhatsApp or email.";
+    if (msg) msg.textContent = form.dataset.demoMsg || "Thank you! This is a demo — on your live website, this goes straight to your WhatsApp or email.";
     form.reset();
   });
 });

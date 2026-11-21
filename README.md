@@ -17,13 +17,14 @@ templates/        Industry demo websites to show clients (see below)
 
 ## Website templates (client demos)
 
-`templates/index.html` is a gallery page with live previews of eight demo websites, each for a fictional business with its own look:
+`templates/index.html` is a gallery page with live previews of nine demo websites, each for a fictional business with its own look:
 
 | Folder | Industry | Highlights |
 |---|---|---|
 | `pharmacy/` | Pharmacy / medical shop | Prescription upload, categories, offers, store locator |
 | `restaurant/` | Restaurant / café | Tabbed menu with ₹ prices, veg/non-veg marks, gallery, reservations |
 | `hospital/` | Hospital / clinic | Appointment booking, departments, doctors, health packages |
+| `xray/` | X-ray & diagnostic centre | Scan price list, slot booking, report download, home X-ray |
 | `bakery/` | Bakery / cake shop | Bestsellers, custom cake order form, eggless tags |
 | `salon/` | Salon & spa | Service price list, bridal packages, team, booking |
 | `school/` | School / college | Admissions, academics, facilities, notice board |
