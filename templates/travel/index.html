@@ -152,10 +152,10 @@
 
         <svg id="front" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
           <defs>
-            <filter id="blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="28"/></filter>
+            <radialGradient id="mist"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".55" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
           </defs>
-          <g id="mistBack" filter="url(#blur)" fill="#fff" opacity=".85">
-            <ellipse cx="300" cy="640" rx="420" ry="70"/><ellipse cx="1000" cy="600" rx="520" ry="80"/><ellipse cx="1500" cy="660" rx="380" ry="60"/>
+          <g id="mistBack" fill="url(#mist)" opacity=".85">
+            <ellipse cx="300" cy="640" rx="560" ry="120"/><ellipse cx="1000" cy="600" rx="680" ry="130"/><ellipse cx="1500" cy="660" rx="500" ry="110"/>
           </g>
           <path class="layer" data-depth="3" d="M0 700 C 240 640, 460 690, 700 645 S 1100 615, 1300 665 S 1500 645, 1600 655 V900H0Z" fill="#4c6d97"/>
           <path class="layer" data-depth="4" d="M0 790 C 200 745, 420 800, 640 762 S 1020 700, 1240 742 S 1560 704, 1600 712 V900H0Z" fill="#2f4e75"/>
@@ -169,8 +169,8 @@
             </g>
             <g id="smoke" fill="#fff" opacity=".7"><circle r="10"/><circle r="14" cx="-14" cy="-14" opacity=".7"/><circle r="18" cx="-34" cy="-30" opacity=".45"/></g>
           </g>
-          <g id="mistFront" filter="url(#blur)" fill="#fff" opacity=".9">
-            <ellipse cx="200" cy="800" rx="520" ry="90"/><ellipse cx="900" cy="830" rx="600" ry="80"/><ellipse cx="1500" cy="790" rx="460" ry="90"/>
+          <g id="mistFront" fill="url(#mist)" opacity=".9">
+            <ellipse cx="200" cy="800" rx="680" ry="150"/><ellipse cx="900" cy="830" rx="760" ry="140"/><ellipse cx="1500" cy="790" rx="600" ry="150"/>
           </g>
           <g class="layer" data-depth="5" fill="#132a45">
             <path d="M0 900 V830 C 200 810, 380 850, 560 840 S 1000 810, 1200 840 S 1500 820, 1600 830 V900Z"/>

@@ -308,8 +308,8 @@
       // Main bangle with a carved, beaded profile
       var band = new THREE.Mesh(new THREE.TorusGeometry(1.6, 0.2, 48, 200), gold); group.add(band);
       var beadGeo = new THREE.SphereGeometry(0.085, 20, 14);
-      for (var r = 0; r < 2; r++) for (var k = 0; k < 72; k++) {
-        var a = (k / 72) * Math.PI * 2, b = new THREE.Mesh(beadGeo, gold);
+      for (var r = 0; r < 2; r++) for (var k = 0; k < 60; k++) {
+        var a = (k / 60) * Math.PI * 2, b = new THREE.Mesh(beadGeo, gold);
         b.position.set(Math.cos(a) * 1.6, Math.sin(a) * 1.6, r ? 0.19 : -0.19); group.add(b);
       }
       // Braided rope: two fine strands spiralling tightly around the band
@@ -317,7 +317,7 @@
         constructor(R, amp, turns, phase) { super(); this.R = R; this.amp = amp; this.turns = turns; this.phase = phase; }
         getPoint(t, o) { o = o || new THREE.Vector3(); var a = t * Math.PI * 2, w = a * this.turns + this.phase, r = this.R + this.amp * Math.cos(w); return o.set(r * Math.cos(a), r * Math.sin(a), this.amp * Math.sin(w)); }
       }
-      [0, Math.PI].forEach(function (ph) { group.add(new THREE.Mesh(new THREE.TubeGeometry(new Helix(1.6, 0.215, 90, ph), 1400, 0.042, 8, true), gold)); });
+      [0, Math.PI].forEach(function (ph) { group.add(new THREE.Mesh(new THREE.TubeGeometry(new Helix(1.6, 0.215, 90, ph), 900, 0.042, 6, true), gold)); });
       // Inset "gems"
       var ruby = new THREE.MeshStandardMaterial({ color: 0xb3123a, metalness: 0.2, roughness: 0.08, emissive: 0x3a0010, envMap: envMap });
       var emerald = new THREE.MeshStandardMaterial({ color: 0x0e8a5a, metalness: 0.2, roughness: 0.08, emissive: 0x002a18, envMap: envMap });
@@ -327,7 +327,7 @@
       }
       // Second, slimmer bangle behind
       var g2 = new THREE.Group(); var band2 = new THREE.Mesh(new THREE.TorusGeometry(1.6, 0.12, 32, 160), gold); g2.add(band2);
-      g2.add(new THREE.Mesh(new THREE.TubeGeometry(new Helix(1.6, 0.13, 120, 0), 1400, 0.03, 6, true), gold));
+      g2.add(new THREE.Mesh(new THREE.TubeGeometry(new Helix(1.6, 0.13, 120, 0), 900, 0.03, 5, true), gold));
       scn.add(g2);
 
       scn.add(new THREE.AmbientLight(0xffe7b0, 0.35));
