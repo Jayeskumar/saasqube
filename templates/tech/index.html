@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nexora Labs — Cinematic IT &amp; Software Company Template | SaaSQube Solutions</title>
+  <meta name="description" content="Cinematic scroll-driven website template for an IT services and software company by SaaSQube Solutions: a WebGL particle field morphs through four shapes as you scroll.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="../premium.css">
+  <style>
+    :root {
+      --font: "Inter", system-ui, sans-serif; --font-head: "Syne", system-ui, sans-serif;
+      --void: #060816; --void-2: #0c1028; --violet: #7c5cff; --cyan: #22d3ee; --pink: #f472b6;
+      --primary: var(--violet); --primary-dark: #6243ff; --accent: var(--cyan); --on-accent: #04121a;
+      --bg: var(--void); --alt: var(--void-2); --surface: #11163a; --text: #aab3d6; --heading: #fff; --muted: #7c86ad;
+      --line: #1f2550; --radius: 20px; --btn-radius: 999px; --kicker: var(--cyan);
+      --field-bg: #0a0e24; --field-line: #262d5e; --field-text: #fff; --label: #d4d9f5;
+      --footer-bg: #04050f; --footer-text: #7c86ad; --footer-head: #fff;
+    }
+    h1, h2, h3 { font-weight: 700; letter-spacing: -.02em; }
+    h2 { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1; }
+    .grad, .grad .sc { background: linear-gradient(90deg, var(--violet), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .grad:has(.sc) { background: none; }
+    .btn-glow { background: linear-gradient(90deg, var(--violet), #5b8cff); color: #fff; box-shadow: 0 12px 40px -12px var(--violet); }
+    .btn-line { border: 1px solid #343c7a; color: #fff; background: rgba(255, 255, 255, .02); }
+    .btn-line:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    .t-header { position: fixed; left: 0; right: 0; top: var(--demo-h, 36px); background: rgba(6, 8, 22, .55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: rgba(124, 92, 255, .15); }
+    .t-header .t-logo { color: #fff; font-size: 1.3rem; }
+    .t-header .t-logo small { color: var(--muted); }
+    .t-logo .mark { background: linear-gradient(135deg, var(--violet), var(--cyan)); border-radius: 10px; }
+    .t-nav a:not(.btn) { color: #c9d1ff; }
+    .t-nav a:not(.btn):hover { color: var(--cyan); }
+    .t-toggle span { background: #fff; }
+    @media (max-width: 900px) { .t-nav { background: var(--void-2); } .t-nav a:not(.btn) { border-color: var(--line); } }
+
+    /* ---------- Particle story (sticky) ---------- */
+    .story { position: relative; height: 480vh; }
+    .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
+      background: radial-gradient(900px 600px at 70% 50%, rgba(124, 92, 255, .18), transparent 70%), radial-gradient(700px 500px at 20% 80%, rgba(34, 211, 238, .08), transparent 70%), var(--void); }
+    #field { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .chapters { position: absolute; inset: 0; pointer-events: none; }
+    .chapters .container { position: relative; height: 100%; }
+    .chap { position: absolute; left: 0; top: 50%; transform: translateY(-40%); max-width: 520px; opacity: 0; transition: opacity .6s, transform .6s; }
+    .chap.on { opacity: 1; transform: translateY(-50%); pointer-events: auto; }
+    .chap .no { font-family: var(--font-head); font-size: .8rem; letter-spacing: .3em; color: var(--cyan); }
+    .chap h1, .chap h2 { color: #fff; margin: 12px 0 16px; }
+    .chap h1 { font-size: clamp(2.6rem, 6.4vw, 5.6rem); line-height: .98; }
+    .chap p { font-size: 1.06rem; max-width: 30em; }
+    .chap .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .chap ul { list-style: none; padding: 0; margin: 18px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .chap li { border: 1px solid #2b3270; background: rgba(17, 22, 58, .6); color: #d4d9f5; border-radius: 999px; padding: 7px 14px; font-size: .84rem; }
+    .dots-nav { position: absolute; right: 22px; top: 50%; transform: translateY(-50%); display: grid; gap: 12px; }
+    .dots-nav i { width: 8px; height: 8px; border-radius: 50%; background: #2b3270; transition: all .3s; }
+    .dots-nav i.on { background: var(--cyan); box-shadow: 0 0 12px var(--cyan); height: 24px; border-radius: 999px; }
+    .fallback-orb { position: absolute; right: 8%; top: 50%; width: min(46vw, 520px); aspect-ratio: 1; transform: translateY(-50%); border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, rgba(34, 211, 238, .6), rgba(124, 92, 255, .4) 45%, transparent 70%); filter: blur(10px); }
+    .webgl .fallback-orb { display: none; }
+    @media (max-width: 760px) {
+      .chap { top: auto; bottom: 7%; transform: translateY(10%); }
+      .chap.on { transform: none; }
+      .chap h1 { font-size: 2.5rem; }
+      .chap p { font-size: .96rem; }
+      .dots-nav { right: 10px; }
+    }
+
+    /* ---------- Sections ---------- */
+    .industries { border-block: 1px solid var(--line); overflow: hidden; }
+    .ind-track { display: flex; width: max-content; animation: slide 30s linear infinite; }
+    .ind-track span { font-family: var(--font-head); font-size: 1.4rem; color: #3c4580; padding: 22px 30px; white-space: nowrap; }
+    .ind-track span::after { content: "◆"; font-size: .6em; margin-left: 60px; color: var(--violet); }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .svc { position: relative; background: linear-gradient(160deg, #121845, #0b0f2a); border: 1px solid var(--line); border-radius: 22px; padding: 28px; overflow: hidden; }
+    .svc::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: linear-gradient(140deg, rgba(124, 92, 255, .7), transparent 40%, rgba(34, 211, 238, .5)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity .4s; }
+    .svc:hover::before { opacity: 1; }
+    .svc .ic { width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center; background: rgba(124, 92, 255, .14); color: var(--cyan); margin-bottom: 18px; }
+    .svc .ic svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .svc h3 { color: #fff; font-size: 1.3rem; }
+    .svc p { margin: 0; font-size: .95rem; }
+    @media (max-width: 960px) { .svc-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 620px) { .svc-grid { grid-template-columns: 1fr; } }
+
+    .cases { background: var(--void-2); overflow: hidden; }
+    .cases-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; padding-top: clamp(70px, 9vw, 110px); }
+    .ctrack { display: flex; gap: 24px; padding: 44px max(16px, calc((100vw - 1160px) / 2)) clamp(70px, 9vw, 110px); width: max-content; }
+    .case { width: clamp(300px, 36vw, 520px); flex: none; background: #11163a; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; }
+    .case .ph { aspect-ratio: 16 / 10; overflow: hidden; }
+    .case img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.9) contrast(1.05); transition: transform .9s; }
+    .case:hover img { transform: scale(1.05); }
+    .case .body { padding: 22px 24px 26px; }
+    .case small { color: var(--cyan); letter-spacing: .16em; text-transform: uppercase; font-size: .7rem; font-weight: 600; }
+    .case h3 { color: #fff; margin: 8px 0 8px; font-size: 1.35rem; }
+    .case p { margin: 0 0 14px; font-size: .94rem; }
+    .case .kpi { display: flex; gap: 22px; }
+    .case .kpi b { display: block; font-family: var(--font-head); color: #fff; font-size: 1.5rem; }
+    .case .kpi span { font-size: .78rem; color: var(--muted); }
+
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .metrics div { border: 1px solid var(--line); border-radius: 20px; padding: 26px; background: rgba(17, 22, 58, .5); }
+    .metrics strong { display: block; font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3rem); color: #fff; line-height: 1; margin-bottom: 8px; }
+    @media (max-width: 860px) { .metrics { grid-template-columns: 1fr 1fr; } }
+
+    .proc { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-top: 50px; }
+    .proc svg { position: absolute; left: 0; top: 0; width: 100%; height: 40px; overflow: visible; }
+    .proc svg path { stroke: url(#procGrad); stroke-width: 2; fill: none; }
+    .proc div h3 { color: #fff; font-size: 1.15rem; margin-bottom: 6px; }
+    .proc div p { margin: 0; font-size: .92rem; }
+    .proc .wk { font-family: var(--font-head); color: var(--cyan); font-size: .8rem; letter-spacing: .2em; }
+    @media (max-width: 860px) { .proc { grid-template-columns: 1fr 1fr; } .proc svg { display: none; } }
+
+    .contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(30px, 6vw, 80px); align-items: start; }
+    .contact .office { margin-top: 26px; border-radius: 20px; overflow: hidden; }
+    .contact .office img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+    .contact form { background: #0c1028; border: 1px solid var(--line); border-radius: 24px; padding: clamp(22px, 3vw, 34px); }
+    .chips2 { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chips2 label { position: relative; }
+    .chips2 input { position: absolute; opacity: 0; inset: 0; }
+    .chips2 span { display: inline-block; padding: 9px 14px; border: 1px solid #2b3270; border-radius: 999px; font-size: .85rem; cursor: pointer; color: #c9d1ff; }
+    .chips2 input:checked + span { background: var(--violet); border-color: var(--violet); color: #fff; }
+    .chips2 input:focus-visible + span { outline: 2px solid var(--cyan); outline-offset: 2px; }
+    @media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="demo-bar"><div class="container">
+    <a href="../">← All templates</a>
+    <span class="db-text"><span class="db-3d">CINEMATIC</span>Demo website template by <strong>SaaSQube Solutions</strong></span>
+    <a class="db-cta" href="../../index.html?template=Cinematic%20IT%20Company#contact">Get this website</a>
+  </div></div>
+
+  <header class="t-header">
+    <div class="container t-nav-wrap">
+      <a href="#top" class="t-logo"><span class="mark">◆</span><span>Nexora Labs<small>Software &amp; AI</small></span></a>
+      <button class="t-toggle" aria-expanded="false" aria-controls="t-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="t-nav" id="t-nav">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#contact" class="btn btn-glow btn-sm">Start a project</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="story" id="story" aria-label="What we do">
+      <div class="stage">
+        <div class="fallback-orb" aria-hidden="true"></div>
+        <canvas id="field" aria-hidden="true"></canvas>
+        <div class="chapters">
+          <div class="container">
+            <div class="chap on" data-i="0">
+              <span class="no">NEXORA LABS · CHENNAI</span>
+              <h1 data-split="words" data-no-auto>Software that moves your <span class="grad">business forward.</span></h1>
+              <p>We design, build and run web platforms, mobile apps and AI tools for ambitious companies across India and beyond.</p>
+              <div class="ctas"><a href="#contact" class="btn btn-glow">Start a project</a><a href="#work" class="btn btn-line">See our work</a></div>
+            </div>
+            <div class="chap" data-i="1">
+              <span class="no">01 · ENGINEERING</span>
+              <h2>Built solid. <span class="grad">Built to scale.</span></h2>
+              <p>Cloud-native web platforms and APIs that stay fast at ten users or ten million.</p>
+              <ul><li>React &amp; Next.js</li><li>Node &amp; Python</li><li>AWS &amp; Azure</li></ul>
+            </div>
+            <div class="chap" data-i="2">
+              <span class="no">02 · AI &amp; AUTOMATION</span>
+              <h2>Intelligence, <span class="grad">woven in.</span></h2>
+              <p>Chatbots, document AI and workflow automation that save your team hours every week.</p>
+              <ul><li>LLM assistants</li><li>Document AI</li><li>Analytics</li></ul>
+            </div>
+            <div class="chap" data-i="3">
+              <span class="no">03 · SUPPORT &amp; DEVOPS</span>
+              <h2>Always on. <span class="grad">Always flowing.</span></h2>
+              <p>24×7 monitoring, security updates and a team that answers when something needs fixing.</p>
+              <ul><li>99.9% uptime SLA</li><li>CI/CD</li><li>Security audits</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="dots-nav" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+      </div>
+    </section>
+
+    <div class="industries" aria-hidden="true"><div class="ind-track">
+      <span>Fintech</span><span>Healthcare</span><span>Retail &amp; D2C</span><span>Logistics</span><span>Education</span><span>Manufacturing</span><span>Real estate</span>
+      <span>Fintech</span><span>Healthcare</span><span>Retail &amp; D2C</span><span>Logistics</span><span>Education</span><span>Manufacturing</span><span>Real estate</span>
+    </div></div>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head"><p class="kicker">Services</p><h2 data-split="words">Everything you need <span class="grad">to ship.</span></h2></div>
+        <div class="svc-grid" data-stagger>
+          <article class="svc" data-tilt="7"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M8 21h8"/></svg></div><h3>Web platforms</h3><p>Portals, dashboards and SaaS products built with modern, maintainable stacks.</p><span class="glare"></span></article>
+          <article class="svc" data-tilt="7"><div class="ic"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h3>Mobile apps</h3><p>iOS and Android apps in Flutter or React Native, from MVP to App Store.</p><span class="glare"></span></article>
+          <article class="svc" data-tilt="7"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 1 4 4v1a3 3 0 0 1 3 3v1a3 3 0 0 1-1 5.8V18a4 4 0 0 1-8 0 4 4 0 0 1-8 0v-1.2A3 3 0 0 1 1 11v-1a3 3 0 0 1 3-3V6a4 4 0 0 1 8-4z"/></svg></div><h3>AI solutions</h3><p>Custom assistants, document understanding and predictive analytics.</p><span class="glare"></span></article>
+          <article class="svc" data-tilt="7"><div class="ic"><svg viewBox="0 0 24 24"><path d="M18 10h-1.3A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div><h3>Cloud &amp; DevOps</h3><p>Migrations, CI/CD pipelines and cost-optimised infrastructure on AWS or Azure.</p><span class="glare"></span></article>
+          <article class="svc" data-tilt="7"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 1 0 18M3 12h18"/></svg></div><h3>UI / UX design</h3><p>Research, wireframes and design systems that make products easy to love.</p><span class="glare"></span></article>
+          <article class="svc" data-tilt="7"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Security &amp; QA</h3><p>Automated testing, penetration tests and compliance support.</p><span class="glare"></span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cases" id="work">
+      <div class="container cases-head">
+        <div><p class="kicker">Selected work</p><h2 data-split="words">Results, <span class="grad">not slides.</span></h2></div>
+        <p style="max-width:24em;margin:0">A few projects we're proud of. Scroll to browse.</p>
+      </div>
+      <div class="cview" id="cview">
+        <div class="ctrack" id="ctrack">
+          <article class="case"><div class="ph"><img src="img/team.webp" alt="Team collaborating around a screen" loading="lazy"></div><div class="body"><small>Fintech · Web platform</small><h3>Loan origination portal</h3><p>Paperless loan applications with instant KYC checks for an NBFC.</p><div class="kpi"><div><b>6 min</b><span>approval time</span></div><div><b>3×</b><span>applications</span></div></div></div></article>
+          <article class="case"><div class="ph"><img src="img/coding.webp" alt="Developer writing code" loading="lazy"></div><div class="body"><small>Retail · Mobile app</small><h3>Grocery delivery app</h3><p>A Flutter app with live order tracking for a supermarket chain.</p><div class="kpi"><div><b>200K</b><span>downloads</span></div><div><b>4.7★</b><span>rating</span></div></div></div></article>
+          <article class="case"><div class="ph"><img src="img/datacenter.webp" alt="Rows of server cabinets in a data centre" loading="lazy"></div><div class="body"><small>Logistics · Cloud</small><h3>Fleet data platform</h3><p>Real-time tracking for 4,000 trucks, migrated to the cloud with zero downtime.</p><div class="kpi"><div><b>42%</b><span>lower cloud cost</span></div><div><b>99.98%</b><span>uptime</span></div></div></div></article>
+          <article class="case"><div class="ph"><img src="img/office.webp" alt="Modern open-plan office" loading="lazy"></div><div class="body"><small>Healthcare · AI</small><h3>Clinic assistant chatbot</h3><p>A WhatsApp assistant that books appointments and answers patient questions.</p><div class="kpi"><div><b>70%</b><span>queries automated</span></div><div><b>24×7</b><span>availability</span></div></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="metrics" data-stagger>
+          <div><strong data-countup="180" data-suffix="+">180+</strong><span>Products shipped</span></div>
+          <div><strong data-countup="95" data-suffix="%">95%</strong><span>Clients who return</span></div>
+          <div><strong data-countup="60" data-suffix="+">60+</strong><span>Engineers &amp; designers</span></div>
+          <div><strong data-countup="12">12</strong><span>Countries served</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="process">
+      <div class="container">
+        <div class="section-head"><p class="kicker">How we work</p><h2 data-split="words">Idea to launch <span class="grad">in weeks.</span></h2></div>
+        <div class="proc">
+          <svg viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="procGrad"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs><path d="M0 20 C 120 0, 200 40, 330 20 S 560 0, 660 20 S 880 40, 1000 20" data-draw data-trigger=".proc" data-start="top 80%" data-end="top 30%"/></svg>
+          <div data-reveal><span class="wk">WEEK 1</span><h3>Discover</h3><p>Workshops to define goals, users and the smallest valuable product.</p></div>
+          <div data-reveal data-delay=".1"><span class="wk">WEEK 2–3</span><h3>Design</h3><p>Clickable prototypes tested with real users before a line of code.</p></div>
+          <div data-reveal data-delay=".2"><span class="wk">WEEK 4–10</span><h3>Build</h3><p>Two-week sprints with demos, so you see progress every step.</p></div>
+          <div data-reveal data-delay=".3"><span class="wk">LAUNCH +</span><h3>Run &amp; grow</h3><p>Go live, monitor, measure and keep improving together.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact">
+        <div>
+          <p class="kicker">Start a project</p>
+          <h2 data-split="words">Let's build <span class="grad">something great.</span></h2>
+          <p>Tell us about your idea. A senior engineer replies within one working day, with no sales pitch.</p>
+          <div class="office" data-unveil><img src="img/team.webp" alt="" aria-hidden="true" loading="lazy"></div>
+        </div>
+        <form class="form" data-demo data-demo-msg="Thanks! This is a demo — on your live website, the brief goes straight to your inbox and WhatsApp.">
+          <div class="row"><label>Name<input type="text" required></label><label>Work email<input type="email" required></label></div>
+          <div><div style="font-size:.88rem;font-weight:600;color:var(--label);margin-bottom:6px">What do you need?</div>
+            <div class="chips2"><label><input type="checkbox" checked><span>Web platform</span></label><label><input type="checkbox"><span>Mobile app</span></label><label><input type="checkbox"><span>AI</span></label><label><input type="checkbox"><span>Cloud</span></label><label><input type="checkbox"><span>Design</span></label></div></div>
+          <label>Budget<select><option>Under ₹5 lakh</option><option>₹5 – 20 lakh</option><option>₹20 – 50 lakh</option><option>₹50 lakh +</option></select></label>
+          <label>Tell us about the project<textarea rows="4"></textarea></label>
+          <button class="btn btn-glow btn-block">Send brief</button>
+          <p class="form-msg" role="status" aria-live="polite" style="--form-msg:var(--cyan)"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="t-footer">
+    <div class="container">
+      <div class="cols">
+        <div><a href="#top" class="t-logo"><span class="mark" style="background:linear-gradient(135deg,#7c5cff,#22d3ee)">◆</span><span>Nexora Labs<small style="color:inherit">Software &amp; AI</small></span></a><p>Software, AI and cloud engineering from Chennai.</p></div>
+        <div><h4>Services</h4><ul><li><a href="#services">Web platforms</a></li><li><a href="#services">Mobile apps</a></li><li><a href="#services">AI solutions</a></li></ul></div>
+        <div><h4>Company</h4><ul><li><a href="#work">Work</a></li><li><a href="#process">Process</a></li><li><a href="#contact">Contact</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li>📍 OMR, Chennai</li><li>📞 +91 90000 00000</li><li>✉️ hello@nexora.example</li></ul></div>
+      </div>
+      <div class="bottom"><p>© <span data-year>2026</span> Nexora Labs (demo) · Photos: Unsplash</p><p>Website by SaaSQube Solutions</p></div>
+    </div>
+  </footer>
+
+  <a class="t-wa" href="#contact" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5 0-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5l-.1-.1z"/></svg></a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="../shared.js" defer></script>
+  <script src="../premium.js" defer></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var P = window.PREMIUM || {};
+    var demoBar = document.querySelector(".demo-bar"), header = document.querySelector(".t-header"), story = document.getElementById("story");
+    var chaps = document.querySelectorAll(".chap"), dots = document.querySelectorAll(".dots-nav i");
+    var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+    var progress = function () { var r = story.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight), 0, 1); };
+    var curChap = -1;
+    function setChapter(i) {
+      if (i === curChap) return; curChap = i;
+      chaps.forEach(function (c, k) { c.classList.toggle("on", k === i); });
+      dots.forEach(function (d, k) { d.classList.toggle("on", k === i); });
+    }
+    function onScroll() {
+      var dh = P.inFrame || !demoBar ? 0 : demoBar.offsetHeight;
+      header.style.top = Math.max(0, dh - window.scrollY) + "px";
+      var p = progress();
+      setChapter(Math.min(3, Math.floor(p * 4.0 + 0.12)));
+    }
+    window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+    if (window.gsap && !P.reduce) gsap.from(".chap[data-i='0'] .sc", { yPercent: 110, opacity: 0, stagger: 0.06, duration: 1.1, ease: "expo.out", delay: 0.2 });
+
+    /* ---------- WebGL particle field that morphs between shapes ---------- */
+    (function field() {
+      var canvas = document.getElementById("field");
+      if (!window.THREE) return;
+      var renderer;
+      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); } catch (e) { return; }
+      document.documentElement.classList.add("webgl");
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, P.inFrame ? 1 : 1.75));
+      var scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+      camera.position.set(0, 0, 7.2);
+      var N = P.inFrame ? 2500 : (innerWidth < 760 ? 3500 : 6000);
+      var rnd = function (a, b) { return a + Math.random() * (b - a); };
+
+      // Four target shapes, each N points
+      function sphere() { var a = new Float32Array(N * 3), g = Math.PI * (3 - Math.sqrt(5)); for (var i = 0; i < N; i++) { var y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), t = g * i; a.set([Math.cos(t) * r * 2, y * 2, Math.sin(t) * r * 2], i * 3); } return a; }
+      function cube() { var a = new Float32Array(N * 3), s = 1.45, step = 0.24; for (var i = 0; i < N; i++) { var f = i % 6, u = Math.round(rnd(-s, s) / step) * step, v = Math.round(rnd(-s, s) / step) * step, p = [u, v, (f % 2 ? s : -s)]; if (f >= 2 && f < 4) p = [u, (f % 2 ? s : -s), v]; if (f >= 4) p = [(f % 2 ? s : -s), u, v]; a.set(p, i * 3); } return a; }
+      function knot() { var a = new Float32Array(N * 3), p = 2, q = 3; for (var i = 0; i < N; i++) { var t = (i / N) * Math.PI * 2, r = Math.cos(q * t) + 2.2; var cx = r * Math.cos(p * t), cy = r * Math.sin(p * t), cz = -Math.sin(q * t); var j = 0.22; a.set([cx * 0.62 + rnd(-j, j), cy * 0.62 + rnd(-j, j), cz * 0.62 + rnd(-j, j)], i * 3); } return a; }
+      function wave() { var a = new Float32Array(N * 3), side = Math.ceil(Math.sqrt(N)); for (var i = 0; i < N; i++) { var x = (i % side) / side * 7 - 3.5, z = Math.floor(i / side) / side * 7 - 3.5; a.set([x, 0, z], i * 3); } return a; }
+      var shapes = [sphere(), cube(), knot(), wave()];
+      var delay = new Float32Array(N); for (var i = 0; i < N; i++) delay[i] = Math.random() * 0.35;
+
+      var geo = new THREE.BufferGeometry(), pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
+      pos.set(shapes[0]);
+      var cA = new THREE.Color("#7c5cff"), cB = new THREE.Color("#22d3ee"), cC = new THREE.Color("#f472b6"), tmp = new THREE.Color();
+      for (i = 0; i < N; i++) { var k = Math.random(); tmp.copy(cA).lerp(k < 0.5 ? cB : cC, k < 0.5 ? k * 2 : (k - 0.5) * 1.2); col.set([tmp.r, tmp.g, tmp.b], i * 3); }
+      geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+      geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
+      // Soft round sprite
+      var c = document.createElement("canvas"); c.width = c.height = 64; var g2 = c.getContext("2d"), grd = g2.createRadialGradient(32, 32, 0, 32, 32, 32);
+      grd.addColorStop(0, "rgba(255,255,255,1)"); grd.addColorStop(0.3, "rgba(255,255,255,.7)"); grd.addColorStop(1, "rgba(255,255,255,0)"); g2.fillStyle = grd; g2.fillRect(0, 0, 64, 64);
+      var mat = new THREE.PointsMaterial({ size: innerWidth < 760 ? 0.07 : 0.055, map: new THREE.CanvasTexture(c), vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+      var pts = new THREE.Points(geo, mat), group = new THREE.Group(); group.add(pts); scene.add(group);
+
+      function resize() {
+        var w = canvas.clientWidth, h = canvas.clientHeight;
+        renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+        var mobile = w < 760;
+        group.position.x = mobile ? 0 : 1.9; group.position.y = mobile ? 1.6 : 0;
+        group.scale.setScalar(mobile ? 0.7 : 1);
+      }
+      resize(); window.addEventListener("resize", resize);
+      var mx = 0, my = 0;
+      window.addEventListener("pointermove", function (e) { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; });
+      var visible = true; new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(canvas);
+      var t0 = performance.now(), smoothP = 0;
+      var ease = function (t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+      (function loop() {
+        requestAnimationFrame(loop);
+        if (!visible) return;
+        var t = (performance.now() - t0) / 1000;
+        var target = P.inFrame ? (t / 3.5) % 4 / 4 : progress();
+        smoothP += (target - smoothP) * 0.08;
+        // Map progress to a segment between two shapes: hold, then morph
+        var seg = clamp(smoothP * 4, 0, 3.999), idx = Math.min(2, Math.floor(seg)), local = seg - idx;
+        if (seg >= 3) { idx = 2; local = 1; }
+        var mixT = clamp((local - 0.35) / 0.55, 0, 1);
+        var A = shapes[idx], B = shapes[idx + 1], waveOn = idx === 2 ? mixT : (seg >= 3 ? 1 : 0);
+        for (var n = 0; n < N; n++) {
+          var m = ease(clamp((mixT - delay[n]) / 0.65, 0, 1)), o = n * 3;
+          var x = A[o] + (B[o] - A[o]) * m, y = A[o + 1] + (B[o + 1] - A[o + 1]) * m, z = A[o + 2] + (B[o + 2] - A[o + 2]) * m;
+          if (waveOn > 0) y += waveOn * m * Math.sin(x * 1.3 + t * 1.6) * Math.cos(z * 1.1 + t * 1.2) * 0.45;
+          pos[o] = x; pos[o + 1] = y; pos[o + 2] = z;
+        }
+        geo.attributes.position.needsUpdate = true;
+        var spin = P.reduce ? 0 : t * 0.12;
+        group.rotation.y = spin + mx * 0.6 + (waveOn ? -spin * waveOn : 0);
+        group.rotation.x = my * 0.4 + (waveOn ? 0.55 * waveOn : 0);
+        renderer.render(scene, camera);
+      })();
+    })();
+
+    /* ---------- Case studies reel ---------- */
+    if (P.desktop && P.reel) { P.reel("#work", "#ctrack"); }
+    if (!P.desktop) document.getElementById("cview").classList.add("reel-native");
+    if (window.ScrollTrigger) { ScrollTrigger.sort(); ScrollTrigger.refresh(); }
+  });
+  </script>
+</body>
+</html>

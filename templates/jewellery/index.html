@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kanaka Jewellers — Cinematic Jewellery Store Template | SaaSQube Solutions</title>
+  <meta name="description" content="Cinematic scroll-driven website template for a gold jewellery showroom by SaaSQube Solutions: a 3D gold bangle that turns as you scroll, a 916 purity story, collections and a live gold-rate board.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="../premium.css">
+  <style>
+    :root {
+      --font: "Jost", system-ui, sans-serif; --font-head: "Italiana", Georgia, serif;
+      --onyx: #0b0a08; --onyx-2: #15130f; --gold: #d8b25a; --gold-2: #f3dc9b; --cream: #f6efe0;
+      --primary: var(--gold); --primary-dark: #c29a3f; --on-primary: #17120a; --accent: var(--gold);
+      --bg: var(--onyx); --alt: var(--onyx-2); --surface: #1b1813; --text: #bfb5a0; --heading: var(--cream); --muted: #8a806d;
+      --line: #2c2720; --radius: 2px; --btn-radius: 0; --kicker: var(--gold);
+      --field-bg: #100e0b; --field-line: #3a3329; --field-text: var(--cream); --label: var(--cream);
+      --footer-bg: #060504; --footer-text: #8a806d; --footer-head: var(--gold-2);
+    }
+    body { font-weight: 300; }
+    h1, h2, h3 { font-weight: 400; letter-spacing: .01em; }
+    h2 { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1.02; }
+    h2 em, h1 em { font-style: normal; color: var(--gold); }
+    .btn { letter-spacing: .2em; text-transform: uppercase; font-size: .72rem; padding: 17px 30px; font-weight: 500; }
+    .btn-gold { background: linear-gradient(120deg, #b98d34, #f3dc9b 45%, #c79c45); color: #17120a; }
+    .btn-line { border: 1px solid rgba(216, 178, 90, .5); color: var(--gold-2); background: transparent; }
+    .btn-line:hover { border-color: var(--gold-2); }
+    .kicker { letter-spacing: .4em; font-size: .68rem; }
+
+    .t-header { position: fixed; left: 0; right: 0; top: var(--demo-h, 36px); background: linear-gradient(180deg, rgba(11, 10, 8, .9), rgba(11, 10, 8, 0)); border: 0; }
+    .t-header .t-logo { color: var(--cream); font-family: var(--font-head); font-weight: 400; font-size: 1.7rem; letter-spacing: .08em; }
+    .t-header .t-logo small { color: var(--gold); letter-spacing: .5em; }
+    .t-logo .mark { background: transparent; border: 1px solid var(--gold); color: var(--gold); border-radius: 50%; font-family: var(--font-head); }
+    .t-nav a:not(.btn) { color: #d9cfb8; text-transform: uppercase; letter-spacing: .18em; font-size: .7rem; }
+    .t-nav a:not(.btn):hover { color: var(--gold-2); }
+    .t-toggle span { background: var(--cream); }
+    @media (max-width: 900px) { .t-nav { background: var(--onyx-2); } .t-nav a:not(.btn) { border-color: var(--line); } }
+
+    /* ---------- Bangle scene (sticky) ---------- */
+    .reveal-scene { position: relative; height: 420vh; }
+    .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
+      background: radial-gradient(60% 60% at 50% 55%, #2a2214 0%, #120f0a 55%, #070605 100%); }
+    #gem { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .fallback-img { position: absolute; left: 50%; top: 52%; width: min(70vw, 620px); transform: translate(-50%, -50%); opacity: .9; }
+    .webgl .fallback-img { display: none; }
+    .copy { position: absolute; inset: 0; pointer-events: none; }
+    .copy .container { position: relative; height: 100%; }
+    .line-block { position: absolute; opacity: 0; transition: opacity .7s, transform .7s; transform: translateY(16px); }
+    .line-block.on { opacity: 1; transform: none; pointer-events: auto; }
+    .lb-0 { left: 0; right: 0; top: 16%; text-align: center; }
+    .lb-0 h1 { color: var(--cream); font-size: clamp(3rem, 9vw, 8rem); line-height: .95; margin: 0; }
+    .copy { text-shadow: 0 2px 24px rgba(0, 0, 0, .85); }
+    .lb-0 p { max-width: 30em; margin: 16px auto 0; }
+    .lb-1, .lb-2 { top: 50%; transform: translateY(-40%); max-width: 360px; }
+    .lb-1.on, .lb-2.on { transform: translateY(-50%); }
+    .lb-1 { left: 0; } .lb-2 { right: 0; text-align: right; }
+    .lb-1 h2, .lb-2 h2 { font-size: clamp(2rem, 4vw, 3.4rem); color: var(--cream); }
+    .lb-3 { left: 0; right: 0; bottom: 9%; text-align: center; }
+    .lb-3 h2 { color: var(--cream); margin-bottom: 18px; }
+    .lb-3 .ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .purity { font-family: var(--font-head); font-size: clamp(4rem, 9vw, 8rem); line-height: 1; background: linear-gradient(120deg, #b98d34, #f3dc9b 50%, #c79c45); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .spark { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #fff6d8; box-shadow: 0 0 12px 3px rgba(243, 220, 155, .8); opacity: 0; animation: twinkle 3s ease-in-out infinite; }
+    @keyframes twinkle { 50% { opacity: 1; transform: scale(1.6); } }
+    @media (max-width: 760px) {
+      .lb-1, .lb-2 { top: auto; bottom: 10%; left: 0; right: 0; text-align: center; max-width: none; transform: translateY(10px); }
+      .lb-1.on, .lb-2.on { transform: none; }
+      .lb-0 { top: 13%; }
+    }
+
+    /* ---------- Gold rate board ---------- */
+    .rates { border-block: 1px solid var(--line); background: #0f0d0a; }
+    .rates .container { display: grid; grid-template-columns: auto repeat(3, 1fr); gap: 0; align-items: stretch; }
+    .rates .lbl { padding: 22px 26px 22px 0; display: flex; align-items: center; gap: 10px; font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
+    .rates .lbl i { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 10px #4ade80; }
+    .rates div.r { padding: 18px 24px; border-left: 1px solid var(--line); }
+    .rates small { display: block; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+    .rates strong { font-family: var(--font-head); font-size: 1.7rem; color: var(--cream); font-weight: 400; }
+    @media (max-width: 760px) { .rates .container { grid-template-columns: 1fr 1fr 1fr; } .rates .lbl { grid-column: 1 / -1; padding: 16px 0 0; } .rates div.r { padding: 14px 10px; } .rates div.r:nth-child(2) { border-left: 0; } .rates strong { font-size: 1.25rem; } }
+
+    /* ---------- Collections ---------- */
+    .coll { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .citem { position: relative; text-decoration: none; color: inherit; display: block; }
+    .citem .ph { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: #000; }
+    .citem img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1), filter .6s; filter: brightness(.86); }
+    .citem:hover img { transform: scale(1.07); filter: brightness(1); }
+    .citem .ph::after { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(243, 220, 155, .35); pointer-events: none; transition: inset .5s; }
+    .citem:hover .ph::after { inset: 8px; }
+    .citem h3 { font-size: 1.8rem; color: var(--cream); margin: 18px 0 2px; }
+    .citem p { margin: 0; color: var(--muted); font-size: .9rem; letter-spacing: .04em; }
+    .coll .citem:nth-child(2) { margin-top: 60px; }
+    @media (max-width: 860px) { .coll { grid-template-columns: 1fr 1fr; } .coll .citem:nth-child(2) { margin-top: 0; } .coll .citem:nth-child(3) { grid-column: span 2; } .coll .citem:nth-child(3) .ph { aspect-ratio: 16 / 10; } }
+
+    .bridal { display: grid; grid-template-columns: 1fr 1fr; min-height: 90vh; }
+    .bridal .ph { position: relative; overflow: hidden; }
+    .bridal .ph img { position: absolute; inset: 0; width: 100%; height: 120%; object-fit: cover; }
+    .bridal .copyb { display: flex; flex-direction: column; justify-content: center; padding: clamp(40px, 7vw, 100px); background: #120f0a; }
+    .bridal ul { list-style: none; padding: 0; margin: 24px 0 32px; display: grid; gap: 14px; }
+    .bridal li { display: flex; gap: 14px; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+    .bridal li span { font-family: var(--font-head); color: var(--gold); font-size: 1.2rem; }
+    @media (max-width: 860px) { .bridal { grid-template-columns: 1fr; } .bridal .ph { min-height: 70vh; } }
+
+    .promise { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line); }
+    .promise div { padding: 30px 24px; text-align: center; }
+    .promise div + div { border-left: 1px solid var(--line); }
+    .promise strong { display: block; font-family: var(--font-head); font-size: 2.2rem; color: var(--gold-2); font-weight: 400; }
+    .promise span { font-size: .86rem; }
+    @media (max-width: 760px) { .promise { grid-template-columns: 1fr 1fr; } .promise div:nth-child(3) { border-left: 0; } .promise div:nth-child(n+3) { border-top: 1px solid var(--line); } }
+
+    .visit { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(30px, 6vw, 80px); align-items: center; }
+    .visit .ph img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+    .form label { letter-spacing: .06em; font-weight: 400; }
+    .form input, .form select, .form textarea { border-radius: 0; }
+    .form input[type="date"] { color-scheme: dark; }
+    @media (max-width: 860px) { .visit { grid-template-columns: 1fr; } }
+    .t-footer .t-logo { font-family: var(--font-head); font-weight: 400; font-size: 1.8rem; }
+  </style>
+</head>
+<body>
+  <div class="demo-bar"><div class="container">
+    <a href="../">← All templates</a>
+    <span class="db-text"><span class="db-3d">CINEMATIC</span>Demo website template by <strong>SaaSQube Solutions</strong></span>
+    <a class="db-cta" href="../../index.html?template=Cinematic%20Jewellery#contact">Get this website</a>
+  </div></div>
+
+  <header class="t-header">
+    <div class="container t-nav-wrap">
+      <a href="#top" class="t-logo"><span class="mark">K</span><span>Kanaka<small>Jewellers · Since 1958</small></span></a>
+      <button class="t-toggle" aria-expanded="false" aria-controls="t-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="t-nav" id="t-nav">
+        <a href="#collections">Collections</a>
+        <a href="#bridal">Bridal</a>
+        <a href="#promise">Our promise</a>
+        <a href="#visit" class="btn btn-gold btn-sm">Book a visit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="reveal-scene" id="scene" aria-label="The Kanaka bangle">
+      <div class="stage">
+        <img class="fallback-img" src="img/bangles.webp" alt="" aria-hidden="true">
+        <canvas id="gem" aria-hidden="true"></canvas>
+        <div id="sparks" aria-hidden="true"></div>
+        <div class="copy">
+          <div class="container">
+            <div class="line-block lb-0 on">
+              <p class="kicker">Madurai · Since 1958</p>
+              <h1 data-split="chars" data-no-auto>Pure <em>gold,</em><br>pure craft.</h1>
+              <p>Temple, bridal and everyday jewellery, hand-finished by our karigars and hallmarked for purity.</p>
+            </div>
+            <div class="line-block lb-1">
+              <p class="kicker">Hallmarked</p>
+              <div class="purity"><span id="karat">916</span></div>
+              <h2>Every gram, <em>certified.</em></h2>
+              <p>BIS-hallmarked 22 karat gold with a HUID on every piece.</p>
+            </div>
+            <div class="line-block lb-2">
+              <p class="kicker">Handcrafted</p>
+              <h2>Seventy hours <em>at the bench.</em></h2>
+              <p>Each bangle is shaped, engraved and polished by hand by one master craftsman.</p>
+            </div>
+            <div class="line-block lb-3">
+              <h2>Made to be <em>handed down.</em></h2>
+              <div class="ctas"><a href="#collections" class="btn btn-gold">Explore collections</a><a href="#visit" class="btn btn-line">Book a showroom visit</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rates" aria-label="Today's gold and silver rates">
+      <div class="container">
+        <div class="lbl"><i></i>Today's rate · Madurai</div>
+        <div class="r"><small>22K · per gram</small><strong>₹7,240</strong></div>
+        <div class="r"><small>24K · per gram</small><strong>₹7,898</strong></div>
+        <div class="r"><small>Silver · per gram</small><strong>₹96</strong></div>
+      </div>
+    </div>
+
+    <section class="section" id="collections">
+      <div class="container">
+        <div class="section-head"><p class="kicker">Collections</p><h2 data-split="words">Crafted for <em>every chapter.</em></h2></div>
+        <div class="coll" data-stagger>
+          <a class="citem" href="#visit"><div class="ph"><img src="img/necklace-stand.webp" alt="Gold necklace and earrings on a display stand" loading="lazy"></div><h3>Temple &amp; Antique</h3><p>Necklaces, haarams and jhumkas</p></a>
+          <a class="citem" href="#visit"><div class="ph"><img src="img/ring.webp" alt="Ornate gold ring with gemstones" loading="lazy"></div><h3>Rings &amp; Gems</h3><p>Navaratna, solitaires and bands</p></a>
+          <a class="citem" href="#visit"><div class="ph"><img src="img/necklace-velvet.webp" alt="Fine gold necklace on blue velvet" loading="lazy"></div><h3>Everyday Light</h3><p>Chains and pendants from 4 g</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bridal" id="bridal">
+      <div class="ph" data-unveil><img src="img/bride.webp" alt="Bride in red wearing gold jewellery" loading="lazy" data-speed="-0.15"></div>
+      <div class="copyb">
+        <p class="kicker">The bridal room</p>
+        <h2 data-split="words">Your wedding, <em>in gold.</em></h2>
+        <p>A private lounge where our bridal consultants help you plan every piece, from the muhurtham necklace to the reception look.</p>
+        <ul data-stagger>
+          <li><span>01</span>Complete bridal sets from 80 g</li>
+          <li><span>02</span>Custom designs in 30 days</li>
+          <li><span>03</span>Gold savings scheme: pay in 11 instalments</li>
+        </ul>
+        <a href="#visit" class="btn btn-gold" style="align-self:flex-start">Book a bridal consultation</a>
+      </div>
+    </section>
+
+    <section class="section" id="promise">
+      <div class="container">
+        <div class="section-head"><p class="kicker">The Kanaka promise</p><h2 data-split="words">Trust, <em>since 1958.</em></h2></div>
+        <div class="promise" data-stagger>
+          <div><strong>916</strong><span>BIS hallmarked gold</span></div>
+          <div><strong>0%</strong><span>Deduction on exchange of our gold</span></div>
+          <div><strong data-countup="66">66</strong><span>Years of family trust</span></div>
+          <div><strong>Lifetime</strong><span>Free cleaning &amp; polishing</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="visit">
+      <div class="container visit">
+        <div class="ph" data-reveal><img src="img/set-case.webp" alt="Gold necklace and earring set in a showroom case" loading="lazy"></div>
+        <div>
+          <p class="kicker">Visit the showroom</p>
+          <h2 data-split="words">See it <em>in person.</em></h2>
+          <p>Book a private viewing at our East Masi Street showroom, or a live video call to shop from home.</p>
+          <form class="form" data-demo data-demo-msg="Thank you! This is a demo — on your live website, your appointment request goes to the showroom on WhatsApp.">
+            <div class="row"><label>Name<input type="text" required></label><label>Phone<input type="tel" required></label></div>
+            <div class="row"><label>Looking for<select><option>Bridal set</option><option>Necklace</option><option>Bangles</option><option>Earrings</option><option>Rings</option><option>Gold exchange</option></select></label><label>Date<input type="date" required></label></div>
+            <button class="btn btn-gold btn-block">Book my visit</button>
+            <p class="form-msg" role="status" aria-live="polite" style="--form-msg:var(--gold-2)"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="t-footer">
+    <div class="container">
+      <div class="cols">
+        <div><a href="#top" class="t-logo">Kanaka Jewellers</a><p>Hallmarked gold and diamond jewellery in Madurai since 1958.</p></div>
+        <div><h4>Shop</h4><ul><li><a href="#collections">Collections</a></li><li><a href="#bridal">Bridal</a></li></ul></div>
+        <div><h4>Trust</h4><ul><li><a href="#promise">Our promise</a></li><li><a href="#visit">Visit</a></li></ul></div>
+        <div><h4>Showroom</h4><ul><li>📍 East Masi Street, Madurai</li><li>📞 +91 90000 00000</li><li>🕒 10 AM – 9 PM daily</li></ul></div>
+      </div>
+      <div class="bottom"><p>© <span data-year>2026</span> Kanaka Jewellers (demo) · Gold rates shown are sample values · Photos: Unsplash</p><p>Website by SaaSQube Solutions</p></div>
+    </div>
+  </footer>
+
+  <a class="t-wa" href="#visit" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5 0-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5l-.1-.1z"/></svg></a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="../shared.js" defer></script>
+  <script src="../premium.js" defer></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var P = window.PREMIUM || {};
+    var $ = function (id) { return document.getElementById(id); };
+    var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+    var scene = $("scene"), demoBar = document.querySelector(".demo-bar"), header = document.querySelector(".t-header");
+    var blocks = document.querySelectorAll(".line-block");
+    var progress = function () { var r = scene.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight), 0, 1); };
+
+    // Sparkles scattered around the bangle
+    var sp = $("sparks");
+    for (var i = 0; i < 14; i++) { var s = document.createElement("i"); s.className = "spark"; s.style.left = (20 + Math.random() * 60) + "%"; s.style.top = (25 + Math.random() * 55) + "%"; s.style.animationDelay = (Math.random() * 3) + "s"; sp.appendChild(s); }
+
+    function setBlock(p) {
+      var b = p < 0.2 ? 0 : p < 0.47 ? 1 : p < 0.74 ? 2 : 3;
+      blocks.forEach(function (el, k) { el.classList.toggle("on", k === b); });
+      $("karat").textContent = Math.round(clamp((p - 0.2) / 0.09, 0, 1) * 916);
+    }
+    function onScroll() {
+      var dh = P.inFrame || !demoBar ? 0 : demoBar.offsetHeight;
+      header.style.top = Math.max(0, dh - window.scrollY) + "px";
+      setBlock(progress());
+    }
+    window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+    if (window.gsap && !P.reduce) gsap.from(".lb-0 .sc", { yPercent: 115, opacity: 0, stagger: 0.04, duration: 1.3, ease: "expo.out", delay: 0.2 });
+
+    /* ---------- WebGL gold bangle ---------- */
+    (function bangle() {
+      var canvas = $("gem");
+      if (!window.THREE) return;
+      var renderer;
+      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); } catch (e) { return; }
+      document.documentElement.classList.add("webgl");
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, P.inFrame ? 1 : 2));
+      renderer.outputEncoding = THREE.sRGBEncoding;
+      var scn = new THREE.Scene(), cam = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+      cam.position.set(0, 0, 9);
+
+      // Warm studio environment map, built from a gradient canvas for metallic reflections
+      var ec = document.createElement("canvas"); ec.width = 512; ec.height = 256; var g = ec.getContext("2d");
+      var grd = g.createLinearGradient(0, 0, 0, 256); grd.addColorStop(0, "#fff4d6"); grd.addColorStop(.35, "#6b5530"); grd.addColorStop(.55, "#1a140b"); grd.addColorStop(1, "#3b2d17");
+      g.fillStyle = grd; g.fillRect(0, 0, 512, 256);
+      g.fillStyle = "rgba(255,248,225,.95)"; g.fillRect(60, 40, 90, 40); g.fillRect(340, 30, 120, 30); g.fillRect(220, 150, 60, 20);
+      var env = new THREE.CanvasTexture(ec); env.mapping = THREE.EquirectangularReflectionMapping; env.encoding = THREE.sRGBEncoding;
+      var pmrem = new THREE.PMREMGenerator(renderer); var envMap = pmrem.fromEquirectangular(env).texture;
+
+      var gold = new THREE.MeshStandardMaterial({ color: 0xe3b856, metalness: 1, roughness: 0.18, envMap: envMap, envMapIntensity: 1.35 });
+      var group = new THREE.Group(); scn.add(group);
+      // Main bangle with a carved, beaded profile
+      var band = new THREE.Mesh(new THREE.TorusGeometry(1.6, 0.2, 48, 200), gold); group.add(band);
+      var beadGeo = new THREE.SphereGeometry(0.085, 20, 14);
+      for (var r = 0; r < 2; r++) for (var k = 0; k < 72; k++) {
+        var a = (k / 72) * Math.PI * 2, b = new THREE.Mesh(beadGeo, gold);
+        b.position.set(Math.cos(a) * 1.6, Math.sin(a) * 1.6, r ? 0.19 : -0.19); group.add(b);
+      }
+      // Braided rope: two fine strands spiralling tightly around the band
+      class Helix extends THREE.Curve {
+        constructor(R, amp, turns, phase) { super(); this.R = R; this.amp = amp; this.turns = turns; this.phase = phase; }
+        getPoint(t, o) { o = o || new THREE.Vector3(); var a = t * Math.PI * 2, w = a * this.turns + this.phase, r = this.R + this.amp * Math.cos(w); return o.set(r * Math.cos(a), r * Math.sin(a), this.amp * Math.sin(w)); }
+      }
+      [0, Math.PI].forEach(function (ph) { group.add(new THREE.Mesh(new THREE.TubeGeometry(new Helix(1.6, 0.215, 90, ph), 1400, 0.042, 8, true), gold)); });
+      // Inset "gems"
+      var ruby = new THREE.MeshStandardMaterial({ color: 0xb3123a, metalness: 0.2, roughness: 0.08, emissive: 0x3a0010, envMap: envMap });
+      var emerald = new THREE.MeshStandardMaterial({ color: 0x0e8a5a, metalness: 0.2, roughness: 0.08, emissive: 0x002a18, envMap: envMap });
+      for (k = 0; k < 12; k++) {
+        a = (k / 12) * Math.PI * 2; var gem = new THREE.Mesh(new THREE.OctahedronGeometry(0.11, 0), k % 2 ? ruby : emerald);
+        gem.position.set(Math.cos(a) * 1.6, Math.sin(a) * 1.6, 0.24); gem.rotation.z = a; gem.scale.z = 0.6; group.add(gem);
+      }
+      // Second, slimmer bangle behind
+      var g2 = new THREE.Group(); var band2 = new THREE.Mesh(new THREE.TorusGeometry(1.6, 0.12, 32, 160), gold); g2.add(band2);
+      g2.add(new THREE.Mesh(new THREE.TubeGeometry(new Helix(1.6, 0.13, 120, 0), 1400, 0.03, 6, true), gold));
+      scn.add(g2);
+
+      scn.add(new THREE.AmbientLight(0xffe7b0, 0.35));
+      var key = new THREE.DirectionalLight(0xfff1d0, 1.6); key.position.set(3, 4, 5); scn.add(key);
+      var rim = new THREE.PointLight(0xffc46b, 2.2, 20); rim.position.set(-4, -2, 3); scn.add(rim);
+
+      function resize() {
+        var w = canvas.clientWidth, h = canvas.clientHeight;
+        renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix();
+        base = w < 760 ? 0.6 : 0.82;
+      }
+      resize(); window.addEventListener("resize", resize);
+      var base = 0.82; resize();
+      var mx = 0, my = 0; window.addEventListener("pointermove", function (e) { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; });
+      var visible = true; new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(canvas);
+      var t0 = performance.now(), sp = 0;
+      var lerp = function (a, b, t) { return a + (b - a) * t; };
+      // Camera / pose keyframes through the story
+      var K = [
+        { p: 0.00, x: 0, y: -1.05, rx: 1.2, ry: 0, z: 9, x2: 0, y2: -1.3, o2: 0 },
+        { p: 0.33, x: 2.5, y: 0, rx: 0.35, ry: -0.6, z: 8, x2: 2.9, y2: -0.6, o2: 1 },
+        { p: 0.60, x: -2.5, y: 0, rx: -0.2, ry: 0.9, z: 8, x2: -2.9, y2: 0.6, o2: 1 },
+        { p: 1.00, x: 0, y: 0.95, rx: 1.3, ry: 0, z: 11, x2: 0, y2: 0.7, o2: 1 }
+      ];
+      function pose(p) {
+        for (var i = 0; i < K.length - 1; i++) if (p <= K[i + 1].p) { var a = K[i], b = K[i + 1], t = (p - a.p) / (b.p - a.p); t = t * t * (3 - 2 * t); var o = {}; for (var k in a) o[k] = lerp(a[k], b[k], t); return o; }
+        return K[K.length - 1];
+      }
+      (function loop() {
+        requestAnimationFrame(loop);
+        if (!visible) return;
+        var t = (performance.now() - t0) / 1000;
+        var target = P.inFrame ? (t / 12) % 1 : progress(); sp += (target - sp) * 0.14;
+        var narrow = innerWidth < 760, q = pose(sp);
+        var ny = narrow ? (sp < 0.2 ? -1.35 : 1.15) : 0;
+        group.position.set(narrow ? 0 : q.x, narrow ? ny : q.y, 0); group.scale.setScalar(base);
+        group.rotation.set(q.rx + my * 0.3, q.ry + mx * 0.5, P.reduce ? 0 : t * 0.25);
+        g2.position.set(narrow ? 0 : q.x2, narrow ? ny - 0.25 : q.y2, -1.2);
+        g2.rotation.set(q.rx + 0.4, q.ry - 0.3, P.reduce ? 0 : -t * 0.18);
+        g2.visible = q.o2 > 0.02; g2.scale.setScalar(base * (0.6 + q.o2 * 0.4));
+        cam.position.z = q.z;
+        rim.position.x = Math.cos(t * 0.6) * 4; rim.position.y = Math.sin(t * 0.6) * 2;
+        renderer.render(scn, cam);
+      })();
+    })();
+  });
+  </script>
+</body>
+</html>

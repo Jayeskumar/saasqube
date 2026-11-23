@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kaapi Kottai — Cinematic Coffee House Template | SaaSQube Solutions</title>
+  <meta name="description" content="Cinematic scroll-driven website template for a filter coffee house and roastery by SaaSQube Solutions: a zoom-through journey from estate to cup, steaming brass filter, menu and outlets.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Outfit:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="../premium.css">
+  <style>
+    :root {
+      --font: "Outfit", system-ui, sans-serif; --font-head: "Fraunces", Georgia, serif;
+      --roast: #1d120c; --mocha: #3a2418; --crema: #c98d4f; --cream: #f4e9da; --brass: #b8913f;
+      --primary: var(--roast); --primary-dark: #000; --accent: var(--crema); --on-accent: #1d120c;
+      --bg: var(--cream); --alt: #ecdcc6; --surface: #fbf5ec; --text: #4d3a2e; --heading: var(--roast); --muted: #87705f;
+      --line: #dcc8ad; --radius: 20px; --btn-radius: 999px; --kicker: #a26a2f;
+      --footer-bg: var(--roast); --footer-text: #c3ad97; --footer-head: var(--cream);
+    }
+    h1, h2, h3 { font-weight: 600; letter-spacing: -.02em; }
+    h2 { font-size: clamp(2.2rem, 5vw, 4.2rem); line-height: 1; }
+    h2 em, h1 em { font-weight: 400; color: var(--crema); }
+    .btn-crema { background: var(--crema); color: var(--roast); }
+    .btn-crema:hover { background: #e0a565; }
+
+    .t-header { position: fixed; left: 0; right: 0; top: var(--demo-h, 36px); background: transparent; border: 0; color: var(--cream); transition: background .4s, color .4s; }
+    .t-header.solid { background: rgba(244, 233, 218, .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: var(--roast); border-bottom: 1px solid var(--line); }
+    .t-header .t-logo { color: inherit; font-family: var(--font-head); font-size: 1.5rem; }
+    .t-header .t-logo small { color: inherit; opacity: .7; }
+    .t-logo .mark { background: var(--crema); color: var(--roast); border-radius: 50%; }
+    .t-nav a:not(.btn) { color: inherit; }
+    .t-toggle { color: inherit; } .t-toggle span { background: currentColor; }
+    @media (max-width: 900px) { .t-nav { background: var(--cream); color: var(--roast); } }
+
+    /* ---------- Zoom-through journey ---------- */
+    .journey { position: relative; height: 500vh; background: var(--roast); }
+    .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+    .shot { position: absolute; inset: 0; opacity: 0; will-change: transform, opacity; }
+    .shot img { width: 100%; height: 100%; object-fit: cover; }
+    .shot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(29, 18, 12, .82) 0%, rgba(29, 18, 12, .35) 55%, rgba(29, 18, 12, .1)), linear-gradient(0deg, rgba(29, 18, 12, .55), transparent 40%); }
+    .shot:first-child { opacity: 1; }
+    .jcopy { position: absolute; inset: 0; z-index: 5; color: var(--cream); pointer-events: none; }
+    .marks, .jline { z-index: 5; }
+    .jcopy .container { position: relative; height: 100%; }
+    .jc { position: absolute; left: 0; top: 50%; transform: translateY(-40%); opacity: 0; max-width: 560px; transition: opacity .6s, transform .6s; }
+    .jc.on { opacity: 1; transform: translateY(-50%); pointer-events: auto; }
+    .jc .step { font-size: .74rem; letter-spacing: .3em; text-transform: uppercase; color: var(--crema); font-weight: 600; }
+    .jc h1, .jc h2 { color: var(--cream); margin: 10px 0 14px; }
+    .jc h1 { font-size: clamp(2.8rem, 7.4vw, 6.6rem); line-height: .95; }
+    .jc p { font-size: 1.08rem; max-width: 30em; }
+    .jc .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .jc .btn-outline { color: var(--cream); }
+    .meter { position: absolute; right: 0; bottom: 8%; color: var(--cream); text-align: right; }
+    .meter small { display: block; font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; opacity: .8; }
+    .meter strong { font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400; }
+    .jline { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(244, 233, 218, .15); }
+    .jline i { display: block; height: 100%; width: 0; background: var(--crema); }
+    .marks { position: absolute; right: 22px; top: 50%; transform: translateY(-50%); display: grid; gap: 10px; }
+    .marks i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--cream); opacity: .6; transition: all .3s; }
+    .marks i.on { background: var(--crema); border-color: var(--crema); opacity: 1; transform: scale(1.3); }
+    @media (max-width: 700px) { .jc { top: auto; bottom: 16%; transform: translateY(10px); } .jc.on { transform: none; } .meter { bottom: auto; top: 96px; } .marks { display: none; } }
+
+    /* ---------- Steaming filter ---------- */
+    .brew { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 80px); align-items: center; }
+    .cup { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 4.6; }
+    .cup img { width: 100%; height: 100%; object-fit: cover; }
+    .steam { position: absolute; left: 50%; top: 4%; width: 46%; transform: translateX(-50%); overflow: visible; }
+    .steam path { fill: none; stroke: #fff; stroke-width: 9; stroke-linecap: round; opacity: 0; filter: blur(5px); stroke-dasharray: 60 260; animation: steam 3.6s ease-in-out infinite; }
+    .steam path:nth-child(2) { animation-delay: -1.2s; } .steam path:nth-child(3) { animation-delay: -2.4s; }
+    @keyframes steam { 0% { stroke-dashoffset: 320; opacity: 0; } 30% { opacity: .55; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+    .ratio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 26px; }
+    .ratio div { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px; text-align: center; }
+    .ratio strong { display: block; font-family: var(--font-head); font-size: 2rem; color: var(--roast); }
+    .ratio span { font-size: .82rem; color: var(--muted); }
+    @media (max-width: 860px) { .brew { grid-template-columns: 1fr; } .cup { max-width: 460px; } }
+
+    /* ---------- Menu ---------- */
+    .menu { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 60px; max-width: 980px; margin: 0 auto; }
+    .item { display: flex; align-items: baseline; gap: 12px; padding: 16px 0; border-bottom: 1px dashed var(--line); }
+    .item h3 { font-size: 1.25rem; margin: 0; }
+    .item p { margin: 2px 0 0; font-size: .9rem; color: var(--muted); }
+    .item .dots { flex: 1; border-bottom: 2px dotted var(--line); transform: translateY(-5px); }
+    .item .price { font-family: var(--font-head); font-size: 1.2rem; color: var(--roast); font-weight: 600; }
+    @media (max-width: 760px) { .menu { grid-template-columns: 1fr; } }
+
+    /* ---------- Beans to buy ---------- */
+    .beans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .bag { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; }
+    .bag .ph { aspect-ratio: 4 / 3; overflow: hidden; }
+    .bag img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
+    .bag:hover img { transform: scale(1.06); }
+    .bag .body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+    .bag h3 { font-size: 1.4rem; margin-bottom: 4px; }
+    .notes { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 16px; }
+    .notes span { font-size: .75rem; padding: 4px 10px; border-radius: 999px; background: var(--alt); color: var(--mocha); font-weight: 500; }
+    .bag .foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
+    .bag .price { font-family: var(--font-head); font-size: 1.4rem; font-weight: 600; color: var(--roast); }
+    @media (max-width: 900px) { .beans { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; } }
+
+    .outlets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .outlet { background: var(--roast); color: #d9c5b1; border-radius: 22px; padding: 26px; }
+    .outlet h3 { color: var(--cream); font-size: 1.4rem; }
+    .outlet p { margin: 0 0 6px; font-size: .92rem; }
+    .outlet .open { display: inline-block; margin-top: 10px; font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--crema); font-weight: 600; }
+    @media (max-width: 860px) { .outlets { grid-template-columns: 1fr; } }
+    .t-footer .t-logo { font-family: var(--font-head); }
+  </style>
+</head>
+<body>
+  <div class="demo-bar"><div class="container">
+    <a href="../">← All templates</a>
+    <span class="db-text"><span class="db-3d">CINEMATIC</span>Demo website template by <strong>SaaSQube Solutions</strong></span>
+    <a class="db-cta" href="../../index.html?template=Cinematic%20Coffee%20House#contact">Get this website</a>
+  </div></div>
+
+  <header class="t-header">
+    <div class="container t-nav-wrap">
+      <a href="#top" class="t-logo"><span class="mark">☕</span><span>Kaapi Kottai<small>Filter coffee house</small></span></a>
+      <button class="t-toggle" aria-expanded="false" aria-controls="t-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="t-nav" id="t-nav">
+        <a href="#brew">The brew</a>
+        <a href="#menu">Menu</a>
+        <a href="#beans">Buy beans</a>
+        <a href="#outlets" class="btn btn-crema btn-sm">Find us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="journey" id="journey" aria-label="From estate to cup">
+      <div class="stage">
+        <div class="shot"><img src="img/plantation.webp" alt="Coffee plants on a hillside estate" width="1600" height="1067"></div>
+        <div class="shot"><img src="img/cherries.webp" alt="Hands picking ripe coffee cherries" loading="lazy"></div>
+        <div class="shot"><img src="img/beans-dark.webp" alt="Freshly roasted coffee beans" loading="lazy"></div>
+        <div class="shot"><img src="img/maker-beans.webp" alt="Brass filter coffee maker with beans" loading="lazy"></div>
+        <div class="jcopy">
+          <div class="container">
+            <div class="jc on" data-i="0">
+              <span class="step">Chikmagalur → Chennai</span>
+              <h1 data-split="words" data-no-auto>From the estate <em>to your davara.</em></h1>
+              <p>Single-estate Arabica and Robusta, slow-roasted every morning and brewed the old way: in brass, with chicory and fresh milk.</p>
+              <div class="ctas"><a href="#menu" class="btn btn-crema">See the menu</a><a href="#beans" class="btn btn-outline">Buy beans</a></div>
+            </div>
+            <div class="jc" data-i="1"><span class="step">01 · The harvest</span><h2>Picked by hand, <em>cherry by cherry.</em></h2><p>Only ripe red cherries from our partner estates, 1,200 metres up in the Western Ghats.</p></div>
+            <div class="jc" data-i="2"><span class="step">02 · The roast</span><h2>Roasted at dawn, <em>in small batches.</em></h2><p>A medium-dark roast with 20% chicory for that thick, chocolatey South Indian body.</p></div>
+            <div class="jc" data-i="3"><span class="step">03 · The brew</span><h2>Brewed in brass, <em>poured high.</em></h2><p>Fifteen minutes of slow decoction, frothy milk and a metre-long pour.</p></div>
+            <div class="meter" aria-live="polite"><small>Distance to your cup</small><strong id="km">412 km</strong></div>
+          </div>
+        </div>
+        <div class="marks" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="jline"><i id="jline"></i></div>
+      </div>
+    </section>
+
+    <section class="section" id="brew">
+      <div class="container brew">
+        <div class="cup" data-reveal>
+          <img src="img/brass-filter.webp" alt="Frothy filter coffee in a brass tumbler and davara" loading="lazy">
+          <svg class="steam" viewBox="0 0 200 260" aria-hidden="true"><path d="M60 250 C 30 200, 90 170, 60 120 S 80 40, 60 10"/><path d="M100 250 C 70 200, 130 170, 100 120 S 120 40, 100 10"/><path d="M140 250 C 110 200, 170 170, 140 120 S 160 40, 140 10"/></svg>
+        </div>
+        <div>
+          <p class="kicker">The brew</p>
+          <h2 data-split="words">The perfect <em>kaapi</em> is a ratio.</h2>
+          <p class="muted">Our baristas measure every cup so it tastes the same in Mylapore at 6 AM and in T. Nagar at 9 PM.</p>
+          <div class="ratio" data-stagger>
+            <div><strong>80:20</strong><span>Coffee to chicory</span></div>
+            <div><strong data-countup="15" data-suffix=" min">15 min</strong><span>Decoction drip</span></div>
+            <div><strong>1 : 3</strong><span>Decoction to milk</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="menu">
+      <div class="container">
+        <div class="section-head"><p class="kicker">Menu</p><h2 data-split="words">Kaapi &amp; <em>a little more.</em></h2></div>
+        <div class="menu" data-stagger>
+          <div class="item"><div><h3>Filter Kaapi</h3><p>The classic, in a brass davara set</p></div><span class="dots"></span><span class="price">₹40</span></div>
+          <div class="item"><div><h3>Strong Degree Kaapi</h3><p>Extra decoction, less milk</p></div><span class="dots"></span><span class="price">₹50</span></div>
+          <div class="item"><div><h3>Jaggery Kaapi</h3><p>Sweetened with palm jaggery</p></div><span class="dots"></span><span class="price">₹55</span></div>
+          <div class="item"><div><h3>Cold Kaapi</h3><p>Chilled decoction, milk &amp; ice</p></div><span class="dots"></span><span class="price">₹80</span></div>
+          <div class="item"><div><h3>Ghee Podi Idli</h3><p>Four mini idlis in podi and ghee</p></div><span class="dots"></span><span class="price">₹90</span></div>
+          <div class="item"><div><h3>Butter Biscuit</h3><p>Baked fresh, perfect for dunking</p></div><span class="dots"></span><span class="price">₹30</span></div>
+          <div class="item"><div><h3>Rava Kesari</h3><p>Warm, with cashews and raisins</p></div><span class="dots"></span><span class="price">₹60</span></div>
+          <div class="item"><div><h3>Pour-over</h3><p>Single-estate Arabica, black</p></div><span class="dots"></span><span class="price">₹140</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="beans">
+      <div class="container">
+        <div class="section-head"><p class="kicker">Take it home</p><h2 data-split="words">Fresh-ground, <em>shipped in 24 hours.</em></h2></div>
+        <div class="beans" data-stagger>
+          <article class="bag" data-tilt="6"><div class="ph"><img src="img/beans-dark.webp" alt="Dark roasted coffee beans" loading="lazy"></div><div class="body"><h3>Kottai Classic</h3><p class="muted" style="margin:0">80:20 filter blend · 500 g</p><div class="notes"><span>Dark chocolate</span><span>Caramel</span><span>Full body</span></div><div class="foot"><span class="price">₹420</span><a href="#outlets" class="btn btn-primary btn-sm">Order</a></div></div><span class="glare"></span></article>
+          <article class="bag" data-tilt="6"><div class="ph"><img src="img/beans-light.webp" alt="Roasted coffee beans scattered on a light surface" loading="lazy"></div><div class="body"><h3>Estate Arabica</h3><p class="muted" style="margin:0">100% coffee · 250 g</p><div class="notes"><span>Orange</span><span>Jaggery</span><span>Bright</span></div><div class="foot"><span class="price">₹380</span><a href="#outlets" class="btn btn-primary btn-sm">Order</a></div></div><span class="glare"></span></article>
+          <article class="bag" data-tilt="6"><div class="ph"><img src="img/pour-over.webp" alt="Coffee being poured from a pour-over brewer" loading="lazy"></div><div class="body"><h3>Brew Kit</h3><p class="muted" style="margin:0">Brass filter + 250 g blend</p><div class="notes"><span>Gift box</span><span>Brewing guide</span></div><div class="foot"><span class="price">₹1,250</span><a href="#outlets" class="btn btn-primary btn-sm">Order</a></div></div><span class="glare"></span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="outlets">
+      <div class="container">
+        <div class="section-head"><p class="kicker">Find us</p><h2 data-split="words">Three kottais <em>in Chennai.</em></h2></div>
+        <div class="outlets" data-stagger>
+          <div class="outlet"><h3>Mylapore</h3><p>14, North Mada Street</p><p>📞 +91 90000 00001</p><span class="open">Open 6 AM – 10 PM</span></div>
+          <div class="outlet"><h3>T. Nagar</h3><p>52, Usman Road</p><p>📞 +91 90000 00002</p><span class="open">Open 7 AM – 11 PM</span></div>
+          <div class="outlet"><h3>Adyar</h3><p>8, LB Road</p><p>📞 +91 90000 00003</p><span class="open">Open 6 AM – 10 PM</span></div>
+        </div>
+        <form class="form" data-demo data-demo-msg="Thank you! This is a demo — on your live website, your order or catering request goes straight to WhatsApp." style="max-width:640px;margin:48px auto 0">
+          <h3 style="text-align:center">Bulk orders &amp; office catering</h3>
+          <div class="row"><label>Name<input type="text" required></label><label>Phone<input type="tel" required></label></div>
+          <label>What do you need?<select><option>Office coffee (daily)</option><option>Event catering</option><option>Bulk beans</option></select></label>
+          <button class="btn btn-primary btn-block">Send request</button>
+          <p class="form-msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="t-footer">
+    <div class="container">
+      <div class="cols">
+        <div><a href="#top" class="t-logo">Kaapi Kottai</a><p>Filter coffee house and roastery, Chennai.</p></div>
+        <div><h4>Visit</h4><ul><li><a href="#menu">Menu</a></li><li><a href="#outlets">Outlets</a></li></ul></div>
+        <div><h4>Shop</h4><ul><li><a href="#beans">Beans &amp; kits</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li>📍 Mylapore, Chennai</li><li>📞 +91 90000 00000</li><li>✉️ hello@kaapikottai.example</li></ul></div>
+      </div>
+      <div class="bottom"><p>© <span data-year>2026</span> Kaapi Kottai (demo) · Photos: Unsplash</p><p>Website by SaaSQube Solutions</p></div>
+    </div>
+  </footer>
+
+  <a class="t-wa" href="#outlets" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5 0-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5l-.1-.1z"/></svg></a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="../shared.js" defer></script>
+  <script src="../premium.js" defer></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var P = window.PREMIUM || {};
+    var $ = function (id) { return document.getElementById(id); };
+    var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+    var journey = $("journey"), header = document.querySelector(".t-header"), demoBar = document.querySelector(".demo-bar");
+    var shots = document.querySelectorAll(".shot"), jcs = document.querySelectorAll(".jc"), marks = document.querySelectorAll(".marks i");
+    var N = shots.length;
+
+    // Each shot zooms in (the camera "dives") and dissolves into the next, which settles from slightly zoomed.
+    function render(p) {
+      var seg = p * N, cur = Math.min(N - 1, Math.floor(seg)), local = seg - cur;
+      shots.forEach(function (s, i) {
+        var scale = 1, op = 0;
+        if (i === cur) { scale = 1 + local * 0.55; op = i === N - 1 ? 1 : 1 - clamp((local - 0.7) / 0.3, 0, 1); }
+        else if (i === cur + 1) { var t = clamp((local - 0.7) / 0.3, 0, 1); scale = 1.18 - t * 0.18; op = t; }
+        if (P.reduce) scale = 1;
+        s.style.opacity = op; s.style.transform = "scale(" + scale.toFixed(4) + ")";
+        s.style.zIndex = i === cur + 1 ? 2 : 1;
+      });
+      var ci = Math.min(N - 1, Math.round(seg - 0.25));
+      jcs.forEach(function (c, i) { c.classList.toggle("on", i === Math.max(0, ci)); });
+      marks.forEach(function (m, i) { m.classList.toggle("on", i === Math.max(0, ci)); });
+      $("km").textContent = Math.round(412 * (1 - p)) === 0 ? "Served ☕" : Math.round(412 * (1 - p)) + " km";
+      $("jline").style.width = (p * 100) + "%";
+    }
+    function progress() { var r = journey.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight), 0, 1); }
+    var ticking = false;
+    function onScroll() {
+      var dh = P.inFrame || !demoBar ? 0 : demoBar.offsetHeight;
+      header.style.top = Math.max(0, dh - window.scrollY) + "px";
+      header.classList.toggle("solid", journey.getBoundingClientRect().bottom < 80);
+      if (!ticking) { ticking = true; requestAnimationFrame(function () { render(progress()); ticking = false; }); }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true }); window.addEventListener("resize", onScroll);
+    if (P.inFrame) { var t0 = performance.now(); (function loop() { render(((performance.now() - t0) / 12000) % 1); requestAnimationFrame(loop); })(); }
+    onScroll();
+    if (window.gsap && !P.reduce) gsap.from(".jc[data-i='0'] .sc", { yPercent: 115, opacity: 0, stagger: 0.06, duration: 1.2, ease: "expo.out", delay: 0.2 });
+  });
+  </script>
+</body>
+</html>

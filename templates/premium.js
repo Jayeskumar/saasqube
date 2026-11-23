@@ -9,6 +9,9 @@
   var inFrame = window.self !== window.top;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var P = (window.PREMIUM = { inFrame: inFrame, reduce: reduce, lenis: null });
+  P.desktop = window.matchMedia("(min-width: 901px)").matches;
+  // Overridden below when GSAP is available and motion is allowed.
+  P.reel = function () { return null; };
   if (inFrame) root.classList.add("in-frame");
 
   /* ---------- Split text into words / characters ---------- */
@@ -140,6 +143,42 @@
       scrollTrigger: { trigger: el, start: "top 80%", end: "bottom 45%", scrub: true }
     });
   });
+
+  /* ---------- Count-up numbers: <span data-countup="384400" data-prefix="₹" data-suffix=" km" data-decimals="1"> ---------- */
+  // The element's text should already hold the final value (shown when motion is off).
+  gsap.utils.toArray("[data-countup]").forEach(function (el) {
+    var end = parseFloat(el.dataset.countup), dec = +el.dataset.decimals || 0;
+    var pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    var o = { v: parseFloat(el.dataset.from) || 0 };
+    var fmt = function () { el.textContent = pre + o.v.toLocaleString("en-IN", { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf; };
+    if (el.hasAttribute("data-scrub")) {
+      gsap.to(o, { v: end, ease: "none", onUpdate: fmt,
+        scrollTrigger: { trigger: el.dataset.trigger || el, start: el.dataset.start || "top 80%", end: el.dataset.end || "bottom 30%", scrub: true } });
+    } else {
+      fmt();
+      gsap.to(o, { v: end, duration: 2.2, ease: "power2.out", onUpdate: fmt, scrollTrigger: { trigger: el, start: "top 90%" } });
+    }
+  });
+
+  /* ---------- Self-drawing SVG lines: <path data-draw> (optional data-trigger, data-start, data-end) ---------- */
+  gsap.utils.toArray("[data-draw]").forEach(function (el) {
+    if (!el.getTotalLength) return;
+    var len = el.getTotalLength();
+    gsap.fromTo(el, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, ease: "none",
+      scrollTrigger: { trigger: el.dataset.trigger || el.ownerSVGElement || el, start: el.dataset.start || "top 80%", end: el.dataset.end || "bottom 40%", scrub: true } });
+  });
+
+  /* ---------- Horizontal reel: pinned sideways scroll on desktop, native swipe on phones ---------- */
+  P.reel = function (section, track, opts) {
+    var sec = typeof section === "string" ? document.querySelector(section) : section;
+    var tr = typeof track === "string" ? document.querySelector(track) : track;
+    if (!sec || !tr) return null;
+    if (!P.desktop) { sec.classList.add("reel-native"); return null; }
+    var dist = function () { return Math.max(0, tr.scrollWidth - innerWidth); };
+    return gsap.to(tr, { x: function () { return -dist(); }, ease: "none",
+      scrollTrigger: { trigger: sec, start: "top top", end: function () { return "+=" + dist(); }, pin: true, scrub: 0.8,
+        invalidateOnRefresh: true, refreshPriority: (opts && opts.priority) || 0, onUpdate: opts && opts.onUpdate } });
+  };
 
   window.addEventListener("load", function () { ScrollTrigger.refresh(); });
 })();

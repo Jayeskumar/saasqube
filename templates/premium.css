@@ -26,6 +26,11 @@
 /* "Premium 3D" ribbon in the demo bar */
 .demo-bar .db-3d { background: linear-gradient(90deg, #a78bfa, #f472b6); color: #1e1b4b; font-weight: 800; font-size: .68rem; letter-spacing: .08em; padding: 3px 8px; border-radius: 999px; margin-right: 8px; }
 
+/* Native swipe fallback for P.reel() on phones */
+.reel-native { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.reel-native::-webkit-scrollbar { display: none; }
+.reel-native > * > * { scroll-snap-align: center; }
+
 @media (prefers-reduced-motion: reduce) {
   .grain::after { animation: none; }
 }

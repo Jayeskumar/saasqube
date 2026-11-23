@@ -57,3 +57,73 @@ For a client's live site, replace these demo photos with the client's own produc
 | interior.webp | Frames For Your Heart | https://unsplash.com/photos/white-chairs-and-table-on-white-floor-tiles-kToEIcYPky4 |
 | bedroom.webp | Marvin Meyer | https://unsplash.com/photos/white-bed-near-glass-sliding-door-fBdlytm6Hp8 |
 | coast.webp | Kamilla Isalieva | https://unsplash.com/photos/villas-nestled-among-trees-by-the-blue-ocean-MNmgUql2Q8k |
+
+## Cinematic templates
+
+The same rules apply to these photos: they come from Unsplash's free CDN (not Unsplash+) and were picked from free search results. Check each photo page before using a template for a paying client.
+
+### Solar Energy (`solar/img`)
+| File | Photographer | Source |
+|---|---|---|
+| roof-house.webp | Watt A Lot | https://unsplash.com/photos/a-house-with-solar-panels-Ja8t8nJN2I4 |
+| install.webp | Bill Mead | https://unsplash.com/photos/person-installing-solar-panel-on-roof-wmaP3Tl80ww |
+| panels-sky.webp | American Public Power Association | https://unsplash.com/photos/solar-panel-under-blue-sky-XGAZzyLzn18 |
+| tiled-roof.webp | Sergio Martins | https://unsplash.com/photos/solar-panels-installed-on-a-tiled-residential-roof-VAegToqdX3A |
+| farm.webp | Bernd Dittrich | https://unsplash.com/photos/aerial-view-of-a-solar-panel-farm-with-green-grass-6YZL06HBQ6o |
+
+### IT & Software (`tech/img`)
+| File | Photographer | Source |
+|---|---|---|
+| team.webp | Vitaly Gariev | https://unsplash.com/photos/diverse-team-collaborating-around-a-computer-screen-Y32qbykD69g |
+| coding.webp | Arif Riyanto | https://unsplash.com/photos/person-coding-in-modern-workspace-G1N9kDHqBrQ |
+| datacenter.webp | Tony Marinescu | https://unsplash.com/photos/modern-data-center-with-rows-of-white-server-cabinets-fImCPTZ026U |
+| office.webp | Austin Distel | https://unsplash.com/photos/man-in-blue-dress-shirt-sitting-on-rolling-chair-inside-room-with-monitors-wawEfYdpkag |
+
+### Travel & Tours (`travel/img`)
+| File | Photographer | Source |
+|---|---|---|
+| mist-hills.webp | Priya Singh | https://unsplash.com/photos/a-mountain-covered-in-fog-and-clouds-cNNIIduVCLs |
+| mist-trees.webp | Sonaal Bangera | https://unsplash.com/photos/silhouette-photography-of-trees-covered-with-mist-65KigGod2l0 |
+| tea.webp | Vivek Kumar | https://unsplash.com/photos/tea-gardens-on-munnar-hills-JS_ohjocm00 |
+| tea-range.webp | Antony Thomas | https://unsplash.com/photos/a-tea-plantation-in-the-middle-of-a-mountain-range-PHOk0ZP28a0 |
+| lake.webp | mugi jo | https://unsplash.com/photos/a-lush-green-hillside-with-a-lake-in-the-distance-6qUltw7SjzM |
+| lake-2.webp | Prasath G | https://unsplash.com/photos/a-scenic-view-of-a-mountain-with-a-lake-in-the-distance-num9zviIVoE |
+| train.webp | Arpan Sharma | https://unsplash.com/photos/a-train-traveling-through-a-lush-green-countryside-nwXKR4isc_k |
+| train-2.webp | Jabir N | https://unsplash.com/photos/a-train-traveling-through-a-lush-green-forest-LmIb20-UMOc |
+| waterfall.webp | Poornesh Shiva | https://unsplash.com/photos/a-waterfall-in-a-forest-RyFTyjXGXBo |
+| jeep.webp | Prashanth M | https://unsplash.com/photos/a-group-of-people-standing-next-to-a-yellow-jeep-ToqYtMEtQuY |
+
+### Jewellery (`jewellery/img`)
+| File | Photographer | Source |
+|---|---|---|
+| bangles.webp | Zayed Ahmed Zadu | https://unsplash.com/photos/a-stack-of-ornate-gold-bangles-on-a-dark-surface-wreS7kv_tLE |
+| necklace-stand.webp | Zayed Ahmed Zadu | https://unsplash.com/photos/gold-necklace-and-earrings-displayed-on-white-stands-LA0edB8tqC0 |
+| necklace-velvet.webp | Zayed Ahmed Zadu | https://unsplash.com/photos/gold-necklace-with-intricate-bead-details-on-blue-velvet-u1DhoJNcmqM |
+| ring.webp | MAYANK GEHLOT | https://unsplash.com/photos/gold-and-blue-ring-on-black-textile-tUCYTL59cA0 |
+| set-case.webp | Shruti Singh | https://unsplash.com/photos/a-gold-necklace-and-earring-set-in-a-display-case-vLIeyl_ml8s |
+| bride.webp | Alok Verma | https://unsplash.com/photos/woman-in-red-bridal-outfit-ohENjR9w0bk |
+
+### Coffee House (`coffee/img`)
+| File | Photographer | Source |
+|---|---|---|
+| brass-filter.webp | Ayyappan Mk | https://unsplash.com/photos/traditional-brass-filter-coffee-maker-with-frothy-coffee-g-zMHMFV79c |
+| maker-beans.webp | Paul | https://unsplash.com/photos/a-metal-coffee-maker-with-coffee-beans-Wu_s3trPEVM |
+| beans-light.webp | Kyle Hang | https://unsplash.com/photos/roasted-coffee-beans-scattered-on-a-light-surface-_rUfjdvUlkE |
+| beans-dark.webp | Alexas_Fotos | https://unsplash.com/photos/dark-roasted-coffee-beans-scattered-across-a-surface-a6bxlKmel20 |
+| cherries.webp | The Manh | https://unsplash.com/photos/hands-harvesting-ripe-coffee-cherries-from-branches-qlT4S7j_reg |
+| plantation.webp | PROJETO CAFÉ GATO-MOURISCO | https://unsplash.com/photos/rows-of-coffee-plants-on-a-hillside-with-mountains-N_1lnzUYuAs |
+| pour-over.webp | juan saav | https://unsplash.com/photos/pouring-coffee-from-a-pour-over-brewer-into-a-cup-K_fBw528-Bg |
+
+### Wedding Photography (`wedding/img`)
+| File | Photographer | Source |
+|---|---|---|
+| couple.webp | ARTO SURAJ | https://unsplash.com/photos/a-bride-and-groom-posing-for-a-picture-d9RsO9BHFVQ |
+| river.webp | Sean Williams | https://unsplash.com/photos/couple-in-traditional-indian-wedding-attire-d-jyMeP6uNQ |
+| woods.webp | iKshana Productions | https://unsplash.com/photos/a-bride-and-groom-standing-on-a-path-in-the-woods-SHFOaVaVe2A |
+| ready.webp | Sabesh Photography | https://unsplash.com/photos/a-bride-and-groom-getting-ready-for-their-wedding-ceremony-oJof1JomJ3g |
+| mehendi.webp | Love Arya | https://unsplash.com/photos/hands-with-henna-holding-in-celebration-SUwPo4ErQCc |
+| arch.webp | Vidit Goswami | https://unsplash.com/photos/decorated-wedding-arch-with-floral-aisle-and-seating-XGeKyTG6U6A |
+| decor.webp | Vidit Goswami | https://unsplash.com/photos/outdoor-wedding-ceremony-setup-with-elegant-seating-arrangements--fEotnMjQ70 |
+| canopy.webp | AMISH THAKKAR | https://unsplash.com/photos/wedding-ceremony-under-floral-canopy-7O422yG_b80 |
+| grass.webp | Sabesh Photography | https://unsplash.com/photos/newlyweds-in-traditional-attire-resting-on-grass-XrbofN77emw |
+| bride.webp | Alok Verma | https://unsplash.com/photos/woman-in-red-bridal-outfit-ohENjR9w0bk |

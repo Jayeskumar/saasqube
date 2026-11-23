@@ -43,6 +43,31 @@ Three cinematic, scroll-animated templates with real photography and 3D effects:
 
 They load GSAP + ScrollTrigger, Lenis (smooth scroll) and Three.js from public CDNs, plus `templates/premium.js` / `premium.css` for shared motion helpers. If a library fails to load, or the visitor has "reduce motion" turned on, all content still shows, just without the motion. Photos are from Unsplash; see `templates/CREDITS.md`.
 
+### Cinematic scroll-story templates
+
+Inspired by the "scroll-driven, cinematic" style of template libraries such as ScrollTide, but every design, illustration, name and line of copy here is original. Each page is a pinned scene that plays like a short film as you scroll:
+
+| Folder | Industry | Story told by the scroll |
+|---|---|---|
+| `solar/` | Rooftop solar | A full day passes: the sky shifts from dawn to night, the sun arcs overhead, panels track it, kWh and ₹ saved count up, the battery fills and house lights switch on |
+| `tech/` | IT / software company | A WebGL field of thousands of particles morphs from globe to grid to knot to wave, one shape per service chapter |
+| `travel/` | Travel & tours | Six parallax layers of misty hills part, a mountain train climbs a curved track, altitude counts to 2,240 m, and an elevation route draws itself |
+| `jewellery/` | Jewellery showroom | A braided 3D gold bangle with gems (Three.js, metallic reflections) moves between poses beside a 916 hallmark counter |
+| `coffee/` | Coffee house / roastery | Zoom-through scenes from estate to cherries to roast to brass filter, with the distance to your cup counting down |
+| `wedding/` | Wedding photography | Photos "develop" from blurry sepia film to full colour, then roll by on a 35 mm film strip |
+
+When shown as a gallery preview, each scene plays on a loop on its own.
+
+### Techniques & open-source references
+
+The motion layer is plain JavaScript in `templates/premium.js` (split-text reveals, parallax, clip-path unveils, scrubbed word highlights, count-ups, self-drawing SVG lines, horizontal reels) on top of these open-source libraries loaded from CDNs:
+
+- [GSAP + ScrollTrigger](https://github.com/greensock/GSAP): pinned sections, scrubbed timelines, horizontal reels
+- [Lenis](https://github.com/darkroomengineering/lenis) (MIT): smooth scrolling
+- [Three.js](https://github.com/mrdoob/three.js) (MIT): WebGL silk, barber pole, particle field and gold bangle
+
+Patterns were studied from open-source projects including [Scrollama](https://github.com/russellsamora/scrollama) (scrollytelling steps), [Locomotive Scroll](https://github.com/locomotivemtl/locomotive-scroll) and [Rellax](https://github.com/dixonandmoe/rellax) (parallax), [vanilla-tilt.js](https://github.com/micku7zu/vanilla-tilt.js) (3D tilt), [SplitType](https://github.com/lukePeavey/SplitType) (text splitting), the [Fireship Three.js scroll demo](https://github.com/fireship-io/threejs-scroll-animation-demo) and [Codrops scroll experiments](https://github.com/codrops/TileScroll). No code was copied from them. The ideas were reimplemented in small vanilla functions.
+
 All templates share `templates/shared.css` and `templates/shared.js` (header, mobile menu, forms, tabs, footer). Each sets its own colours and fonts in a `<style>` block at the top. Every template has a dark bar at the top linking back to the gallery, plus a **Get this website** button. That button opens the main site's contact form with the template already filled in (`index.html?template=Name#contact`). The bar is hidden automatically when a template is shown as a preview in the gallery.
 
 Forms in the templates are demo-only: they show a thank-you message and don't send anything. To turn a template into a client's real site, copy its folder, replace the names, contact details and content, swap the emoji/gradient visuals for real photos, and remove the demo bar.
