@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thari Silks — Premium 3D Saree Boutique Template | SaaSQube Solutions</title>
+  <meta name="description" content="Premium animated 3D website template for a Kanchipuram silk saree boutique by SaaSQube Solutions: WebGL silk hero, 3D colour carousel, craft story and bridal appointments.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/hero-red.webp">
+  <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="../premium.css">
+  <style>
+    :root {
+      --font: "Manrope", system-ui, sans-serif; --font-head: "Cormorant Garamond", Georgia, serif;
+      --maroon: #3b0a12; --wine: #5c0f1c; --gold: #c9a24b; --gold-2: #e6c87a; --ivory: #f6efe4; --ink: #2a1712;
+      --primary: var(--wine); --primary-dark: var(--maroon); --accent: var(--gold); --on-accent: var(--maroon);
+      --bg: var(--ivory); --alt: #efe5d5; --surface: #fffaf2; --text: #4a352c; --heading: var(--ink); --muted: #8a7266;
+      --line: #e2d3bd; --radius: 4px; --btn-radius: 999px; --kicker: #9a6b1e;
+      --field-bg: #fffaf2; --footer-bg: #1d0609; --footer-text: #cdb49a; --footer-head: var(--gold-2);
+    }
+    h1, h2, h3 { font-weight: 500; letter-spacing: -.01em; }
+    h2 { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.02; }
+    h2 em, h1 em { color: var(--gold); font-style: italic; }
+    .btn { letter-spacing: .14em; text-transform: uppercase; font-size: .76rem; padding: 16px 28px; }
+    .btn-gold { background: var(--gold); color: var(--maroon); }
+    .btn-gold:hover { background: var(--gold-2); }
+    .btn-line { border: 1px solid rgba(230, 200, 122, .6); color: var(--ivory); background: transparent; }
+    .btn-line:hover { border-color: var(--gold-2); color: var(--gold-2); }
+    .kicker { letter-spacing: .32em; font-size: .7rem; }
+
+    /* ---------- Header ---------- */
+    .t-header { position: fixed; left: 0; right: 0; top: var(--demo-h, 36px); background: transparent; border: 0; transition: background .4s, top .3s; }
+    .in-frame .t-header { top: 0; }
+    .t-header.solid { background: rgba(29, 6, 9, .86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .t-header .t-logo { color: var(--ivory); font-family: var(--font-head); font-weight: 500; font-size: 1.9rem; letter-spacing: .04em; }
+    .t-header .t-logo small { color: var(--gold-2); letter-spacing: .5em; font-size: .56rem; }
+    .t-logo .mark { background: transparent; border: 1px solid var(--gold); color: var(--gold-2); border-radius: 50%; font-family: var(--font-head); font-size: 1.3rem; }
+    .t-nav a:not(.btn) { color: var(--ivory); letter-spacing: .14em; text-transform: uppercase; font-size: .72rem; }
+    .t-nav a:not(.btn):hover { color: var(--gold-2); }
+    .t-toggle span { background: var(--ivory); }
+    @media (max-width: 900px) { .t-nav { background: #1d0609; } .t-nav a:not(.btn) { border-color: rgba(255, 255, 255, .1); } }
+
+    /* ---------- Hero ---------- */
+    .hero { position: relative; min-height: 100vh; min-height: 100svh; overflow: hidden; color: var(--ivory); display: grid; align-items: center;
+      background: var(--maroon) url("img/silk.webp") center/cover; }
+    .hero::before { content: ""; position: absolute; inset: 0; background: rgba(59, 10, 18, .75); mix-blend-mode: multiply; }
+    #silk { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(29, 6, 9, .88) 0%, rgba(29, 6, 9, .45) 55%, rgba(29, 6, 9, .1) 100%), linear-gradient(0deg, rgba(29, 6, 9, .7), transparent 40%); }
+    .hero .container { position: relative; z-index: 3; display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; padding: 140px 0 80px; }
+    .hero .kicker { color: var(--gold-2); }
+    .hero h1 { color: var(--ivory); font-size: clamp(3.4rem, 9vw, 8.2rem); line-height: .9; font-weight: 400; margin-bottom: .3em; }
+    .hero .lead { font-size: 1.06rem; color: #e8d9c6; max-width: 30em; }
+    .hero .ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+    .portrait { position: relative; justify-self: center; width: min(400px, 100%); }
+    .portrait .arch {
+      position: relative; aspect-ratio: 3 / 4.3; border-radius: 999px 999px 8px 8px; overflow: hidden;
+      box-shadow: 0 50px 90px -30px rgba(0, 0, 0, .8); transform-style: preserve-3d; transition: transform .3s ease-out;
+    }
+    .portrait .arch img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); }
+    .portrait::before { content: ""; position: absolute; inset: -16px; border: 1px solid rgba(230, 200, 122, .55); border-radius: 999px 999px 12px 12px; transform: translate(14px, 14px); }
+    .badge-spin { position: absolute; left: -52px; bottom: 60px; width: 120px; height: 120px; animation: spin 18s linear infinite; }
+    .badge-spin text { fill: var(--gold-2); font: 600 10.5px var(--font); letter-spacing: 3.2px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .scroll-cue { position: absolute; z-index: 3; left: 50%; bottom: 22px; transform: translateX(-50%); color: var(--gold-2); font-size: .66rem; letter-spacing: .3em; text-transform: uppercase; display: grid; justify-items: center; gap: 8px; }
+    .scroll-cue i { width: 1px; height: 44px; background: linear-gradient(var(--gold-2), transparent); animation: drip 2s ease-in-out infinite; transform-origin: top; }
+    @keyframes drip { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+    /* ---------- Marquee ---------- */
+    .zari { background: var(--maroon); color: var(--gold-2); overflow: hidden; border-block: 1px solid rgba(201, 162, 75, .35); }
+    .zari-track { display: flex; width: max-content; animation: slide 36s linear infinite; }
+    .zari-track span { font-family: var(--font-head); font-style: italic; font-size: clamp(1.4rem, 3vw, 2.2rem); padding: 16px 28px; white-space: nowrap; }
+    .zari-track span::after { content: "✦"; font-style: normal; font-size: .7em; margin-left: 56px; color: var(--gold); }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    /* ---------- Colours (3D carousel) ---------- */
+    .colours { background: var(--ivory); overflow: hidden; }
+    .colours-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; flex-wrap: wrap; padding-top: clamp(64px, 9vw, 110px); }
+    .colours-head p { max-width: 26em; color: var(--muted); margin: 0; }
+    .stage { perspective: 1400px; padding: 50px 0 clamp(64px, 9vw, 110px); }
+    .track { display: flex; gap: 34px; padding-inline: max(16px, calc((100vw - 1160px) / 2)); width: max-content; transform-style: preserve-3d; }
+    .swatch-card { width: clamp(230px, 24vw, 320px); flex: none; transform-style: preserve-3d; will-change: transform; text-decoration: none; color: inherit; }
+    .swatch-card .ph { aspect-ratio: 3 / 4.4; border-radius: 999px 999px 6px 6px; overflow: hidden; position: relative; box-shadow: 0 34px 60px -30px rgba(59, 10, 18, .6); }
+    .swatch-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2, .7, .2, 1); }
+    .swatch-card:hover img { transform: scale(1.06); }
+    .swatch-card .meta { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; }
+    .swatch-card h3 { font-size: 1.6rem; margin: 0; }
+    .swatch-card .dot { width: 22px; height: 22px; border-radius: 50%; box-shadow: 0 0 0 4px var(--ivory), 0 0 0 5px var(--line); }
+    .swatch-card small { color: var(--muted); letter-spacing: .12em; text-transform: uppercase; font-size: .68rem; }
+    @media (max-width: 900px) {
+      .stage { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .stage::-webkit-scrollbar { display: none; }
+      .swatch-card { scroll-snap-align: center; }
+    }
+
+    /* ---------- Craft (sticky story) ---------- */
+    .craft { background: var(--maroon); color: #e8d9c6; }
+    .craft h2, .craft h3 { color: var(--ivory); }
+    .craft-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 90px); }
+    .craft-media { position: sticky; top: 12vh; height: 76vh; border-radius: 6px; overflow: hidden; }
+    .craft-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.12); transition: opacity 1s ease, transform 1.6s ease; }
+    .craft-media img.on { opacity: 1; transform: scale(1); }
+    .craft-media .count { position: absolute; left: 22px; bottom: 18px; z-index: 2; font-family: var(--font-head); font-size: 4rem; color: var(--gold-2); line-height: 1; text-shadow: 0 4px 20px rgba(0, 0, 0, .5); }
+    .craft-steps { padding: 10vh 0; }
+    .step { min-height: 62vh; display: flex; flex-direction: column; justify-content: center; opacity: .35; transition: opacity .5s; }
+    .step.on { opacity: 1; }
+    .step .no { font-family: var(--font-head); color: var(--gold); font-size: 1.1rem; letter-spacing: .2em; }
+    .step h3 { font-size: clamp(2rem, 3.6vw, 3rem); margin: 8px 0 14px; }
+    .step p { max-width: 28em; font-size: 1.02rem; }
+    @media (max-width: 900px) {
+      .craft-grid { grid-template-columns: 1fr; }
+      .craft-media { position: relative; top: 0; height: 56vh; }
+      .step { min-height: auto; padding: 36px 0; opacity: 1; }
+    }
+
+    /* ---------- Bestsellers ---------- */
+    .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px 22px; }
+    .product { position: relative; color: inherit; text-decoration: none; }
+    .product .ph { position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 4px; background: var(--alt); }
+    .product img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.2, .7, .2, 1); }
+    .product:hover img { transform: scale(1.07); }
+    .product .tag { position: absolute; left: 12px; top: 12px; z-index: 2; background: var(--ivory); color: var(--wine); font-size: .64rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; }
+    .product .add { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 2; transform: translateY(130%); transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
+    .product:hover .add, .product:focus-within .add { transform: none; }
+    .product h3 { font-size: 1.35rem; margin: 14px 0 2px; }
+    .product p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .product .price { color: var(--wine); font-weight: 700; }
+    @media (max-width: 960px) { .products { grid-template-columns: repeat(2, 1fr); } }
+    @media (hover: none) { .product .add { transform: none; position: static; margin-top: 10px; width: 100%; } }
+
+    /* ---------- Bridal ---------- */
+    .bridal { position: relative; min-height: 120vh; display: grid; align-items: center; color: var(--ivory); overflow: hidden; }
+    .bridal-bg { position: absolute; inset: 0; }
+    .bridal-bg img { width: 100%; height: 120%; object-fit: cover; object-position: center 30%; }
+    .bridal::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(29, 6, 9, .85), rgba(29, 6, 9, .2) 70%); }
+    .bridal .container { position: relative; z-index: 2; }
+    .bridal h2 { color: var(--ivory); font-size: clamp(3rem, 8vw, 7rem); text-shadow: 0 4px 30px rgba(29, 6, 9, .7), 0 1px 3px rgba(29, 6, 9, .6); }
+    .bridal p { max-width: 30em; color: #ecdccb; font-size: 1.05rem; }
+    .bridal ul { list-style: none; padding: 0; margin: 26px 0 32px; display: grid; gap: 10px; }
+    .bridal li::before { content: "✦"; color: var(--gold-2); margin-right: 12px; }
+
+    /* ---------- Numbers ---------- */
+    .numbers { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .numbers div { padding: 34px 22px; text-align: center; }
+    .numbers div + div { border-left: 1px solid var(--line); }
+    .numbers strong { display: block; font-family: var(--font-head); font-size: clamp(2.4rem, 5vw, 3.6rem); color: var(--wine); font-weight: 500; line-height: 1; }
+    .numbers span { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+    @media (max-width: 760px) { .numbers { grid-template-columns: repeat(2, 1fr); } .numbers div:nth-child(3) { border-left: 0; } .numbers div:nth-child(n+3) { border-top: 1px solid var(--line); } }
+
+    /* ---------- Visit ---------- */
+    .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+    .visit-media { position: relative; }
+    .visit-media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 999px 999px 6px 6px; }
+    .visit-media .note { position: absolute; right: -16px; bottom: 40px; background: var(--maroon); color: var(--ivory); padding: 18px 22px; border-radius: 4px; font-family: var(--font-head); font-size: 1.3rem; box-shadow: 0 24px 40px -20px rgba(0, 0, 0, .5); }
+    .visit-media .note small { display: block; font-family: var(--font); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-2); }
+    .form label { font-weight: 600; letter-spacing: .04em; }
+    .form input, .form select, .form textarea { border-radius: 2px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chips label { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); padding: 9px 14px; border-radius: 999px; cursor: pointer; font-weight: 600; font-size: .86rem; background: var(--surface); }
+    .chips input { width: auto; accent-color: var(--wine); }
+    .t-footer .t-logo { font-family: var(--font-head); font-weight: 500; font-size: 1.8rem; }
+
+    @media (max-width: 900px) {
+      .hero .container { grid-template-columns: 1fr; padding-top: 120px; }
+      .portrait { width: min(300px, 80%); }
+      .badge-spin { left: -30px; width: 96px; height: 96px; }
+      .visit-grid { grid-template-columns: 1fr; }
+      .visit-media .note { right: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-bar"><div class="container">
+    <a href="../">← All templates</a>
+    <span class="db-text"><span class="db-3d">PREMIUM 3D</span>Demo website template by <strong>SaaSQube Solutions</strong></span>
+    <a class="db-cta" href="../../index.html?template=Premium%203D%20Silk%20Saree#contact">Get this website</a>
+  </div></div>
+
+  <header class="t-header">
+    <div class="container t-nav-wrap">
+      <a href="#top" class="t-logo"><span class="mark">த</span><span>Thari<small>Silks · Kanchipuram</small></span></a>
+      <button class="t-toggle" aria-expanded="false" aria-controls="t-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="t-nav" id="t-nav">
+        <a href="#colours">Colours</a>
+        <a href="#craft">The craft</a>
+        <a href="#bestsellers">Bestsellers</a>
+        <a href="#bridal">Bridal</a>
+        <a href="#visit" class="btn btn-gold btn-sm">Book a visit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero grain">
+      <canvas id="silk" aria-hidden="true"></canvas>
+      <div class="hero-shade"></div>
+      <div class="container">
+        <div>
+          <p class="kicker" data-reveal>Kanchipuram · Handwoven since 1962</p>
+          <h1 data-split="chars">Woven <em>in gold,</em> worn for life.</h1>
+          <p class="lead" data-reveal data-delay=".3">Pure mulberry silk and real zari, woven by hand on our family looms in Kanchipuram. Every Thari saree takes up to three weeks to make, and lasts for generations.</p>
+          <div class="ctas" data-reveal data-delay=".45">
+            <a href="#colours" class="btn btn-gold">Explore the collection</a>
+            <a href="#visit" class="btn btn-line">Video-call shopping</a>
+          </div>
+        </div>
+        <div class="portrait" data-reveal data-delay=".2">
+          <div class="arch" id="arch"><img src="img/hero-red.webp" alt="Woman wearing a red and gold silk saree" width="1100" height="1650"></div>
+          <svg class="badge-spin" viewBox="0 0 120 120" aria-hidden="true">
+            <defs><path id="circ" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs>
+            <text><textPath href="#circ">PURE ZARI · HANDWOVEN · KANCHIPURAM ·</textPath></text>
+          </svg>
+        </div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true">Scroll<i></i></div>
+    </section>
+
+    <div class="zari" aria-hidden="true"><div class="zari-track">
+      <span>Pure mulberry silk</span><span>Real silver zari</span><span>Korvai borders</span><span>Handwoven in Kanchipuram</span><span>Bridal &amp; heirloom</span>
+      <span>Pure mulberry silk</span><span>Real silver zari</span><span>Korvai borders</span><span>Handwoven in Kanchipuram</span><span>Bridal &amp; heirloom</span>
+    </div></div>
+
+    <section class="colours" id="colours">
+      <div class="container colours-head">
+        <div>
+          <p class="kicker">Shop by colour</p>
+          <h2 data-split="words">Seven moods, <em>woven in silk.</em></h2>
+        </div>
+        <p data-reveal>From temple-red bridal silks to quiet ivory, find the shade that speaks for you. Scroll to turn the collection.</p>
+      </div>
+      <div class="stage" id="stage">
+        <div class="track" id="track">
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/red.webp" alt="Kumkum red silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹18,500</small><h3>Kumkum Red</h3></div><span class="dot" style="background:#b3122b"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/purple.webp" alt="Royal purple silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹21,000</small><h3>Royal Purple</h3></div><span class="dot" style="background:#6b2c8f"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/teal.webp" alt="Peacock teal silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹19,800</small><h3>Peacock Teal</h3></div><span class="dot" style="background:#1d5c63"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/gold.webp" alt="Temple gold silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹24,500</small><h3>Temple Gold</h3></div><span class="dot" style="background:#c9a24b"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/magenta.webp" alt="Rani pink silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹16,900</small><h3>Rani Pink</h3></div><span class="dot" style="background:#c2186b"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/blue.webp" alt="Midnight blue silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹17,600</small><h3>Midnight Blue</h3></div><span class="dot" style="background:#1f3a7a"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/ivory.webp" alt="Ivory and red silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹15,400</small><h3>Ivory Grace</h3></div><span class="dot" style="background:#efe3c8"></span></div></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="craft section" id="craft">
+      <div class="container">
+        <p class="kicker" style="color:var(--gold-2)">The craft</p>
+        <h2 data-split="words" style="max-width:12em">Twenty-one days, <em>one saree.</em></h2>
+        <div class="craft-grid">
+          <div class="craft-media" id="craftMedia">
+            <img src="img/silk.webp" alt="Close-up of lustrous silk fabric" class="on" loading="lazy">
+            <img src="img/loom.webp" alt="Traditional wooden handloom" loading="lazy">
+            <img src="img/weaver.webp" alt="Weaver at work on a handloom" loading="lazy">
+            <img src="img/navy.webp" alt="Finished silk saree with gold border" loading="lazy">
+            <span class="count" id="craftCount">01</span>
+          </div>
+          <div class="craft-steps">
+            <div class="step on" data-i="0"><span class="no">01 — SILK</span><h3>Pure mulberry silk</h3><p>We source thick, lustrous mulberry silk yarn and dye it in small batches, so every colour is rich and even.</p></div>
+            <div class="step" data-i="1"><span class="no">02 — LOOM</span><h3>Traditional pit looms</h3><p>Each saree is set up on a wooden handloom by our master weavers, the same way it has been done in Kanchipuram for centuries.</p></div>
+            <div class="step" data-i="2"><span class="no">03 — KORVAI</span><h3>The korvai join</h3><p>Body and border are woven separately and interlocked by hand, so the contrast border never fades or separates.</p></div>
+            <div class="step" data-i="3"><span class="no">04 — ZARI</span><h3>Real silver zari</h3><p>Our zari is silver thread dipped in gold. It's tested for purity and comes with a certificate for every bridal saree.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="bestsellers">
+      <div class="container">
+        <div class="colours-head" style="padding-top:0;margin-bottom:44px">
+          <div><p class="kicker">Bestsellers</p><h2 data-split="words">Loved this <em>season.</em></h2></div>
+          <a href="#visit" class="btn btn-primary" data-reveal>View all sarees</a>
+        </div>
+        <div class="products" data-stagger>
+          <article class="product"><div class="ph" data-tilt="8"><span class="tag">Bridal</span><img src="img/red.webp" alt="Kumkum red korvai silk saree" loading="lazy"><span class="glare"></span><button class="btn btn-gold add">Add to bag</button></div><h3>Kumkum Red Korvai</h3><p>Pure zari · 6.2 m with blouse</p><p class="price">₹24,500</p></article>
+          <article class="product"><div class="ph" data-tilt="8"><span class="tag">New</span><img src="img/purple.webp" alt="Royal purple brocade silk saree" loading="lazy"><span class="glare"></span><button class="btn btn-gold add">Add to bag</button></div><h3>Royal Purple Brocade</h3><p>Butta body · temple border</p><p class="price">₹21,000</p></article>
+          <article class="product"><div class="ph" data-tilt="8"><img src="img/teal.webp" alt="Peacock teal silk saree with magenta border" loading="lazy"><span class="glare"></span><button class="btn btn-gold add">Add to bag</button></div><h3>Peacock &amp; Rani</h3><p>Contrast korvai border</p><p class="price">₹19,800</p></article>
+          <article class="product"><div class="ph" data-tilt="8"><span class="tag">Heirloom</span><img src="img/gold.webp" alt="Temple gold tissue silk saree" loading="lazy"><span class="glare"></span><button class="btn btn-gold add">Add to bag</button></div><h3>Temple Gold Tissue</h3><p>Full zari body</p><p class="price">₹38,000</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bridal" id="bridal">
+      <div class="bridal-bg" data-unveil><img src="img/bridal.webp" alt="Bride seated in a magenta and gold silk saree" loading="lazy" data-speed="-0.15"></div>
+      <div class="container">
+        <p class="kicker" style="color:var(--gold-2)">By appointment</p>
+        <h2 data-split="chars">The Bridal <em>Edit</em></h2>
+        <p data-reveal>A private, unhurried session with our bridal stylist. Explore 300+ handpicked muhurtham sarees, plan coordinated looks for the whole family, and order a custom weave in your colours.</p>
+        <ul data-stagger>
+          <li>Private bridal lounge with family seating</li>
+          <li>Custom-woven sarees in 45 days</li>
+          <li>Zari purity certificate with every saree</li>
+        </ul>
+        <a href="#visit" class="btn btn-gold" data-reveal>Book a bridal appointment</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="numbers" data-stagger>
+          <div><strong data-count="1962">1962</strong><span>Est. in Kanchipuram</span></div>
+          <div><strong data-count="140">140</strong><span>Weaver families</span></div>
+          <div><strong data-count="21">21</strong><span>Days per saree</span></div>
+          <div><strong>100%</strong><span>Pure silk &amp; zari</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="visit">
+      <div class="container visit-grid">
+        <div class="visit-media" data-reveal>
+          <img src="img/ivory.webp" alt="Woman in an ivory silk saree with red border" loading="lazy">
+          <div class="note"><small>Visit the store</small>Gandhi Road, Kanchipuram</div>
+        </div>
+        <div>
+          <p class="kicker">Visit or video call</p>
+          <h2 data-split="words">Let's find <em>your saree.</em></h2>
+          <p class="muted">Visit our Kanchipuram showroom, or shop live on a video call with our stylist from anywhere in the world. We ship across India and overseas.</p>
+          <form class="form" data-demo data-demo-msg="Thank you! This is a demo — on your live website, your stylist would confirm the appointment on WhatsApp.">
+            <div class="row">
+              <label>Your name<input type="text" required></label>
+              <label>Mobile / WhatsApp<input type="tel" required></label>
+            </div>
+            <div class="chips" role="group" aria-label="Appointment type">
+              <label><input type="radio" name="mode" checked> In-store visit</label>
+              <label><input type="radio" name="mode"> Video-call shopping</label>
+            </div>
+            <div class="row">
+              <label>Occasion<select><option>Wedding / muhurtham</option><option>Reception</option><option>Festival</option><option>Gift</option></select></label>
+              <label>Preferred date<input type="date" required></label>
+            </div>
+            <button class="btn btn-primary btn-block">Book my appointment</button>
+            <p class="form-msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="t-footer">
+    <div class="container">
+      <div class="cols">
+        <div><a href="#top" class="t-logo">Thari Silks</a><p>Handwoven Kanchipuram silk sarees since 1962.</p></div>
+        <div><h4>Shop</h4><ul><li><a href="#colours">By colour</a></li><li><a href="#bestsellers">Bestsellers</a></li><li><a href="#bridal">Bridal</a></li></ul></div>
+        <div><h4>Our story</h4><ul><li><a href="#craft">The craft</a></li><li><a href="#visit">Visit us</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li>📍 Gandhi Road, Kanchipuram</li><li>📞 +91 90000 00000</li><li>✉️ hello@tharisilks.example</li></ul></div>
+      </div>
+      <div class="bottom"><p>© <span data-year>2026</span> Thari Silks (demo) · Photos: Unsplash</p><p>Website by SaaSQube Solutions</p></div>
+    </div>
+  </footer>
+
+  <a class="t-wa" href="#visit" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5 0-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5l-.1-.1z"/></svg></a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="../shared.js" defer></script>
+  <script src="../premium.js" defer></script>
+  <script defer>
+  document.addEventListener("DOMContentLoaded", function () {
+    var P = window.PREMIUM || {};
+    var demoBar = document.querySelector(".demo-bar");
+    var header = document.querySelector(".t-header");
+    function setDemoH() { document.documentElement.style.setProperty("--demo-h", (P.inFrame || !demoBar ? 0 : demoBar.offsetHeight) + "px"); }
+    setDemoH(); window.addEventListener("resize", setDemoH);
+    function onScroll() {
+      header.classList.toggle("solid", window.scrollY > 60);
+      header.style.top = (P.inFrame ? 0 : Math.max(0, (demoBar ? demoBar.offsetHeight : 0) - window.scrollY)) + "px";
+    }
+    window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+    /* ---------- WebGL silk hero ---------- */
+    (function silk() {
+      var canvas = document.getElementById("silk");
+      if (!window.THREE || !canvas) return;
+      var renderer;
+      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: false }); } catch (e) { return; }
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, P.inFrame ? 1 : 1.75));
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(35, 1, 0.1, 10);
+      camera.position.z = 3;
+      var uniforms = {
+        uTex: { value: null }, uTime: { value: 0 }, uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+        uDeep: { value: new THREE.Color("#2b0710") }, uMid: { value: new THREE.Color("#8e1426") }, uGold: { value: new THREE.Color("#e6c87a") }
+      };
+      var mat = new THREE.ShaderMaterial({
+        uniforms: uniforms,
+        vertexShader: [
+          "uniform float uTime; uniform vec2 uMouse; varying vec2 vUv; varying float vWave;",
+          "void main(){ vUv = uv; vec3 p = position;",
+          " float w = sin(p.x*2.2 + uTime*0.9)*0.09 + sin(p.y*3.1 + uTime*1.3)*0.06 + sin((p.x+p.y)*4.0 + uTime*0.7)*0.03;",
+          " float d = distance(uv, uMouse); w += exp(-d*d*18.0) * 0.16 * sin(d*22.0 - uTime*3.0);",
+          " p.z += w; vWave = w; gl_Position = projectionMatrix * modelViewMatrix * vec4(p,1.0); }"
+        ].join("\n"),
+        fragmentShader: [
+          "uniform sampler2D uTex; uniform vec3 uDeep; uniform vec3 uMid; uniform vec3 uGold; varying vec2 vUv; varying float vWave;",
+          "void main(){ vec3 t = texture2D(uTex, vUv).rgb; float l = dot(t, vec3(0.299,0.587,0.114));",
+          " l = clamp(l*1.6 + vWave*1.8, 0.0, 1.0);",
+          " vec3 c = mix(uDeep, uMid, smoothstep(0.05, 0.55, l)); c = mix(c, uGold, smoothstep(0.62, 1.0, l)*0.85);",
+          " float v = smoothstep(1.2, 0.3, distance(vUv, vec2(0.6,0.5))); gl_FragColor = vec4(c * (0.55 + 0.45*v), 1.0); }"
+        ].join("\n")
+      });
+      var mesh = new THREE.Mesh(new THREE.PlaneGeometry(4, 2.6, 160, 110), mat);
+      scene.add(mesh);
+      new THREE.TextureLoader().load("img/silk.webp", function (tex) { uniforms.uTex.value = tex; canvas.style.opacity = 1; });
+      canvas.style.opacity = 0; canvas.style.transition = "opacity 1.2s";
+      function resize() {
+        var w = canvas.clientWidth, h = canvas.clientHeight;
+        renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+        var vh = 2 * Math.tan((camera.fov * Math.PI / 180) / 2) * camera.position.z, vw = vh * camera.aspect;
+        mesh.scale.set(Math.max(vw / 4, vh / 2.6) * 1.15, Math.max(vw / 4, vh / 2.6) * 1.15, 1);
+      }
+      resize(); window.addEventListener("resize", resize);
+      var target = new THREE.Vector2(0.5, 0.5);
+      canvas.parentElement.addEventListener("pointermove", function (e) {
+        var r = canvas.getBoundingClientRect();
+        target.set((e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height);
+      });
+      var visible = true;
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(canvas);
+      var start = performance.now();
+      (function loop() {
+        requestAnimationFrame(loop);
+        if (!visible) return;
+        uniforms.uTime.value = P.reduce ? 2 : (performance.now() - start) / 1000;
+        uniforms.uMouse.value.lerp(target, 0.06);
+        mesh.rotation.x = -0.18 + (uniforms.uMouse.value.y - 0.5) * 0.12;
+        mesh.rotation.y = (uniforms.uMouse.value.x - 0.5) * 0.18;
+        renderer.render(scene, camera);
+      })();
+    })();
+
+    /* ---------- Portrait tilt follows the pointer ---------- */
+    var arch = document.getElementById("arch");
+    if (!P.reduce && window.matchMedia("(hover: hover)").matches) {
+      document.querySelector(".hero").addEventListener("pointermove", function (e) {
+        var x = e.clientX / innerWidth - 0.5, y = e.clientY / innerHeight - 0.5;
+        arch.style.transform = "perspective(1000px) rotateY(" + x * 14 + "deg) rotateX(" + -y * 10 + "deg)";
+      });
+    }
+
+    /* ---------- Craft: switch image with each step ---------- */
+    var imgs = document.querySelectorAll("#craftMedia img"), count = document.getElementById("craftCount");
+    var steps = document.querySelectorAll(".step");
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var i = +e.target.dataset.i;
+        steps.forEach(function (s) { s.classList.toggle("on", s === e.target); });
+        imgs.forEach(function (im, k) { im.classList.toggle("on", k === i); });
+        count.textContent = "0" + (i + 1);
+      });
+    }, { rootMargin: "-45% 0px -45% 0px" });
+    steps.forEach(function (s) { io.observe(s); });
+
+    /* ---------- 3D colour carousel ---------- */
+    var stage = document.getElementById("stage"), track = document.getElementById("track");
+    var cards = track.querySelectorAll(".swatch-card");
+    function bend() {
+      var mid = innerWidth / 2;
+      cards.forEach(function (c) {
+        var r = c.getBoundingClientRect();
+        var o = (r.left + r.width / 2 - mid) / innerWidth;
+        if (P.reduce) { c.style.transform = ""; return; }
+        c.style.transform = "rotateY(" + (-o * 38) + "deg) translateZ(" + (-Math.abs(o) * 240) + "px) translateY(" + Math.abs(o) * 30 + "px)";
+      });
+    }
+    var desktop = window.matchMedia("(min-width: 901px)").matches;
+    if (window.gsap && window.ScrollTrigger && desktop && !P.reduce) {
+      var dist = function () { return track.scrollWidth - innerWidth; };
+      gsap.to(track, {
+        x: function () { return -dist(); }, ease: "none",
+        scrollTrigger: { trigger: "#colours", start: "top top", end: function () { return "+=" + dist(); }, pin: true, scrub: 0.6, invalidateOnRefresh: true, refreshPriority: 1, onUpdate: bend }
+      });
+      ScrollTrigger.sort(); ScrollTrigger.refresh();
+    } else {
+      stage.addEventListener("scroll", bend, { passive: true });
+    }
+    bend(); window.addEventListener("resize", bend);
+
+    /* ---------- Number counters ---------- */
+    if (window.gsap && !P.reduce) {
+      document.querySelectorAll("[data-count]").forEach(function (el) {
+        var end = +el.dataset.count, obj = { v: end > 1000 ? end - 60 : 0 };
+        gsap.to(obj, { v: end, duration: 2, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 90%" },
+          onUpdate: function () { el.textContent = Math.round(obj.v); } });
+      });
+    }
+  });
+  </script>
+</body>
+</html>

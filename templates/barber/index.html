@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sharp Society — Premium 3D Barbershop Template | SaaSQube Solutions</title>
+  <meta name="description" content="Premium animated 3D website template for a barbershop by SaaSQube Solutions: WebGL barber pole, live open/closed clock, printable price ticket, 3D barber carousel and booking.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@500;600;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/hero.webp">
+  <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="../premium.css">
+  <style>
+    :root {
+      --font: "Space Grotesk", system-ui, sans-serif; --font-head: "Anton", Impact, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --black: #0b0908; --char: #15110f; --char-2: #1d1815; --ember: #e4572e; --ember-2: #ff7a45; --brass: #d4a24c; --bone: #efe7da;
+      --primary: var(--ember); --primary-dark: #c4431f; --accent: var(--ember); --on-primary: #fff;
+      --bg: var(--black); --alt: var(--char); --surface: var(--char-2); --text: #c9bfb2; --heading: var(--bone); --muted: #8d8278;
+      --line: #2c2522; --radius: 10px; --btn-radius: 6px; --kicker: var(--ember);
+      --field-bg: #0f0c0b; --field-line: #352d29; --field-text: var(--bone); --label: var(--bone);
+      --footer-bg: #060504; --footer-text: #8d8278; --footer-head: var(--bone);
+    }
+    h1, h2, h3 { font-family: var(--font-head); font-weight: 400; text-transform: uppercase; letter-spacing: .005em; line-height: .92; }
+    h2 { font-size: clamp(2.8rem, 7vw, 6rem); }
+    h2 .hot, h1 .hot { color: var(--ember); }
+    .btn { font-weight: 700; text-transform: uppercase; letter-spacing: .1em; font-size: .78rem; }
+    .btn-bone { background: var(--bone); color: var(--black); }
+    .btn-ghost-light { border: 1px solid #4a3f3a; color: var(--bone); background: transparent; }
+    .btn-ghost-light:hover { border-color: var(--ember); color: var(--ember); }
+    .kicker { letter-spacing: .3em; font-size: .7rem; display: inline-flex; align-items: center; gap: 10px; }
+    .kicker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ember); box-shadow: 0 0 12px var(--ember); }
+
+    /* ---------- Header ---------- */
+    .t-header { background: rgba(11, 9, 8, .78); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-color: #221c19; }
+    .t-header .t-logo { font-family: var(--font-head); font-weight: 400; letter-spacing: .04em; font-size: 1.5rem; color: var(--bone); }
+    .t-header .t-logo small { color: var(--muted); letter-spacing: .45em; }
+    .t-logo .mark { background: var(--ember); border-radius: 6px; font-size: 1rem; }
+    .t-nav a:not(.btn) { color: #cfc5b8; text-transform: uppercase; letter-spacing: .14em; font-size: .72rem; }
+    .t-nav a:not(.btn):hover { color: var(--ember); }
+    .t-toggle span { background: var(--bone); }
+
+    /* ---------- Hero ---------- */
+    .hero { position: relative; min-height: calc(100vh - 72px); min-height: calc(100svh - 72px); overflow: hidden; display: grid; align-items: end; }
+    .hero-bg { position: absolute; inset: -4%; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 30%; filter: contrast(1.1) saturate(.85); }
+    .hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background:
+      radial-gradient(60% 70% at 75% 40%, transparent, rgba(11, 9, 8, .55) 70%),
+      linear-gradient(90deg, rgba(11, 9, 8, .96) 0%, rgba(11, 9, 8, .7) 45%, rgba(11, 9, 8, .1) 80%),
+      linear-gradient(0deg, var(--black) 0%, transparent 45%); }
+    .hero .container { position: relative; z-index: 3; padding: 0 0 56px; }
+    .hero h1 { font-size: clamp(4rem, 13vw, 12rem); color: var(--bone); margin: 14px 0 22px; }
+    .hero .lead { max-width: 30em; font-size: 1.08rem; }
+    .hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin: 26px 0 40px; }
+    .hero-strip { display: flex; flex-wrap: wrap; gap: 10px 36px; border-top: 1px solid #2c2522; padding-top: 18px; font-size: .82rem; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
+    .hero-strip b { color: var(--bone); font-weight: 600; }
+    #pole { position: absolute; z-index: 2; right: max(16px, calc((100vw - 1160px) / 2 - 40px)); top: 6%; width: 240px; height: 82%; }
+
+    /* ---------- Crossing tickers ---------- */
+    .tickers { position: relative; height: 190px; overflow: hidden; background: var(--black); }
+    .ticker { position: absolute; left: -5%; right: -5%; top: 50%; overflow: hidden; padding: 16px 0; }
+    .ticker.a { background: var(--ember); color: var(--black); transform: translateY(-50%) rotate(-3deg); z-index: 2; }
+    .ticker.b { background: var(--bone); color: var(--black); transform: translateY(-50%) rotate(2.5deg); }
+    .ticker div { display: flex; width: max-content; animation: tick 28s linear infinite; }
+    .ticker.b div { animation-direction: reverse; animation-duration: 34s; }
+    .ticker span { font-family: var(--font-head); font-size: 1.7rem; text-transform: uppercase; padding: 0 22px; white-space: nowrap; }
+    .ticker span::after { content: "✕"; margin-left: 44px; font-size: .8em; }
+    @keyframes tick { to { transform: translateX(-50%); } }
+
+    /* ---------- Intro + live clock ---------- */
+    .intro-grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+    .intro-grid p.big { font-family: var(--font-head); text-transform: uppercase; font-size: clamp(1.9rem, 3.6vw, 3.2rem); line-height: 1.05; color: var(--bone); margin: 18px 0 0; }
+    .clock-card { background: var(--char-2); border: 1px solid var(--line); border-radius: 18px; padding: 26px; box-shadow: 0 40px 70px -40px #000; }
+    .status { display: inline-flex; align-items: center; gap: 8px; font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; background: rgba(52, 211, 153, .12); color: #34d399; }
+    .status i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; animation: pulse 1.6s infinite; }
+    .status.closed { background: rgba(228, 87, 46, .14); color: var(--ember-2); }
+    @keyframes pulse { 50% { opacity: .3; } }
+    .clock { font-family: var(--font-head); font-size: clamp(3.4rem, 6vw, 4.8rem); color: var(--bone); line-height: 1; margin: 18px 0 4px; font-variant-numeric: tabular-nums; }
+    .clock small { font-size: .4em; color: var(--ember); margin-left: 6px; }
+    .clock-card .tz { font-size: .74rem; color: var(--muted); text-transform: uppercase; letter-spacing: .16em; }
+    .clock-card ul { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; font-size: .9rem; }
+    .clock-card li { display: flex; justify-content: space-between; border-top: 1px dashed var(--line); padding-top: 8px; }
+    .clock-card li b { color: var(--bone); font-weight: 600; }
+    .clock-card li.today { color: var(--ember-2); }
+
+    /* ---------- Price ticket ---------- */
+    .menu { background: radial-gradient(800px 500px at 80% 30%, rgba(228, 87, 46, .16), transparent 70%), var(--char); }
+    .menu-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(32px, 6vw, 90px); align-items: center; }
+    .picked { margin-top: 28px; background: var(--char-2); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .picked small { display: block; text-transform: uppercase; letter-spacing: .16em; font-size: .68rem; color: var(--muted); }
+    .picked strong { font-family: var(--font-head); font-size: 2.2rem; color: var(--bone); font-weight: 400; }
+    .ticket-wrap { perspective: 1200px; display: grid; place-items: center; }
+    .ticket {
+      position: relative; width: min(400px, 100%); background: #f4efe6; color: #1c1714; font-family: var(--mono); padding: 30px 28px 70px;
+      transform: rotateX(8deg) rotateZ(-2deg); transform-style: preserve-3d; transition: transform .4s ease-out;
+      box-shadow: 0 60px 80px -40px rgba(0, 0, 0, .9), 0 30px 40px -30px rgba(0, 0, 0, .6);
+      -webkit-mask: radial-gradient(10px 12px at 50% 100%, #0000 98%, #000) 50% / 20px 100%;
+      mask: radial-gradient(10px 12px at 50% 100%, #0000 98%, #000) 50% / 20px 100%;
+    }
+    .ticket h3 { font-family: var(--font-head); font-size: 2.6rem; color: #1c1714; text-align: center; margin: 0; }
+    .ticket .sub { text-align: center; font-size: .72rem; letter-spacing: .3em; margin: 4px 0 18px; }
+    .ticket hr { border: 0; border-top: 1.5px dashed #9c9188; margin: 14px 0; }
+    .line { display: flex; justify-content: space-between; gap: 10px; width: 100%; padding: 8px 8px; margin: 0 -8px; width: calc(100% + 16px); border: 0; background: transparent; font: 600 .86rem var(--mono); color: inherit; text-align: left; cursor: pointer; border-radius: 4px; transition: background .2s; }
+    .line:hover { background: rgba(28, 23, 20, .06); }
+    .line[aria-pressed="true"] { background: #1c1714; color: #f4efe6; }
+    .line[aria-pressed="true"] span:first-child::before { content: "▸ "; color: var(--ember-2); }
+    .ticket .total { display: flex; justify-content: space-between; font-weight: 600; font-size: 1.05rem; }
+    .barcode { height: 46px; margin: 18px 0 6px; background: repeating-linear-gradient(90deg, #1c1714 0 2px, transparent 2px 4px, #1c1714 4px 5px, transparent 5px 8px, #1c1714 8px 11px, transparent 11px 12px); }
+    .ticket .handle { text-align: center; font-size: .7rem; letter-spacing: .2em; }
+    .stamp {
+      position: absolute; right: 18px; top: 46%; border: 4px solid var(--ember); color: var(--ember); font-family: var(--font-head); font-size: 1.6rem; letter-spacing: .06em;
+      padding: 6px 14px; border-radius: 6px; transform: rotate(-14deg) scale(2.4); opacity: 0; pointer-events: none; mix-blend-mode: multiply;
+    }
+    .stamp.on { animation: stamp .45s cubic-bezier(.2, 1.6, .4, 1) forwards; }
+    @keyframes stamp { to { transform: rotate(-14deg) scale(1); opacity: .9; } }
+
+    /* ---------- Barbers coverflow ---------- */
+    .crew-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 30px; }
+    .crew-nav { display: flex; gap: 10px; }
+    .crew-nav button { width: 52px; height: 52px; border-radius: 50%; border: 1px solid #4a3f3a; background: transparent; color: var(--bone); font-size: 1.2rem; cursor: pointer; }
+    .crew-nav button:hover { border-color: var(--ember); color: var(--ember); }
+    .flow { position: relative; height: clamp(440px, 60vw, 560px); perspective: 1600px; touch-action: pan-y; user-select: none; }
+    .bcard {
+      position: absolute; left: 50%; top: 0; width: clamp(240px, 28vw, 330px); aspect-ratio: 3 / 4.3; margin-left: calc(clamp(240px, 28vw, 330px) / -2);
+      border-radius: 18px; overflow: hidden; transition: transform .8s cubic-bezier(.2, .8, .2, 1), opacity .6s, filter .6s; transform-style: preserve-3d;
+      box-shadow: 0 50px 80px -40px #000; cursor: pointer; background: #000;
+    }
+    .bcard img { width: 100%; height: 100%; object-fit: cover; }
+    .bcard::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(11, 9, 8, .95) 0%, transparent 55%); }
+    .bcard .info { position: absolute; left: 20px; right: 20px; bottom: 20px; z-index: 2; }
+    .bcard .info small { color: var(--ember-2); text-transform: uppercase; letter-spacing: .2em; font-size: .66rem; font-weight: 700; }
+    .bcard .info h3 { font-size: 2.6rem; margin: 4px 0 14px; color: var(--bone); }
+    .bcard .info .btn { width: 100%; opacity: 0; transform: translateY(10px); transition: all .4s; }
+    .bcard.active .info .btn { opacity: 1; transform: none; }
+    .dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+    .dots button { width: 10px; height: 10px; border-radius: 999px; border: 0; background: #4a3f3a; cursor: pointer; transition: width .3s, background .3s; padding: 0; }
+    .dots button[aria-current="true"] { width: 30px; background: var(--ember); }
+
+    /* ---------- Proof gallery ---------- */
+    .proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .proof .col { display: grid; gap: 16px; align-content: start; }
+    .proof figure { margin: 0; overflow: hidden; border-radius: 14px; position: relative; }
+    .proof img { width: 100%; display: block; filter: grayscale(1) contrast(1.1); transition: filter .6s, transform .9s cubic-bezier(.2, .7, .2, 1); }
+    .proof figure:hover img { filter: grayscale(0); transform: scale(1.05); }
+    .proof figcaption { position: absolute; left: 14px; bottom: 12px; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--bone); background: rgba(11, 9, 8, .6); padding: 5px 10px; border-radius: 999px; }
+    .proof .col:nth-child(2) { margin-top: 70px; }
+
+    /* ---------- Booking ---------- */
+    .book { background: var(--char); }
+    .book-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
+    .book-box { background: var(--char-2); border: 1px solid var(--line); border-radius: 20px; padding: clamp(22px, 3vw, 34px); }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pills label { position: relative; }
+    .pills input { position: absolute; opacity: 0; inset: 0; }
+    .pills span { display: inline-block; padding: 9px 14px; border: 1px solid #3a312d; border-radius: 999px; font-size: .84rem; font-weight: 600; cursor: pointer; color: #cfc5b8; transition: all .2s; }
+    .pills input:checked + span { background: var(--ember); border-color: var(--ember); color: #fff; }
+    .pills input:focus-visible + span { outline: 2px solid var(--bone); outline-offset: 2px; }
+    .form input[type="date"] { color-scheme: dark; }
+    .fieldset-label { font-size: .88rem; font-weight: 600; color: var(--bone); margin-bottom: 6px; }
+
+    /* ---------- Footer ---------- */
+    .outro { text-align: center; padding: clamp(70px, 10vw, 130px) 0 40px; overflow: hidden; }
+    .outro h2 { font-size: clamp(3.4rem, 12vw, 11rem); line-height: .86; }
+    .outro h2 .hot { display: block; }
+    .t-footer { border-top: 1px solid #1d1815; }
+    .t-footer .t-logo { font-family: var(--font-head); font-weight: 400; font-size: 1.6rem; }
+
+    @media (max-width: 900px) {
+      .intro-grid, .menu-grid, .book-grid { grid-template-columns: 1fr; }
+      #pole { width: 76px; height: 190px; top: 14px; right: 10px; }
+      .hero .container { padding-top: 200px; }
+      .proof { grid-template-columns: repeat(2, 1fr); }
+      .proof .col:nth-child(3) { display: none; }
+      .proof .col:nth-child(2) { margin-top: 40px; }
+      .ticket { transform: rotateZ(-1.5deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-bar"><div class="container">
+    <a href="../">← All templates</a>
+    <span class="db-text"><span class="db-3d">PREMIUM 3D</span>Demo website template by <strong>SaaSQube Solutions</strong></span>
+    <a class="db-cta" href="../../index.html?template=Premium%203D%20Barbershop#contact">Get this website</a>
+  </div></div>
+
+  <header class="t-header">
+    <div class="container t-nav-wrap">
+      <a href="#top" class="t-logo"><span class="mark">✂</span><span>Sharp Society<small>Barber club</small></span></a>
+      <button class="t-toggle" aria-expanded="false" aria-controls="t-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="t-nav" id="t-nav">
+        <a href="#club">The club</a>
+        <a href="#menu">Services</a>
+        <a href="#crew">Barbers</a>
+        <a href="#proof">Proof</a>
+        <a href="#book" class="btn btn-primary btn-sm">Book a chair</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero grain">
+      <div class="hero-bg" id="heroBg"><img src="img/hero.webp" alt="Barber in black gloves trimming a client's hairline" width="1100" height="1662"></div>
+      <canvas id="pole" aria-hidden="true"></canvas>
+      <div class="container">
+        <p class="kicker" data-reveal>Barber club · Coimbatore</p>
+        <h1 data-split="chars">Look sharp. <span class="hot">Stay sharp.</span></h1>
+        <p class="lead" data-reveal data-delay=".35">Precision fades, sculpted beards and hot-towel shaves from barbers who take their craft seriously. Cold drinks, good music, no rush.</p>
+        <div class="ctas" data-reveal data-delay=".5">
+          <a href="#book" class="btn btn-primary">Book your chair</a>
+          <a href="#menu" class="btn btn-ghost-light">See the price list</a>
+        </div>
+        <div class="hero-strip" data-reveal data-delay=".6">
+          <span><b>Walk-ins</b> welcome</span><span><b>10 AM – 9 PM</b> Mon–Sat</span><span><b>RS Puram</b>, Coimbatore</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="tickers" aria-hidden="true">
+      <div class="ticker b"><div><span>Hot towel shave</span><span>Beard sculpt</span><span>Line-ups</span><span>Kids' cuts</span><span>Head shave</span><span>Hot towel shave</span><span>Beard sculpt</span><span>Line-ups</span><span>Kids' cuts</span><span>Head shave</span></div></div>
+      <div class="ticker a"><div><span>Classic cuts</span><span>Skin fades</span><span>Beard trims</span><span>Walk-ins welcome</span><span>Open till 9 PM</span><span>Classic cuts</span><span>Skin fades</span><span>Beard trims</span><span>Walk-ins welcome</span><span>Open till 9 PM</span></div></div>
+    </div>
+
+    <section class="section" id="club">
+      <div class="container intro-grid">
+        <div>
+          <p class="kicker">The club</p>
+          <h2 data-split="words">Not your average <span class="hot">barbershop.</span></h2>
+          <p class="big" data-scrub-words>Four chairs. Four master barbers. One rule: you leave looking better than you walked in — every single time.</p>
+        </div>
+        <aside class="clock-card" data-reveal aria-live="polite">
+          <span class="status" id="status"><i></i><span id="statusText">Open now</span></span>
+          <div class="clock" id="clock">--:--<small id="ampm"></small></div>
+          <div class="tz">Coimbatore time · IST</div>
+          <ul id="hours">
+            <li data-days="1,2,3,4,5"><span>Mon – Fri</span><b>10 AM – 9 PM</b></li>
+            <li data-days="6"><span>Saturday</span><b>9 AM – 10 PM</b></li>
+            <li data-days="0"><span>Sunday</span><b>10 AM – 2 PM</b></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section menu" id="menu">
+      <div class="container menu-grid">
+        <div>
+          <p class="kicker">Price list</p>
+          <h2 data-split="words">Pick your cut. <span class="hot">We'll print the ticket.</span></h2>
+          <p style="max-width:30em">Tap the services you want on the ticket. We'll add them up, then hold your chair when you book.</p>
+          <div class="picked" data-reveal>
+            <div><small id="pickedCount">Nothing selected</small><strong id="pickedTotal">₹0</strong></div>
+            <button class="btn btn-primary" id="printBtn" disabled>Book these</button>
+          </div>
+        </div>
+        <div class="ticket-wrap" data-reveal>
+          <div class="ticket" id="ticket">
+            <h3>Price list</h3>
+            <p class="sub">SHARP SOCIETY · NO. 0427</p>
+            <hr>
+            <div id="lines">
+              <button class="line" aria-pressed="false" data-price="450"><span>Classic haircut</span><span>₹450</span></button>
+              <button class="line" aria-pressed="false" data-price="550"><span>Skin fade</span><span>₹550</span></button>
+              <button class="line" aria-pressed="false" data-price="300"><span>Beard trim &amp; shape</span><span>₹300</span></button>
+              <button class="line" aria-pressed="false" data-price="400"><span>Hot towel shave</span><span>₹400</span></button>
+              <button class="line" aria-pressed="false" data-price="700"><span>Haircut + beard</span><span>₹700</span></button>
+              <button class="line" aria-pressed="false" data-price="250"><span>Line-up / edge-up</span><span>₹250</span></button>
+              <button class="line" aria-pressed="false" data-price="350"><span>Head shave</span><span>₹350</span></button>
+              <button class="line" aria-pressed="false" data-price="300"><span>Kids' cut (under 12)</span><span>₹300</span></button>
+            </div>
+            <hr>
+            <div class="total"><span>TOTAL</span><span id="ticketTotal">₹0</span></div>
+            <div class="barcode" aria-hidden="true"></div>
+            <p class="handle">@SHARPSOCIETY.CBE</p>
+            <div class="stamp" id="stamp" aria-hidden="true">See you soon</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="crew">
+      <div class="container">
+        <div class="crew-head">
+          <div><p class="kicker">The crew</p><h2 data-split="words">Meet the <span class="hot">barbers.</span></h2></div>
+          <div class="crew-nav"><button id="prev" aria-label="Previous barber">←</button><button id="next" aria-label="Next barber">→</button></div>
+        </div>
+        <div class="flow" id="flow" aria-roledescription="carousel" aria-label="Our barbers">
+          <article class="bcard" data-name="Arjun"><img src="img/razor.webp" alt="Barber using a straight razor" loading="lazy"><div class="info"><small>Fade specialist</small><h3>Arjun</h3><a href="#book" class="btn btn-bone" data-barber="Arjun">Book with Arjun</a></div></article>
+          <article class="bcard" data-name="Vikram"><img src="img/trim.webp" alt="Barber trimming a beard with scissors" loading="lazy"><div class="info"><small>Beard architect</small><h3>Vikram</h3><a href="#book" class="btn btn-bone" data-barber="Vikram">Book with Vikram</a></div></article>
+          <article class="bcard" data-name="Sam"><img src="img/gloves.webp" alt="Barber with comb and scissors" loading="lazy"><div class="info"><small>Classic cuts</small><h3>Sam</h3><a href="#book" class="btn btn-bone" data-barber="Sam">Book with Sam</a></div></article>
+          <article class="bcard" data-name="Rizwan"><img src="img/fade.webp" alt="Barber cutting a fade" loading="lazy"><div class="info"><small>Hot towel shaves</small><h3>Rizwan</h3><a href="#book" class="btn btn-bone" data-barber="Rizwan">Book with Rizwan</a></div></article>
+          <article class="bcard" data-name="Karthik"><img src="img/beard.webp" alt="Beard being trimmed with scissors" loading="lazy"><div class="info"><small>Senior barber</small><h3>Karthik</h3><a href="#book" class="btn btn-bone" data-barber="Karthik">Book with Karthik</a></div></article>
+        </div>
+        <div class="dots" id="dots"></div>
+      </div>
+    </section>
+
+    <section class="section" id="proof" style="padding-top:0">
+      <div class="container">
+        <div class="crew-head"><div><p class="kicker">The proof</p><h2 data-split="words">Fresh off <span class="hot">the chair.</span></h2></div><p style="max-width:24em;margin:0">Hover to bring the work to life. Follow us on Instagram for daily cuts.</p></div>
+        <div class="proof">
+          <div class="col" data-speed="0.12"><figure><img src="img/shave.webp" alt="Man getting a shave" loading="lazy"><figcaption>Hot towel shave</figcaption></figure><figure><img src="img/chair.webp" alt="Vintage barber chair" loading="lazy"><figcaption>Chair no. 2</figcaption></figure></div>
+          <div class="col" data-speed="-0.12"><figure><img src="img/beard.webp" alt="Beard being trimmed" loading="lazy"><figcaption>Beard sculpt</figcaption></figure><figure><img src="img/tools.webp" alt="Clippers, scissors and grooming products" loading="lazy"><figcaption>The kit</figcaption></figure></div>
+          <div class="col" data-speed="0.18"><figure><img src="img/razors.webp" alt="Three safety razors" loading="lazy"><figcaption>Steel</figcaption></figure><figure><img src="img/brick.webp" alt="Barber chair by a brick wall" loading="lazy"><figcaption>The club</figcaption></figure></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section book" id="book">
+      <div class="container book-grid">
+        <div>
+          <p class="kicker">Book now</p>
+          <h2 data-split="words">Your chair <span class="hot">is waiting.</span></h2>
+          <p>Pick a barber and a time. We'll confirm on WhatsApp in minutes. Running late? Just message us.</p>
+          <div class="interior" data-unveil style="margin-top:28px;border-radius:16px;overflow:hidden"><img src="img/interior.webp" alt="Barbershop interior with chairs and mirrors" loading="lazy" style="width:100%;aspect-ratio:16/10;object-fit:cover"></div>
+        </div>
+        <div class="book-box">
+          <form class="form" data-demo data-demo-msg="Chair held! This is a demo — on your live website, the booking goes straight to your WhatsApp.">
+            <label>Service<select id="svc"><option>Classic haircut</option><option>Skin fade</option><option>Beard trim &amp; shape</option><option>Hot towel shave</option><option>Haircut + beard</option><option>Line-up / edge-up</option><option>Head shave</option><option>Kids' cut (under 12)</option><option>Multiple services</option></select></label>
+            <div>
+              <div class="fieldset-label">Barber</div>
+              <div class="pills" id="barberPills">
+                <label><input type="radio" name="barber" value="Any" checked><span>Any barber</span></label>
+                <label><input type="radio" name="barber" value="Arjun"><span>Arjun</span></label>
+                <label><input type="radio" name="barber" value="Vikram"><span>Vikram</span></label>
+                <label><input type="radio" name="barber" value="Sam"><span>Sam</span></label>
+                <label><input type="radio" name="barber" value="Rizwan"><span>Rizwan</span></label>
+                <label><input type="radio" name="barber" value="Karthik"><span>Karthik</span></label>
+              </div>
+            </div>
+            <label>Date<input type="date" required></label>
+            <div>
+              <div class="fieldset-label">Time</div>
+              <div class="pills">
+                <label><input type="radio" name="slot" checked><span>10:00</span></label><label><input type="radio" name="slot"><span>11:30</span></label><label><input type="radio" name="slot"><span>1:00</span></label>
+                <label><input type="radio" name="slot"><span>3:30</span></label><label><input type="radio" name="slot"><span>5:00</span></label><label><input type="radio" name="slot"><span>7:30</span></label>
+              </div>
+            </div>
+            <div class="row">
+              <label>Name<input type="text" required></label>
+              <label>Phone<input type="tel" required></label>
+            </div>
+            <button class="btn btn-primary btn-block">Hold my chair</button>
+            <p class="form-msg" role="status" aria-live="polite" style="--form-msg:var(--ember-2)"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="outro" aria-label="Sharp Society">
+      <h2 data-split="chars">Come in rough. <span class="hot">Leave sharp.</span></h2>
+    </section>
+  </main>
+
+  <footer class="t-footer">
+    <div class="container">
+      <div class="cols">
+        <div><a href="#top" class="t-logo">Sharp Society</a><p>Barber club in RS Puram, Coimbatore.</p></div>
+        <div><h4>Club</h4><ul><li><a href="#menu">Price list</a></li><li><a href="#crew">Barbers</a></li><li><a href="#proof">Gallery</a></li></ul></div>
+        <div><h4>Hours</h4><ul><li>Mon–Fri · 10–9</li><li>Sat · 9–10</li><li>Sun · 10–2</li></ul></div>
+        <div><h4>Contact</h4><ul><li>📍 DB Road, RS Puram, Coimbatore</li><li>📞 +91 90000 00000</li><li>📸 @sharpsociety.cbe</li></ul></div>
+      </div>
+      <div class="bottom"><p>© <span data-year>2026</span> Sharp Society (demo) · Photos: Unsplash</p><p>Website by SaaSQube Solutions</p></div>
+    </div>
+  </footer>
+
+  <a class="t-wa" href="#book" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5 0-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5l-.1-.1z"/></svg></a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="../shared.js" defer></script>
+  <script src="../premium.js" defer></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var P = window.PREMIUM || {};
+    var hover = window.matchMedia("(hover: hover)").matches;
+
+    /* ---------- 3D barber pole (Three.js) ---------- */
+    (function pole() {
+      var canvas = document.getElementById("pole");
+      if (!window.THREE || !canvas) return;
+      var renderer;
+      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); } catch (e) { return; }
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(30, 1, 0.1, 50);
+      camera.position.set(0, 0, 9);
+
+      // Striped texture drawn on a canvas
+      var c = document.createElement("canvas"); c.width = 256; c.height = 512;
+      var g = c.getContext("2d");
+      g.fillStyle = "#f4efe6"; g.fillRect(0, 0, 256, 512);
+      var colors = ["#c8102e", "#f4efe6", "#1b3a6b", "#f4efe6"];
+      g.save(); g.translate(128, 256); g.rotate(-Math.PI / 5.2); g.translate(-400, -400);
+      for (var i = 0; i < 40; i++) { g.fillStyle = colors[i % 4]; g.fillRect(0, i * 26, 800, 26); }
+      g.restore();
+      var tex = new THREE.CanvasTexture(c);
+      tex.wrapS = tex.wrapT = THREE.RepeatWrapping; tex.repeat.set(1, 2.2);
+
+      var group = new THREE.Group(); scene.add(group);
+      var stripes = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 3.6, 64, 1, true), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.35, metalness: 0.05 }));
+      group.add(stripes);
+      var glass = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 3.7, 64, 1, true), new THREE.MeshPhysicalMaterial({ color: 0xffffff, transparent: true, opacity: 0.16, roughness: 0.05, metalness: 0, clearcoat: 1 }));
+      group.add(glass);
+      var brass = new THREE.MeshStandardMaterial({ color: 0xd4a24c, metalness: 0.9, roughness: 0.25 });
+      [1, -1].forEach(function (s) {
+        var cap = new THREE.Mesh(new THREE.CylinderGeometry(0.58, 0.58, 0.28, 48), brass); cap.position.y = s * 1.98; group.add(cap);
+        var ring = new THREE.Mesh(new THREE.TorusGeometry(0.56, 0.05, 16, 64), brass); ring.rotation.x = Math.PI / 2; ring.position.y = s * 1.82; group.add(ring);
+      });
+      var dome = new THREE.Mesh(new THREE.SphereGeometry(0.5, 48, 24, 0, Math.PI * 2, 0, Math.PI / 2), brass); dome.position.y = 2.12; group.add(dome);
+      var knob = new THREE.Mesh(new THREE.SphereGeometry(0.16, 32, 16), brass); knob.position.y = 2.68; group.add(knob);
+      var base = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.5, 0.42, 48), brass); base.position.y = -2.33; group.add(base);
+
+      scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+      var key = new THREE.PointLight(0xffb48a, 1.4, 30); key.position.set(3, 3, 5); scene.add(key);
+      var rim = new THREE.PointLight(0xe4572e, 2.2, 30); rim.position.set(-4, -1, 2); scene.add(rim);
+      var fill = new THREE.DirectionalLight(0xffffff, 0.5); fill.position.set(0, 5, 5); scene.add(fill);
+
+      function resize() {
+        var w = canvas.clientWidth, h = canvas.clientHeight;
+        renderer.setSize(w, h, false); camera.aspect = w / h;
+        camera.position.z = Math.max(8.5, 6.4 / camera.aspect * 0.42 + 6);
+        camera.updateProjectionMatrix();
+      }
+      resize(); window.addEventListener("resize", resize);
+      var tx = 0, ty = 0;
+      if (hover) window.addEventListener("pointermove", function (e) { tx = (e.clientX / innerWidth - 0.5); ty = (e.clientY / innerHeight - 0.5); });
+      var visible = true;
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(canvas);
+      var t0 = performance.now();
+      (function loop() {
+        requestAnimationFrame(loop);
+        if (!visible) return;
+        var t = (performance.now() - t0) / 1000;
+        if (!P.reduce) { tex.offset.y = -t * 0.35; group.position.y = Math.sin(t * 1.2) * 0.08; }
+        group.rotation.z += ((-tx * 0.35) - group.rotation.z) * 0.05;
+        group.rotation.x += ((ty * 0.25) - group.rotation.x) * 0.05;
+        group.rotation.y = t * 0.2;
+        renderer.render(scene, camera);
+      })();
+    })();
+
+    /* ---------- Hero image parallax with the pointer ---------- */
+    var heroBg = document.getElementById("heroBg");
+    if (hover && !P.reduce) {
+      document.querySelector(".hero").addEventListener("pointermove", function (e) {
+        var x = e.clientX / innerWidth - 0.5, y = e.clientY / innerHeight - 0.5;
+        heroBg.style.transform = "translate(" + x * -18 + "px," + y * -12 + "px) scale(1.03)";
+      });
+    }
+
+    /* ---------- Live open/closed clock (IST) ---------- */
+    var hours = { 0: [10, 14], 1: [10, 21], 2: [10, 21], 3: [10, 21], 4: [10, 21], 5: [10, 21], 6: [9, 22] };
+    function tick() {
+      var parts = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit", second: "2-digit", weekday: "short", hour12: false }).formatToParts(new Date());
+      var get = function (t) { var p = parts.find(function (x) { return x.type === t; }); return p ? p.value : ""; };
+      var h = +get("hour") % 24, m = get("minute"), s = get("second");
+      var day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(get("weekday"));
+      var h12 = h % 12 || 12;
+      document.getElementById("clock").innerHTML = (h12 < 10 ? "0" : "") + h12 + ":" + m + "<small>" + (h < 12 ? "AM" : "PM") + " · " + s + "</small>";
+      var open = h >= hours[day][0] && h < hours[day][1];
+      document.getElementById("status").classList.toggle("closed", !open);
+      document.getElementById("statusText").textContent = open ? "Open now · walk in" : "Closed · book for later";
+      document.querySelectorAll("#hours li").forEach(function (li) { li.classList.toggle("today", li.dataset.days.split(",").indexOf(String(day)) > -1); });
+    }
+    tick(); setInterval(tick, 1000);
+
+    /* ---------- Interactive price ticket ---------- */
+    var lines = document.querySelectorAll(".line"), stamp = document.getElementById("stamp"), printBtn = document.getElementById("printBtn");
+    var inr = function (n) { return "₹" + n.toLocaleString("en-IN"); };
+    function recalc() {
+      var picked = Array.prototype.filter.call(lines, function (l) { return l.getAttribute("aria-pressed") === "true"; });
+      var total = picked.reduce(function (s, l) { return s + +l.dataset.price; }, 0);
+      document.getElementById("ticketTotal").textContent = inr(total);
+      document.getElementById("pickedTotal").textContent = inr(total);
+      document.getElementById("pickedCount").textContent = picked.length ? picked.length + (picked.length > 1 ? " services selected" : " service selected") : "Nothing selected";
+      printBtn.disabled = !picked.length;
+      stamp.classList.remove("on");
+      return picked;
+    }
+    lines.forEach(function (l) { l.addEventListener("click", function () { l.setAttribute("aria-pressed", l.getAttribute("aria-pressed") === "true" ? "false" : "true"); recalc(); }); });
+    printBtn.addEventListener("click", function () {
+      var picked = recalc();
+      void stamp.offsetWidth; stamp.classList.add("on");
+      var svc = document.getElementById("svc");
+      svc.value = picked.length === 1 ? picked[0].firstElementChild.textContent : "Multiple services";
+      setTimeout(function () {
+        var target = document.getElementById("book");
+        if (P.lenis) P.lenis.scrollTo(target, { offset: -70, duration: 1.4 }); else target.scrollIntoView({ behavior: "smooth" });
+      }, 900);
+    });
+    var ticket = document.getElementById("ticket");
+    if (hover && !P.reduce) {
+      ticket.addEventListener("pointermove", function (e) {
+        var r = ticket.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        ticket.style.transform = "rotateX(" + (8 - y * 10) + "deg) rotateY(" + x * 12 + "deg) rotateZ(-2deg)";
+      });
+      ticket.addEventListener("pointerleave", function () { ticket.style.transform = ""; });
+    }
+
+    /* ---------- 3D barber coverflow ---------- */
+    var flow = document.getElementById("flow"), cards = flow.querySelectorAll(".bcard"), dots = document.getElementById("dots");
+    var cur = 1;
+    cards.forEach(function (c, i) {
+      var d = document.createElement("button"); d.setAttribute("aria-label", "Show " + c.dataset.name); d.addEventListener("click", function () { go(i); }); dots.appendChild(d);
+      c.addEventListener("click", function (e) { if (i !== cur) { e.preventDefault(); go(i); } });
+    });
+    function layout() {
+      var narrow = innerWidth < 700;
+      cards.forEach(function (c, i) {
+        var o = i - cur, a = Math.abs(o);
+        var x = o * (narrow ? 62 : 72), z = -a * (narrow ? 160 : 220), ry = -Math.sign(o) * Math.min(a, 2) * 32;
+        c.style.transform = "translateX(" + x + "%) translateZ(" + z + "px) rotateY(" + ry + "deg)";
+        c.style.zIndex = 10 - a; c.style.opacity = a > 2 ? 0 : 1 - a * 0.18; c.style.filter = a ? "brightness(" + (0.55 - a * 0.1) + ") grayscale(.4)" : "none";
+        c.classList.toggle("active", !o);
+        c.setAttribute("aria-hidden", o ? "true" : "false");
+        c.querySelector(".btn").tabIndex = o ? -1 : 0;
+        dots.children[i].setAttribute("aria-current", !o ? "true" : "false");
+      });
+    }
+    function go(i) { cur = (i + cards.length) % cards.length; layout(); }
+    document.getElementById("prev").addEventListener("click", function () { go(cur - 1); });
+    document.getElementById("next").addEventListener("click", function () { go(cur + 1); });
+    flow.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") go(cur - 1); if (e.key === "ArrowRight") go(cur + 1); });
+    var sx = null;
+    flow.addEventListener("pointerdown", function (e) { sx = e.clientX; });
+    flow.addEventListener("pointerup", function (e) { if (sx !== null && Math.abs(e.clientX - sx) > 40) go(cur + (e.clientX < sx ? 1 : -1)); sx = null; });
+    layout(); window.addEventListener("resize", layout);
+    document.querySelectorAll("[data-barber]").forEach(function (b) {
+      b.addEventListener("click", function () { var r = document.querySelector('#barberPills input[value="' + b.dataset.barber + '"]'); if (r) r.checked = true; });
+    });
+  });
+  </script>
+</body>
+</html>

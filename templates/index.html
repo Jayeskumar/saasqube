@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Website Templates by Industry | SaaSQube Solutions</title>
-  <meta name="description" content="Browse ready-made website designs by SaaSQube Solutions for pharmacies, restaurants, hospitals, diagnostic labs, bakeries, salons, schools, gyms and real estate. Every design is customised to your brand.">
+  <meta name="description" content="Browse ready-made website designs by SaaSQube Solutions for saree boutiques, barbershops, luxury villas, pharmacies, restaurants, hospitals, diagnostic labs, bakeries, salons, schools, gyms and real estate. Every design is customised to your brand.">
   <meta name="theme-color" content="#1e1b4b">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,6 +39,22 @@
     .tg-cta h2 { color: #fff; }
     .tg-cta p { max-width: 36em; margin: 0 auto 26px; }
     @media (max-width: 820px) { .tg-grid { grid-template-columns: 1fr; } }
+    .pm { padding: 12px 0 clamp(48px, 6vw, 72px); }
+    .pm-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 26px; }
+    .pm-head h2 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+    .pm-head p { margin: 0; color: var(--muted); max-width: 34em; }
+    .pm-badge { display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .1em; padding: 5px 10px; border-radius: 999px; background: linear-gradient(90deg, #a78bfa, #f472b6); color: #1e1b4b; margin-bottom: 10px; }
+    .pm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .pm-card { position: relative; border-radius: 22px; overflow: hidden; background: #0f0e2e; color: #e0e7ff; display: flex; flex-direction: column; box-shadow: var(--shadow-lg); transition: transform .3s; }
+    .pm-card:hover { transform: translateY(-6px); }
+    .pm-card .tg-thumb { aspect-ratio: 4 / 5; border: 0; background: #000; }
+    .pm-card .tg-body { color: #c7cdf5; }
+    .pm-card h3 { color: #fff; font-size: 1.25rem; margin: 0 0 6px; }
+    .pm-card p { color: #a5b0d6; font-size: .92rem; margin-bottom: 14px; }
+    .pm-card .tg-tags span { background: rgba(167, 139, 250, .16); color: #d8ccff; }
+    .pm-card .btn-ghost { color: #fff; border-color: rgba(255, 255, 255, .3); }
+    @media (max-width: 960px) { .pm-grid { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; } }
+
   </style>
 </head>
 <body>
@@ -80,8 +96,47 @@
       </div>
     </section>
 
+    <section class="pm" aria-labelledby="pm-title">
+      <div class="container">
+        <div class="pm-head">
+          <div><span class="pm-badge">PREMIUM 3D</span><h2 id="pm-title">Premium animated 3D websites</h2></div>
+          <p>Cinematic, scroll-animated designs with real 3D: WebGL effects, 3D carousels and pinned scroll stories. Best viewed on a laptop. Move your mouse and scroll.</p>
+        </div>
+        <div class="pm-grid">
+          <article class="pm-card">
+            <a class="tg-thumb" href="silk-saree/" aria-label="Open the Silk Saree Boutique demo"><iframe src="silk-saree/" title="Silk Saree Boutique template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <div class="tg-body">
+              <h3>Silk Saree Boutique</h3>
+              <p>For saree, silk and textile showrooms: a WebGL silk hero that ripples under your mouse, a 3D colour carousel, a craft story and bridal appointments.</p>
+              <div class="tg-tags"><span>WebGL silk</span><span>3D carousel</span><span>Video-call shopping</span></div>
+              <div class="tg-actions"><a href="silk-saree/" class="btn btn-ghost btn-sm">Live demo</a><a href="../index.html?template=Premium%203D%20Silk%20Saree#contact" class="btn btn-primary btn-sm">Use this design</a></div>
+            </div>
+          </article>
+          <article class="pm-card">
+            <a class="tg-thumb" href="barber/" aria-label="Open the Barbershop &amp; Salon demo"><iframe src="barber/" title="Barbershop &amp; Salon template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <div class="tg-body">
+              <h3>Barbershop &amp; Salon</h3>
+              <p>For barbershops and men's grooming: a spinning 3D barber pole, a live open/closed clock, a tap-to-build price ticket and a 3D barber carousel.</p>
+              <div class="tg-tags"><span>3D barber pole</span><span>Live clock</span><span>Price ticket</span></div>
+              <div class="tg-actions"><a href="barber/" class="btn btn-ghost btn-sm">Live demo</a><a href="../index.html?template=Premium%203D%20Barbershop#contact" class="btn btn-primary btn-sm">Use this design</a></div>
+            </div>
+          </article>
+          <article class="pm-card">
+            <a class="tg-thumb" href="villas/" aria-label="Open the Luxury Villas &amp; Residences demo"><iframe src="villas/" title="Luxury Villas &amp; Residences template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <div class="tg-body">
+              <h3>Luxury Villas &amp; Residences</h3>
+              <p>For premium real estate: the hero photo shrinks into an arch, the villa's floors lift apart in 3D, plus a sideways-scrolling gallery and location route.</p>
+              <div class="tg-tags"><span>Arch reveal</span><span>3D floor plans</span><span>Scroll gallery</span></div>
+              <div class="tg-actions"><a href="villas/" class="btn btn-ghost btn-sm">Live demo</a><a href="../index.html?template=Premium%203D%20Luxury%20Villas#contact" class="btn btn-primary btn-sm">Use this design</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section" style="padding-top:12px">
       <div class="container">
+        <div class="pm-head"><div><h2>Industry templates</h2></div><p>Fast, clean websites ready to customise for your business.</p></div>
         <div class="filters" role="tablist" aria-label="Filter templates">
           <button class="filter active" data-filter="all" role="tab" aria-selected="true">All</button>
           <button class="filter" data-filter="health" role="tab" aria-selected="false">Healthcare</button>

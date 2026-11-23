@@ -31,6 +31,18 @@ templates/        Industry demo websites to show clients (see below)
 | `gym/` | Gym & fitness | Plans, class schedule, BMI calculator, free trial |
 | `real-estate/` | Builders & realty | Property filters, amenities, EMI calculator, site visits |
 
+### Premium 3D templates
+
+Three cinematic, scroll-animated templates with real photography and 3D effects:
+
+| Folder | Industry | 3D / motion highlights |
+|---|---|---|
+| `silk-saree/` | Silk saree boutique | WebGL silk that ripples under the mouse (Three.js shader), 3D colour carousel while you scroll, sticky craft story, tilt cards, bridal unveil |
+| `barber/` | Barbershop | Spinning 3D barber pole (Three.js), crossing tickers, live open/closed clock (IST), tap-to-build price ticket with stamp, 3D barber carousel |
+| `villas/` | Luxury villas / residences | Hero photo shrinks into an arch, villa floors lift apart in CSS 3D, sideways-scrolling gallery, self-drawing location route |
+
+They load GSAP + ScrollTrigger, Lenis (smooth scroll) and Three.js from public CDNs, plus `templates/premium.js` / `premium.css` for shared motion helpers. If a library fails to load, or the visitor has "reduce motion" turned on, all content still shows, just without the motion. Photos are from Unsplash; see `templates/CREDITS.md`.
+
 All templates share `templates/shared.css` and `templates/shared.js` (header, mobile menu, forms, tabs, footer). Each sets its own colours and fonts in a `<style>` block at the top. Every template has a dark bar at the top linking back to the gallery, plus a **Get this website** button. That button opens the main site's contact form with the template already filled in (`index.html?template=Name#contact`). The bar is hidden automatically when a template is shown as a preview in the gallery.
 
 Forms in the templates are demo-only: they show a thank-you message and don't send anything. To turn a template into a client's real site, copy its folder, replace the names, contact details and content, swap the emoji/gradient visuals for real photos, and remove the demo bar.

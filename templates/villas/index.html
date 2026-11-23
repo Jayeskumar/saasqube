@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Azure Bay Residences — Premium 3D Luxury Villas Template | SaaSQube Solutions</title>
+  <meta name="description" content="Premium animated 3D website template for luxury villas and residences by SaaSQube Solutions: arch-reveal hero, exploding 3D floor plans, horizontal gallery and location timeline.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/hero.webp">
+  <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="../premium.css">
+  <style>
+    :root {
+      --font: "DM Sans", system-ui, sans-serif; --font-head: "Bodoni Moda", Didot, Georgia, serif;
+      --sand: #f3eee4; --stone: #e7decd; --ink: #1f2a2e; --sea: #2c6e7f; --bloom: #a3165f; --bloom-2: #c42a7a;
+      --primary: var(--ink); --primary-dark: #0f1719; --accent: var(--bloom); --on-accent: #fff;
+      --bg: var(--sand); --alt: var(--stone); --surface: #fbf8f2; --text: #4a5257; --heading: var(--ink); --muted: #7d8488;
+      --line: #d9cfbd; --radius: 2px; --btn-radius: 0; --kicker: var(--sea);
+      --field-bg: #fbf8f2; --footer-bg: #142024; --footer-text: #a8b4b7; --footer-head: #fff;
+    }
+    h1, h2, h3 { font-weight: 400; letter-spacing: -.01em; }
+    h2 { font-size: clamp(2.4rem, 5.6vw, 4.8rem); line-height: 1; }
+    h2 em, h1 em { font-style: italic; color: var(--bloom); }
+    .btn { text-transform: uppercase; letter-spacing: .18em; font-size: .72rem; padding: 17px 30px; }
+    .btn-bloom { background: var(--bloom); color: #fff; }
+    .btn-bloom:hover { background: var(--bloom-2); }
+    .kicker { letter-spacing: .34em; font-size: .68rem; }
+
+    /* ---------- Header ---------- */
+    .t-header { position: fixed; left: 0; right: 0; top: var(--demo-h, 36px); background: transparent; border: 0; transition: background .4s, color .4s; color: #fff; }
+    .t-header.solid { background: rgba(243, 238, 228, .9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: var(--ink); }
+    .t-header .t-logo { color: inherit; font-family: var(--font-head); font-weight: 400; font-size: 1.35rem; letter-spacing: .12em; text-transform: uppercase; }
+    .t-header .t-logo small { color: inherit; opacity: .75; letter-spacing: .5em; }
+    .t-logo .mark { background: transparent; border: 1px solid currentColor; color: inherit; border-radius: 50%; }
+    .t-logo .mark svg { width: 22px; height: 22px; }
+    .t-nav a:not(.btn) { color: inherit; text-transform: uppercase; letter-spacing: .16em; font-size: .7rem; opacity: .9; }
+    .t-nav a:not(.btn):hover { color: inherit; opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+    .t-header:not(.solid) .t-nav .btn { background: #fff; color: var(--ink); }
+    .t-header.solid .t-nav .btn { background: var(--ink); color: #fff; }
+    .t-toggle { color: inherit; }
+    .t-toggle span { background: currentColor; }
+    @media (max-width: 900px) { .t-nav { background: var(--sand); color: var(--ink); } }
+
+    /* ---------- Hero: image shrinks into an arch ---------- */
+    .hero { position: relative; height: 100vh; height: 100svh; overflow: hidden; background: var(--sand); }
+    .hero-img { position: absolute; inset: 0; clip-path: inset(0% 0% 0% 0% round 0px 0px 0px 0px); will-change: clip-path; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); }
+    .hero-img::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 45% at 50% 50%, rgba(20, 32, 36, .42), transparent 75%), linear-gradient(180deg, rgba(20, 32, 36, .4), rgba(20, 32, 36, .05) 35%, rgba(20, 32, 36, .45)); }
+    .hero-title { position: absolute; inset: 0; z-index: 2; display: grid; place-content: center; text-align: center; color: #fff; pointer-events: none; }
+    .hero-title h1, .hero-title p { text-shadow: 0 2px 24px rgba(10, 20, 24, .45), 0 1px 3px rgba(10, 20, 24, .35); }
+    .hero-title h1 { font-size: clamp(3.6rem, 13vw, 13rem); line-height: .85; color: #fff; letter-spacing: .02em; margin: 0; font-weight: 500; }
+    .hero-title h1 em { color: #fff; display: block; font-size: .42em; letter-spacing: 0; margin-top: .15em; }
+    .hero-title p { text-transform: uppercase; letter-spacing: .4em; font-size: .72rem; margin-top: 24px; }
+    .flank { position: absolute; z-index: 1; top: 50%; transform: translateY(-50%); font-family: var(--font-head); font-size: clamp(2rem, 5vw, 4.6rem); color: var(--ink); opacity: 0; line-height: 1; }
+    .flank em { color: var(--bloom); }
+    .flank.l { left: 5vw; } .flank.r { right: 5vw; text-align: right; }
+    .flank small { display: block; font-family: var(--font); font-size: .7rem; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); margin-top: 16px; }
+    .hero-cue { position: absolute; z-index: 2; left: 50%; bottom: 24px; transform: translateX(-50%); color: #fff; font-size: .64rem; letter-spacing: .34em; text-transform: uppercase; }
+
+    /* ---------- Intro ---------- */
+    .intro { position: relative; padding: clamp(80px, 12vw, 170px) 0; overflow: hidden; }
+    .intro p.big { font-family: var(--font-head); font-size: clamp(1.7rem, 3.4vw, 3rem); line-height: 1.22; color: var(--ink); max-width: 22em; margin: 0 auto; text-align: center; }
+    .intro .float-img { position: absolute; width: clamp(110px, 14vw, 200px); aspect-ratio: 3 / 4; object-fit: cover; box-shadow: 0 30px 50px -30px rgba(31, 42, 46, .6); }
+    .intro .f1 { left: 4vw; top: 12%; border-radius: 999px 999px 0 0; }
+    .intro .f2 { right: 5vw; bottom: 10%; border-radius: 0 0 999px 999px; }
+    @media (max-width: 760px) { .intro .float-img { display: none; } }
+
+    /* ---------- 3D floor plates ---------- */
+    .villa { background: var(--stone); overflow: hidden; }
+    .villa-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; min-height: 100vh; padding: 90px 0 40px; }
+    .iso-stage { position: relative; height: min(70vh, 620px); perspective: 2200px; display: grid; place-items: center; }
+    .iso { position: relative; width: min(30vw, 380px); aspect-ratio: 1; transform: rotateX(57deg) rotateZ(var(--rz, -42deg)); transform-style: preserve-3d; }
+    .plate { position: absolute; inset: 0; transform-style: preserve-3d; transform: translateZ(var(--z, 0px)); }
+    .plate .slab { position: absolute; inset: 0; background: #fbf8f2; border: 1px solid #b9ad97; box-shadow: 10px 10px 0 #cbbfa8, 22px 22px 40px rgba(31, 42, 46, .25); }
+    .plate svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .plate .tag {
+      position: absolute; right: -14px; top: -14px; transform: rotateZ(42deg) rotateX(-57deg); transform-origin: bottom left;
+      background: var(--ink); color: #fff; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; padding: 6px 10px; white-space: nowrap;
+    }
+    .plate.on .slab { border-color: var(--bloom); }
+    .plate.on .tag { background: var(--bloom); }
+    .floors { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 4px; }
+    .floors li { padding: 18px 0; border-top: 1px solid var(--line); opacity: .4; transition: opacity .4s; }
+    .floors li.on { opacity: 1; }
+    .floors h3 { font-size: 1.7rem; margin: 0 0 4px; }
+    .floors h3 small { font-family: var(--font); font-size: .66rem; letter-spacing: .24em; color: var(--sea); text-transform: uppercase; margin-right: 10px; vertical-align: middle; }
+    .floors p { margin: 0; font-size: .95rem; }
+    @media (max-width: 900px) {
+      .villa-grid { grid-template-columns: 1fr; min-height: 0; padding: 70px 0; }
+      .iso { width: 58vw; }
+      .iso-stage { height: 92vw; }
+      .floors li { opacity: 1; }
+    }
+
+    /* ---------- Horizontal gallery ---------- */
+    .hgal { background: var(--ink); color: #c9d1d3; overflow: hidden; }
+    .hgal-head { padding-top: clamp(70px, 9vw, 110px); display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+    .hgal h2 { color: #fff; }
+    .hgal h2 em { color: #f5a3c7; }
+    .hgal .kicker { color: #8fc3cf; }
+    .htrack { display: flex; gap: 28px; padding: 50px max(16px, calc((100vw - 1160px) / 2)) clamp(70px, 9vw, 110px); width: max-content; align-items: flex-end; }
+    .hitem { flex: none; margin: 0; }
+    .hitem .frame { overflow: hidden; position: relative; }
+    .hitem img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.15); }
+    .hitem.w { width: clamp(320px, 42vw, 640px); } .hitem.w .frame { aspect-ratio: 16 / 10; }
+    .hitem.t { width: clamp(220px, 24vw, 360px); } .hitem.t .frame { aspect-ratio: 3 / 4; border-radius: 999px 999px 0 0; }
+    .hitem figcaption { display: flex; justify-content: space-between; margin-top: 14px; font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; }
+    .hitem figcaption b { color: #fff; font-weight: 500; }
+    @media (max-width: 900px) {
+      .hscroll { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+      .hscroll::-webkit-scrollbar { display: none; }
+      .hitem { scroll-snap-align: center; }
+      .hitem img { transform: none; }
+    }
+
+    /* ---------- Residences ---------- */
+    .res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+    .res { position: relative; background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; }
+    .res .ph { position: relative; aspect-ratio: 4 / 4.6; overflow: hidden; border-radius: 999px 999px 0 0; margin: 18px 18px 0; }
+    .res .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.2, .7, .2, 1); }
+    .res:hover .ph img { transform: scale(1.06); }
+    .res .avail { position: absolute; top: 34px; right: 34px; z-index: 2; background: #fff; color: var(--ink); font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; padding: 6px 10px; }
+    .res .body { padding: 22px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+    .res h3 { font-size: 1.9rem; margin: 0 0 6px; }
+    .res .spec { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .82rem; color: var(--muted); margin-bottom: 18px; }
+    .res .price { font-family: var(--font-head); font-size: 1.7rem; color: var(--ink); margin: auto 0 16px; }
+    .res .price small { font-family: var(--font); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); display: block; }
+    @media (max-width: 960px) { .res-grid { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; } }
+
+    /* ---------- Amenities ---------- */
+    .amen-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(32px, 6vw, 90px); align-items: center; }
+    .amen-img { position: relative; }
+    .amen-img .arch { aspect-ratio: 3 / 4; overflow: hidden; border-radius: 999px 999px 0 0; }
+    .amen-img .arch img { width: 100%; height: 120%; object-fit: cover; }
+    .amen-img .mini { position: absolute; right: -30px; bottom: -30px; width: 42%; aspect-ratio: 1; object-fit: cover; border: 8px solid var(--sand); }
+    .amen-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; margin-top: 30px; }
+    .amen-list div { padding: 16px 0; border-top: 1px solid var(--line); display: flex; gap: 14px; align-items: baseline; }
+    .amen-list span { font-family: var(--font-head); color: var(--bloom); font-size: .95rem; }
+    @media (max-width: 900px) { .amen-grid { grid-template-columns: 1fr; } .amen-img { max-width: 420px; } .amen-img .mini { right: -8px; } }
+
+    /* ---------- Location timeline ---------- */
+    .coast { background: var(--surface); text-align: center; overflow: hidden; }
+    .route { position: relative; margin: 60px auto 0; max-width: 1060px; }
+    .route svg { width: 100%; height: 120px; overflow: visible; }
+    .route path { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+    .stops { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 8px; }
+    .stops div { padding: 0 8px; }
+    .stops strong { display: block; font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3.2rem); color: var(--ink); font-weight: 400; line-height: 1; }
+    .stops strong small { font-size: .38em; letter-spacing: .1em; font-family: var(--font); color: var(--muted); }
+    .stops span { font-size: .76rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+    .route .pin { fill: var(--bloom); }
+    @media (max-width: 760px) { .route svg { display: none; } .stops { grid-template-columns: 1fr 1fr; gap: 26px 0; } }
+
+    /* ---------- Enquire ---------- */
+    .enquire { background: var(--bloom); color: #fbe3ef; }
+    .enquire h2 { color: #fff; }
+    .enquire h2 em { color: #ffd1e6; }
+    .enq-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+    .enq-img { aspect-ratio: 3 / 4; overflow: hidden; border-radius: 999px 999px 0 0; }
+    .enq-img img { width: 100%; height: 100%; object-fit: cover; }
+    .enquire .form { --field-bg: rgba(255, 255, 255, .1); --field-line: rgba(255, 255, 255, .35); --field-text: #fff; --label: #ffe3f0; --primary: #fff; --form-msg: #fff; }
+    .enquire .form select option { color: var(--ink); }
+    .enquire .form input::placeholder { color: rgba(255, 255, 255, .6); }
+    .enquire .form input[type="date"] { color-scheme: dark; }
+    .enquire .btn { background: #fff; color: var(--bloom); }
+    .t-footer .giant { font-family: var(--font-head); font-size: clamp(3rem, 14vw, 13rem); line-height: .9; color: #fff; text-align: center; letter-spacing: .04em; margin: 0 0 40px; opacity: .95; }
+    .t-footer .giant em { color: #f5a3c7; }
+
+    @media (max-width: 900px) {
+      .enq-grid { grid-template-columns: 1fr; }
+      .enq-img { max-width: 360px; }
+      .flank { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-bar"><div class="container">
+    <a href="../">← All templates</a>
+    <span class="db-text"><span class="db-3d">PREMIUM 3D</span>Demo website template by <strong>SaaSQube Solutions</strong></span>
+    <a class="db-cta" href="../../index.html?template=Premium%203D%20Luxury%20Villas#contact">Get this website</a>
+  </div></div>
+
+  <header class="t-header">
+    <div class="container t-nav-wrap">
+      <a href="#top" class="t-logo"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M4 21V11a8 8 0 0 1 16 0v10M8 21v-8a4 4 0 0 1 8 0v8M2 21h20"/></svg></span><span>Azure Bay<small>Residences</small></span></a>
+      <button class="t-toggle" aria-expanded="false" aria-controls="t-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="t-nav" id="t-nav">
+        <a href="#villa">The villa</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#residences">Residences</a>
+        <a href="#location">Location</a>
+        <a href="#enquire" class="btn btn-sm">Arrange a visit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="hero">
+      <div class="flank l" aria-hidden="true">Live <em>by</em><small>East Coast Road · Chennai</small></div>
+      <div class="flank r" aria-hidden="true">the <em>sea.</em><small>24 private villas</small></div>
+      <div class="hero-img" id="heroImg"><img src="img/hero.webp" alt="White modern villa with glass walls beside a swimming pool" width="1600" height="1067"></div>
+      <div class="hero-title" id="heroTitle">
+        <h1 data-split="chars" data-no-auto>Azure Bay <em>residences</em></h1>
+        <p>Mediterranean villas · East Coast Road, Chennai</p>
+      </div>
+      <div class="hero-cue" id="heroCue">Scroll to enter</div>
+    </section>
+
+    <section class="intro">
+      <img class="float-img f1" src="img/door.webp" alt="" aria-hidden="true" loading="lazy" data-speed="-0.4">
+      <img class="float-img f2" src="img/bloom.webp" alt="" aria-hidden="true" loading="lazy" data-speed="0.4">
+      <div class="container">
+        <p class="kicker" style="text-align:center;display:block">A boutique gated community</p>
+        <p class="big" data-scrub-words>Twenty-four Mediterranean-style villas designed around privacy, light and slow coastal living — forty minutes from the city, four minutes from the sea.</p>
+      </div>
+    </section>
+
+    <section class="villa" id="villa">
+      <div class="container villa-grid">
+        <div class="iso-stage" aria-hidden="true">
+          <div class="iso" id="iso">
+            <div class="plate" data-floor="0">
+              <div class="slab"></div>
+              <svg viewBox="0 0 100 100" fill="none" stroke="#1f2a2e" stroke-width=".5">
+                <rect x="6" y="6" width="88" height="88"/><path d="M6 46h52M58 6v88M30 46v48M58 70h36"/>
+                <rect x="62" y="74" width="28" height="16" fill="#8fc3cf" stroke="#2c6e7f"/>
+                <circle cx="18" cy="26" r="6" stroke="#a3165f"/><circle cx="76" cy="38" r="9" stroke="#3f7a52"/>
+                <text x="14" y="62" font-size="4" fill="#4a5257" stroke="none" font-family="DM Sans">LIVING</text><text x="36" y="80" font-size="4" fill="#4a5257" stroke="none" font-family="DM Sans">KITCHEN</text><text x="64" y="20" font-size="4" fill="#4a5257" stroke="none" font-family="DM Sans">COURTYARD</text>
+              </svg>
+              <span class="tag">Ground</span>
+            </div>
+            <div class="plate" data-floor="1">
+              <div class="slab"></div>
+              <svg viewBox="0 0 100 100" fill="none" stroke="#1f2a2e" stroke-width=".5">
+                <rect x="6" y="6" width="88" height="88"/><path d="M6 40h40M46 6v88M46 60h48M70 60v34M6 70h40"/>
+                <rect x="12" y="14" width="18" height="12" stroke="#a3165f"/><rect x="56" y="16" width="18" height="12" stroke="#a3165f"/><rect x="12" y="76" width="16" height="10" stroke="#a3165f"/>
+                <text x="10" y="36" font-size="4" fill="#4a5257" stroke="none" font-family="DM Sans">SUITE 1</text><text x="54" y="40" font-size="4" fill="#4a5257" stroke="none" font-family="DM Sans">MASTER</text><text x="10" y="66" font-size="4" fill="#4a5257" stroke="none" font-family="DM Sans">SUITE 2</text>
+              </svg>
+              <span class="tag">First floor</span>
+            </div>
+            <div class="plate" data-floor="2">
+              <div class="slab"></div>
+              <svg viewBox="0 0 100 100" fill="none" stroke="#1f2a2e" stroke-width=".5">
+                <rect x="6" y="6" width="88" height="88"/><rect x="6" y="6" width="40" height="40"/>
+                <rect x="56" y="56" width="32" height="20" fill="#8fc3cf" stroke="#2c6e7f"/>
+                <circle cx="24" cy="70" r="8" stroke="#a3165f"/><circle cx="70" cy="24" r="5" stroke="#3f7a52"/><circle cx="84" cy="30" r="4" stroke="#3f7a52"/>
+                <text x="10" y="28" font-size="4" fill="#4a5257" stroke="none" font-family="DM Sans">SOLARIUM</text><text x="54" y="86" font-size="4" fill="#4a5257" stroke="none" font-family="DM Sans">PLUNGE POOL</text>
+              </svg>
+              <span class="tag">Rooftop</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="kicker">The villa</p>
+          <h2 data-split="words">Three levels of <em>quiet luxury.</em></h2>
+          <ul class="floors" id="floors">
+            <li data-floor="0" class="on"><h3><small>Ground</small>Live &amp; gather</h3><p>Double-height living room opening onto a private courtyard, chef's kitchen and a 12 m pool deck.</p></li>
+            <li data-floor="1"><h3><small>First</small>Rest</h3><p>Three en-suite bedrooms, including a master suite with a walk-in wardrobe and sea-facing balcony.</p></li>
+            <li data-floor="2"><h3><small>Rooftop</small>Look out</h3><p>A solarium, plunge pool and sunset terrace with views across the Bay of Bengal.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="hgal" id="gallery">
+      <div class="container hgal-head">
+        <div><p class="kicker">Gallery</p><h2 data-split="words">Light, stone <em>&amp; sea air.</em></h2></div>
+        <p style="max-width:24em;margin:0">Scroll through the show villa: every room opens to a garden, a courtyard or the sky.</p>
+      </div>
+      <div class="hscroll" id="hscroll">
+        <div class="htrack" id="htrack">
+          <figure class="hitem w"><div class="frame"><img src="img/modern.webp" alt="Modern white villa with pool and lounge area" loading="lazy"></div><figcaption><b>Pool villa</b><span>01</span></figcaption></figure>
+          <figure class="hitem t"><div class="frame"><img src="img/living.webp" alt="Open-air living room with tropical plants" loading="lazy"></div><figcaption><b>Garden lounge</b><span>02</span></figcaption></figure>
+          <figure class="hitem w"><div class="frame"><img src="img/interior.webp" alt="Bright white dining and living space" loading="lazy"></div><figcaption><b>Living &amp; dining</b><span>03</span></figcaption></figure>
+          <figure class="hitem t"><div class="frame"><img src="img/pool-tall.webp" alt="White villa beside a swimming pool" loading="lazy"></div><figcaption><b>Courtyard pool</b><span>04</span></figcaption></figure>
+          <figure class="hitem w"><div class="frame"><img src="img/bedroom.webp" alt="Minimal bedroom with glass sliding doors" loading="lazy"></div><figcaption><b>Master suite</b><span>05</span></figcaption></figure>
+          <figure class="hitem w"><div class="frame"><img src="img/dusk.webp" alt="Modern house with pool and lounge chairs" loading="lazy"></div><figcaption><b>Sunset deck</b><span>06</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="residences">
+      <div class="container">
+        <div class="section-head"><p class="kicker">Residences</p><h2 data-split="words">Choose your <em>villa.</em></h2><p>Three villa types, each on its own private plot with a pool, garden and covered parking.</p></div>
+        <div class="res-grid" data-stagger>
+          <article class="res" data-tilt="6"><span class="avail">4 of 10 left</span><div class="ph"><img src="img/arch.webp" alt="Mediterranean villa with pool" loading="lazy"></div><div class="body"><h3>Garden Villa</h3><div class="spec"><span>3 BHK</span><span>2,850 sq ft</span><span>Private pool</span></div><p class="price"><small>Starting from</small>₹3.2 Cr</p><a href="#enquire" class="btn btn-primary">Enquire</a></div><span class="glare"></span></article>
+          <article class="res" data-tilt="6"><span class="avail">3 of 8 left</span><div class="ph"><img src="img/pool-tall.webp" alt="White villa beside a pool" loading="lazy"></div><div class="body"><h3>Pool Villa</h3><div class="spec"><span>4 BHK</span><span>3,600 sq ft</span><span>Rooftop terrace</span></div><p class="price"><small>Starting from</small>₹4.5 Cr</p><a href="#enquire" class="btn btn-primary">Enquire</a></div><span class="glare"></span></article>
+          <article class="res" data-tilt="6"><span class="avail">2 of 6 left</span><div class="ph"><img src="img/coast.webp" alt="Villas among trees above the sea" loading="lazy"></div><div class="body"><h3>Sea-view Villa</h3><div class="spec"><span>5 BHK</span><span>4,800 sq ft</span><span>Plunge pool &amp; solarium</span></div><p class="price"><small>Starting from</small>₹6.8 Cr</p><a href="#enquire" class="btn btn-bloom">Enquire</a></div><span class="glare"></span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container amen-grid">
+        <div class="amen-img" data-reveal>
+          <div class="arch"><img src="img/shutters.webp" alt="Pink bougainvillea climbing a white wall with blue shutters" loading="lazy" data-speed="-0.12"></div>
+          <img class="mini" src="img/bloom.webp" alt="" aria-hidden="true" loading="lazy">
+        </div>
+        <div>
+          <p class="kicker">The community</p>
+          <h2 data-split="words">Everything, <em>within the walls.</em></h2>
+          <p>A landscaped estate of bougainvillea lanes, olive trees and quiet courtyards, managed by our own hospitality team.</p>
+          <div class="amen-list" data-stagger>
+            <div><span>01</span>Clubhouse &amp; lap pool</div><div><span>02</span>Private beach access</div>
+            <div><span>03</span>24×7 security &amp; concierge</div><div><span>04</span>Spa &amp; yoga pavilion</div>
+            <div><span>05</span>Kids' garden &amp; play lawn</div><div><span>06</span>EV charging for every villa</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section coast" id="location">
+      <div class="container">
+        <p class="kicker">Location</p>
+        <h2 data-split="words">The coast <em>you wanted.</em></h2>
+        <div class="route">
+          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+            <path id="routePath" d="M10 60 C 120 10, 180 110, 300 60 S 480 10, 600 60 S 780 110, 900 60 S 970 30, 990 50"/>
+            <circle class="pin" cx="100" cy="42" r="6"/><circle class="pin" cx="300" cy="60" r="6"/><circle class="pin" cx="500" cy="38" r="6"/><circle class="pin" cx="700" cy="76" r="6"/><circle class="pin" cx="900" cy="60" r="6"/>
+          </svg>
+          <div class="stops" data-stagger>
+            <div><strong>4<small> MIN</small></strong><span>Beach</span></div>
+            <div><strong>10<small> MIN</small></strong><span>Golf club</span></div>
+            <div><strong>12<small> MIN</small></strong><span>International school</span></div>
+            <div><strong>25<small> MIN</small></strong><span>IT corridor</span></div>
+            <div><strong>40<small> MIN</small></strong><span>Chennai airport</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section enquire" id="enquire">
+      <div class="container enq-grid">
+        <div class="enq-img" data-reveal><img src="img/coast.webp" alt="Villas nestled among trees by the blue sea" loading="lazy"></div>
+        <div>
+          <p class="kicker" style="color:#ffd1e6">Private viewing</p>
+          <h2 data-split="words">Come and <em>stay a while.</em></h2>
+          <p>Arrange a private tour of the show villa, with lunch on the terrace. We'll arrange pickup from anywhere in Chennai.</p>
+          <form class="form" data-demo data-demo-msg="Thank you! This is a demo — on your live website, your enquiry goes straight to the sales team on WhatsApp and email.">
+            <div class="row">
+              <label>Name<input type="text" required></label>
+              <label>Phone<input type="tel" required></label>
+            </div>
+            <div class="row">
+              <label>Interested in<select><option>Garden Villa · 3 BHK</option><option>Pool Villa · 4 BHK</option><option>Sea-view Villa · 5 BHK</option><option>Not sure yet</option></select></label>
+              <label>Preferred date<input type="date" required></label>
+            </div>
+            <label>Email<input type="email" placeholder="you@example.com"></label>
+            <button class="btn btn-block">Arrange my visit</button>
+            <p class="form-msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="t-footer">
+    <div class="container">
+      <p class="giant" aria-hidden="true">Azure <em>Bay</em></p>
+      <div class="cols">
+        <div><a href="#top" class="t-logo" style="font-family:var(--font-head);font-weight:400">Azure Bay Residences</a><p>Mediterranean-style villas on the East Coast Road, Chennai.</p></div>
+        <div><h4>Explore</h4><ul><li><a href="#villa">The villa</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#residences">Residences</a></li></ul></div>
+        <div><h4>Visit</h4><ul><li><a href="#location">Location</a></li><li><a href="#enquire">Private viewing</a></li></ul></div>
+        <div><h4>Sales office</h4><ul><li>📍 ECR, Chennai</li><li>📞 +91 90000 00000</li><li>✉️ sales@azurebay.example</li></ul></div>
+      </div>
+      <div class="bottom"><p>© <span data-year>2026</span> Azure Bay Residences (demo) · Photos: Unsplash</p><p>Website by SaaSQube Solutions</p></div>
+    </div>
+  </footer>
+
+  <a class="t-wa" href="#enquire" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5 0-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5l-.1-.1z"/></svg></a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="../shared.js" defer></script>
+  <script src="../premium.js" defer></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var P = window.PREMIUM || {};
+    var demoBar = document.querySelector(".demo-bar"), header = document.querySelector(".t-header"), hero = document.getElementById("hero");
+    function onScroll() {
+      var dh = P.inFrame || !demoBar ? 0 : demoBar.offsetHeight;
+      header.style.top = Math.max(0, dh - window.scrollY) + "px";
+      header.classList.toggle("solid", window.scrollY > 60);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+    var plates = document.querySelectorAll(".plate"), floorItems = document.querySelectorAll("#floors li");
+    function setFloor(n) {
+      plates.forEach(function (p, i) { p.classList.toggle("on", i === n); });
+      floorItems.forEach(function (li, i) { li.classList.toggle("on", i === n); });
+    }
+    var desktop = window.matchMedia("(min-width: 901px)").matches;
+    var spread = desktop ? 150 : 70;
+
+    if (!window.gsap || !window.ScrollTrigger || P.reduce) {
+      // Static fallback: show the exploded villa and the arch-free hero
+      plates.forEach(function (p, i) { p.style.setProperty("--z", i * spread + "px"); });
+      return;
+    }
+
+    /* ---------- Hero: full-bleed image shrinks into an arch ---------- */
+    var chars = document.querySelectorAll("#heroTitle .sc");
+    gsap.from(chars, { yPercent: 120, opacity: 0, duration: 1.4, ease: "expo.out", stagger: 0.04, delay: 0.2 });
+    var archTo = desktop ? "inset(13% 35% 6% 35% round 400px 400px 0px 0px)" : "inset(18% 12% 10% 12% round 300px 300px 0px 0px)";
+    var heroTl = gsap.timeline({ scrollTrigger: { trigger: hero, start: "top top", end: "+=110%", pin: true, scrub: 0.8, refreshPriority: 3 } });
+    heroTl.to("#heroImg", { clipPath: archTo, ease: "none" }, 0)
+      .to("#heroImg img", { scale: 1, ease: "none" }, 0)
+      .to("#heroTitle", { opacity: 0, scale: 0.86, ease: "none" }, 0)
+      .to("#heroCue", { opacity: 0, ease: "none" }, 0)
+      .to(".flank", { opacity: 1, ease: "none" }, 0.45)
+      .from(".flank.l", { x: -60, ease: "none" }, 0.45)
+      .from(".flank.r", { x: 60, ease: "none" }, 0.45);
+
+    /* ---------- Villa: floors lift apart in 3D ---------- */
+    if (desktop) {
+      var vt = gsap.timeline({ scrollTrigger: { trigger: "#villa", start: "top top", end: "+=180%", pin: true, scrub: 0.8, refreshPriority: 2,
+        onUpdate: function (s) { setFloor(s.progress < 0.38 ? 0 : s.progress < 0.72 ? 1 : 2); } } });
+      vt.fromTo("#iso", { "--rz": "-50deg" }, { "--rz": "-30deg", ease: "none", duration: 1 }, 0)
+        .fromTo(plates[1], { "--z": "0px" }, { "--z": spread + "px", ease: "power2.inOut", duration: 0.45 }, 0.05)
+        .fromTo(plates[2], { "--z": "0px" }, { "--z": spread * 2 + "px", ease: "power2.inOut", duration: 0.45 }, 0.4);
+    } else {
+      plates.forEach(function (p, i) { p.style.setProperty("--z", i * spread + "px"); });
+      gsap.fromTo("#iso", { "--rz": "-55deg" }, { "--rz": "-30deg", ease: "none", scrollTrigger: { trigger: "#villa", start: "top bottom", end: "bottom top", scrub: true } });
+    }
+
+    /* ---------- Horizontal gallery ---------- */
+    var htrack = document.getElementById("htrack");
+    if (desktop) {
+      var dist = function () { return htrack.scrollWidth - innerWidth; };
+      var hTween = gsap.to(htrack, { x: function () { return -dist(); }, ease: "none",
+        scrollTrigger: { trigger: "#gallery", start: "top top", end: function () { return "+=" + dist(); }, pin: true, scrub: 0.8, invalidateOnRefresh: true, refreshPriority: 1 } });
+      htrack.querySelectorAll(".hitem img").forEach(function (img) {
+        gsap.fromTo(img, { xPercent: -6 }, { xPercent: 6, ease: "none",
+          scrollTrigger: { trigger: img.closest(".hitem"), containerAnimation: hTween, start: "left right", end: "right left", scrub: true } });
+      });
+    }
+
+    /* ---------- Location route draws itself ---------- */
+    var path = document.getElementById("routePath"), len = path.getTotalLength();
+    gsap.fromTo(path, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, ease: "none",
+      scrollTrigger: { trigger: ".route", start: "top 85%", end: "bottom 55%", scrub: true } });
+    gsap.from(".route .pin", { scale: 0, transformOrigin: "center", stagger: 0.15, duration: 0.6, ease: "back.out(3)", scrollTrigger: { trigger: ".route", start: "top 70%" } });
+
+    ScrollTrigger.sort(); ScrollTrigger.refresh();
+  });
+  </script>
+</body>
+</html>

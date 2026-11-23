@@ -1,0 +1,31 @@
+/* Shared bits for SaaSQube premium 3D templates (used with shared.css). */
+.sw { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+.sc { display: inline-block; will-change: transform; }
+[data-split] em .sw, [data-split] em .sc { font-style: inherit; }
+
+/* Film grain overlay */
+.grain::after {
+  content: ""; position: absolute; inset: -50%; pointer-events: none; z-index: 2; opacity: .08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1.2s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); } 20% { transform: translate(-3%, 2%); } 40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, 3%); } 80% { transform: translate(3%, -1%); } 100% { transform: translate(0, 0); }
+}
+
+/* Tilt glare */
+[data-tilt] { transition: transform .25s ease-out; transform-style: preserve-3d; }
+[data-tilt] .glare {
+  position: absolute; inset: 0; pointer-events: none; border-radius: inherit; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .35), transparent 55%);
+  mix-blend-mode: soft-light;
+}
+[data-tilt]:hover .glare { opacity: 1; }
+
+/* "Premium 3D" ribbon in the demo bar */
+.demo-bar .db-3d { background: linear-gradient(90deg, #a78bfa, #f472b6); color: #1e1b4b; font-weight: 800; font-size: .68rem; letter-spacing: .08em; padding: 3px 8px; border-radius: 999px; margin-right: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .grain::after { animation: none; }
+}
