@@ -22,7 +22,8 @@
     .tg-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
     .tg-card[hidden] { display: none; }
     .tg-thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--bg-alt); border-bottom: 1px solid var(--line); display: block; }
-    .tg-thumb iframe { position: absolute; top: 0; left: 0; width: 400%; height: 400%; border: 0; transform: scale(.25); transform-origin: 0 0; pointer-events: none; }
+    .tg-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .6s ease; }
+    .tg-card:hover .tg-thumb img, .pm-card:hover .tg-thumb img { transform: scale(1.03); }
     .tg-thumb::after { content: "View live demo →"; position: absolute; inset: 0; display: grid; place-items: center; background: rgba(15, 14, 46, .55); color: #fff; font-weight: 700; opacity: 0; transition: opacity .25s; }
     .tg-thumb:hover::after, .tg-thumb:focus-visible::after { opacity: 1; }
     .tg-body { padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1; }
@@ -104,7 +105,7 @@
         </div>
         <div class="pm-grid">
           <article class="pm-card">
-            <a class="tg-thumb" href="silk-saree/" aria-label="Open the Silk Saree Boutique demo"><iframe src="silk-saree/" title="Silk Saree Boutique template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="silk-saree/" aria-label="Open the Silk Saree Boutique demo"><img src="thumbs/silk-saree.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <h3>Silk Saree Boutique</h3>
               <p>For saree, silk and textile showrooms: a WebGL silk hero that ripples under your mouse, a 3D colour carousel, a craft story and bridal appointments.</p>
@@ -113,7 +114,7 @@
             </div>
           </article>
           <article class="pm-card">
-            <a class="tg-thumb" href="barber/" aria-label="Open the Barbershop &amp; Salon demo"><iframe src="barber/" title="Barbershop &amp; Salon template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="barber/" aria-label="Open the Barbershop &amp; Salon demo"><img src="thumbs/barber.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <h3>Barbershop &amp; Salon</h3>
               <p>For barbershops and men's grooming: a spinning 3D barber pole, a live open/closed clock, a tap-to-build price ticket and a 3D barber carousel.</p>
@@ -122,7 +123,7 @@
             </div>
           </article>
           <article class="pm-card">
-            <a class="tg-thumb" href="villas/" aria-label="Open the Luxury Villas &amp; Residences demo"><iframe src="villas/" title="Luxury Villas &amp; Residences template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="villas/" aria-label="Open the Luxury Villas &amp; Residences demo"><img src="thumbs/villas.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <h3>Luxury Villas &amp; Residences</h3>
               <p>For premium real estate: the hero photo shrinks into an arch, the villa's floors lift apart in 3D, plus a sideways-scrolling gallery and location route.</p>
@@ -142,7 +143,7 @@
         </div>
         <div class="pm-grid">
           <article class="pm-card">
-            <a class="tg-thumb" href="solar/" aria-label="Open the Solar Energy demo"><iframe src="solar/" title="Solar Energy template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="solar/" aria-label="Open the Solar Energy demo"><img src="thumbs/solar.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <h3>Solar Energy</h3>
               <p>A whole day passes as you scroll: the sun arcs across the sky, panels turn to track it, the battery fills, and house lights switch on at night. Includes a savings calculator.</p>
@@ -151,7 +152,7 @@
             </div>
           </article>
           <article class="pm-card">
-            <a class="tg-thumb" href="tech/" aria-label="Open the IT &amp; Software Company demo"><iframe src="tech/" title="IT &amp; Software Company template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="tech/" aria-label="Open the IT &amp; Software Company demo"><img src="thumbs/tech.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <h3>IT &amp; Software Company</h3>
               <p>Thousands of WebGL particles change shape as you scroll (globe, grid, knot, then a flowing wave), with a sideways case-study reel.</p>
@@ -160,7 +161,7 @@
             </div>
           </article>
           <article class="pm-card">
-            <a class="tg-thumb" href="travel/" aria-label="Open the Travel &amp; Tours demo"><iframe src="travel/" title="Travel &amp; Tours template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="travel/" aria-label="Open the Travel &amp; Tours demo"><img src="thumbs/travel.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <h3>Travel &amp; Tours</h3>
               <p>Six layers of misty hills part as you climb, a mountain train runs along the ridge, the altitude counts up, and the route line draws itself.</p>
@@ -169,7 +170,7 @@
             </div>
           </article>
           <article class="pm-card">
-            <a class="tg-thumb" href="jewellery/" aria-label="Open the Jewellery Showroom demo"><iframe src="jewellery/" title="Jewellery Showroom template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="jewellery/" aria-label="Open the Jewellery Showroom demo"><img src="thumbs/jewellery.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <h3>Jewellery Showroom</h3>
               <p>A braided 3D gold bangle with gems turns and glides as you scroll, beside a 916 hallmark counter and a gold-rate board.</p>
@@ -178,7 +179,7 @@
             </div>
           </article>
           <article class="pm-card">
-            <a class="tg-thumb" href="coffee/" aria-label="Open the Coffee House &amp; Roastery demo"><iframe src="coffee/" title="Coffee House &amp; Roastery template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="coffee/" aria-label="Open the Coffee House &amp; Roastery demo"><img src="thumbs/coffee.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <h3>Coffee House &amp; Roastery</h3>
               <p>Scroll dives from the estate to the cherries, the roast and the brass filter, while the kilometres to your cup count down. Includes steaming coffee and a menu.</p>
@@ -187,7 +188,7 @@
             </div>
           </article>
           <article class="pm-card">
-            <a class="tg-thumb" href="wedding/" aria-label="Open the Wedding Photography demo"><iframe src="wedding/" title="Wedding Photography template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="wedding/" aria-label="Open the Wedding Photography demo"><img src="thumbs/wedding.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <h3>Wedding Photography</h3>
               <p>Photos develop from blurry sepia film into full colour as you scroll, then roll past on a film strip. Includes a date-availability check.</p>
@@ -213,7 +214,7 @@
 
         <div class="tg-grid">
           <article class="tg-card" data-cat="health">
-            <a class="tg-thumb" href="pharmacy/" aria-label="Open the Pharmacy demo"><iframe src="pharmacy/" title="Pharmacy template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="pharmacy/" aria-label="Open the Pharmacy demo"><img src="thumbs/pharmacy.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <div class="tg-top"><h2>Pharmacy</h2><span class="tg-swatch" aria-hidden="true"><i style="background:#0f9d76"></i><i style="background:#ff7a59"></i><i style="background:#f2faf6"></i></span></div>
               <p>For medical shops and pharmacy chains: online prescription upload, product categories and store locations.</p>
@@ -223,7 +224,7 @@
           </article>
 
           <article class="tg-card" data-cat="food">
-            <a class="tg-thumb" href="restaurant/" aria-label="Open the Restaurant demo"><iframe src="restaurant/" title="Restaurant template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="restaurant/" aria-label="Open the Restaurant demo"><img src="thumbs/restaurant.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <div class="tg-top"><h2>Restaurant</h2><span class="tg-swatch" aria-hidden="true"><i style="background:#17120e"></i><i style="background:#d4a24c"></i><i style="background:#e6dccd"></i></span></div>
               <p>For restaurants, cafés and caterers: an elegant menu with prices, chef's specials, gallery and table booking.</p>
@@ -233,7 +234,7 @@
           </article>
 
           <article class="tg-card" data-cat="health">
-            <a class="tg-thumb" href="hospital/" aria-label="Open the Hospital demo"><iframe src="hospital/" title="Hospital template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="hospital/" aria-label="Open the Hospital demo"><img src="thumbs/hospital.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <div class="tg-top"><h2>Hospital &amp; Clinic</h2><span class="tg-swatch" aria-hidden="true"><i style="background:#0b63ce"></i><i style="background:#e63946"></i><i style="background:#f2f7fd"></i></span></div>
               <p>For hospitals, clinics and diagnostic centres: departments, doctor profiles, appointments and health packages.</p>
@@ -243,7 +244,7 @@
           </article>
 
           <article class="tg-card" data-cat="health">
-            <a class="tg-thumb" href="labs-scans/" aria-label="Open the Labs and Scans demo"><iframe src="labs-scans/" title="Labs and Scans template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="labs-scans/" aria-label="Open the Labs and Scans demo"><img src="thumbs/labs-scans.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <div class="tg-top"><h2>Diagnostic Labs &amp; Scans</h2><span class="tg-swatch" aria-hidden="true"><i style="background:#0a1f30"></i><i style="background:#22d3ee"></i><i style="background:#0e7490"></i></span></div>
               <p>For diagnostic labs and scan centres: test prices, health check-up packages, home sample collection, X-ray to MRI prices and online reports.</p>
@@ -253,7 +254,7 @@
           </article>
 
           <article class="tg-card" data-cat="food">
-            <a class="tg-thumb" href="bakery/" aria-label="Open the Bakery demo"><iframe src="bakery/" title="Bakery template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="bakery/" aria-label="Open the Bakery demo"><img src="thumbs/bakery.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <div class="tg-top"><h2>Bakery &amp; Cake Shop</h2><span class="tg-swatch" aria-hidden="true"><i style="background:#b5651d"></i><i style="background:#e88d9b"></i><i style="background:#fff9f1"></i></span></div>
               <p>For bakeries, cake shops and sweet stalls: bestsellers, custom cake orders with eggless options, and opening hours.</p>
@@ -263,7 +264,7 @@
           </article>
 
           <article class="tg-card" data-cat="lifestyle">
-            <a class="tg-thumb" href="salon/" aria-label="Open the Salon and Spa demo"><iframe src="salon/" title="Salon and Spa template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="salon/" aria-label="Open the Salon and Spa demo"><img src="thumbs/salon.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <div class="tg-top"><h2>Salon &amp; Spa</h2><span class="tg-swatch" aria-hidden="true"><i style="background:#1f1a17"></i><i style="background:#c98b77"></i><i style="background:#fbf6f2"></i></span></div>
               <p>For beauty salons, spas and makeup artists: a service price list, bridal packages, team profiles and booking.</p>
@@ -273,7 +274,7 @@
           </article>
 
           <article class="tg-card" data-cat="education">
-            <a class="tg-thumb" href="school/" aria-label="Open the School demo"><iframe src="school/" title="School template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="school/" aria-label="Open the School demo"><img src="thumbs/school.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <div class="tg-top"><h2>School</h2><span class="tg-swatch" aria-hidden="true"><i style="background:#1d3a8a"></i><i style="background:#fbbf24"></i><i style="background:#f4f6fc"></i></span></div>
               <p>For schools, colleges and coaching centres: admissions, academics, facilities, a notice board and enquiry form.</p>
@@ -283,7 +284,7 @@
           </article>
 
           <article class="tg-card" data-cat="lifestyle">
-            <a class="tg-thumb" href="gym/" aria-label="Open the Gym demo"><iframe src="gym/" title="Gym template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="gym/" aria-label="Open the Gym demo"><img src="thumbs/gym.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <div class="tg-top"><h2>Gym &amp; Fitness</h2><span class="tg-swatch" aria-hidden="true"><i style="background:#0b0b0b"></i><i style="background:#c6f432"></i><i style="background:#161616"></i></span></div>
               <p>For gyms, yoga studios and fitness coaches: programs, membership plans, class schedule, BMI calculator and free trials.</p>
@@ -293,7 +294,7 @@
           </article>
 
           <article class="tg-card" data-cat="property">
-            <a class="tg-thumb" href="real-estate/" aria-label="Open the Real Estate demo"><iframe src="real-estate/" title="Real Estate template preview" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+            <a class="tg-thumb" href="real-estate/" aria-label="Open the Real Estate demo"><img src="thumbs/real-estate.webp" alt="" loading="lazy" decoding="async"></a>
             <div class="tg-body">
               <div class="tg-top"><h2>Real Estate &amp; Builders</h2><span class="tg-swatch" aria-hidden="true"><i style="background:#1e3a5f"></i><i style="background:#c8a165"></i><i style="background:#f7f4ee"></i></span></div>
               <p>For builders, promoters and property agents: property listings with filters, amenities, an EMI calculator and site visits.</p>

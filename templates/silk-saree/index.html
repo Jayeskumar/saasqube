@@ -375,8 +375,8 @@
       var canvas = document.getElementById("silk");
       if (!window.THREE || !canvas) return;
       var renderer;
-      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: false }); } catch (e) { return; }
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, P.inFrame ? 1 : 1.75));
+      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !P.lite, alpha: false }); } catch (e) { return; }
+      renderer.setPixelRatio(P.inFrame ? 1 : (P.dpr || 1));
       var scene = new THREE.Scene();
       var camera = new THREE.PerspectiveCamera(35, 1, 0.1, 10);
       camera.position.z = 3;
@@ -401,7 +401,7 @@
           " float v = smoothstep(1.2, 0.3, distance(vUv, vec2(0.6,0.5))); gl_FragColor = vec4(c * (0.55 + 0.45*v), 1.0); }"
         ].join("\n")
       });
-      var mesh = new THREE.Mesh(new THREE.PlaneGeometry(4, 2.6, 160, 110), mat);
+      var mesh = new THREE.Mesh(new THREE.PlaneGeometry(4, 2.6, P.lite ? 90 : 160, P.lite ? 60 : 110), mat);
       scene.add(mesh);
       new THREE.TextureLoader().load("img/silk.webp", function (tex) { uniforms.uTex.value = tex; canvas.style.opacity = 1; });
       canvas.style.opacity = 0; canvas.style.transition = "opacity 1.2s";

@@ -381,8 +381,8 @@
       var canvas = document.getElementById("pole");
       if (!window.THREE || !canvas) return;
       var renderer;
-      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); } catch (e) { return; }
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !P.lite, alpha: true }); } catch (e) { return; }
+      renderer.setPixelRatio(P.dpr || 1);
       var scene = new THREE.Scene();
       var camera = new THREE.PerspectiveCamera(30, 1, 0.1, 50);
       camera.position.set(0, 0, 9);

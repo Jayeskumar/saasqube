@@ -31,6 +31,6 @@
 .reel-native::-webkit-scrollbar { display: none; }
 .reel-native > * > * { scroll-snap-align: center; }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (max-width: 900px) {
   .grain::after { animation: none; }
 }

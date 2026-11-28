@@ -288,9 +288,9 @@
       var canvas = $("gem");
       if (!window.THREE) return;
       var renderer;
-      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); } catch (e) { return; }
+      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !P.lite, alpha: true }); } catch (e) { return; }
       document.documentElement.classList.add("webgl");
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, P.inFrame ? 1 : 2));
+      renderer.setPixelRatio(P.inFrame ? 1 : (P.dpr || 1));
       renderer.outputEncoding = THREE.sRGBEncoding;
       var scn = new THREE.Scene(), cam = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
       cam.position.set(0, 0, 9);

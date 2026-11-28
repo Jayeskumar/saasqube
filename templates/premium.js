@@ -10,6 +10,9 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var P = (window.PREMIUM = { inFrame: inFrame, reduce: reduce, lenis: null });
   P.desktop = window.matchMedia("(min-width: 901px)").matches;
+  // Phones and tablets: render 3D at lower resolution and with less geometry to stay within mobile memory limits.
+  P.lite = !P.desktop || window.matchMedia("(pointer: coarse)").matches;
+  P.dpr = Math.min(window.devicePixelRatio || 1, P.lite ? 1.25 : 1.75);
   // Overridden below when GSAP is available and motion is allowed.
   P.reel = function () { return null; };
   if (inFrame) root.classList.add("in-frame");
