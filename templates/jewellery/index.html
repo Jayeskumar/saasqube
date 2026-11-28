@@ -117,6 +117,7 @@
     .form input[type="date"] { color-scheme: dark; }
     @media (max-width: 860px) { .visit { grid-template-columns: 1fr; } }
     .t-footer .t-logo { font-family: var(--font-head); font-weight: 400; font-size: 1.8rem; }
+      picture { display: contents; }
   </style>
 </head>
 <body>
@@ -185,15 +186,15 @@
       <div class="container">
         <div class="section-head"><p class="kicker">Collections</p><h2 data-split="words">Crafted for <em>every chapter.</em></h2></div>
         <div class="coll" data-stagger>
-          <a class="citem" href="#visit"><div class="ph"><img src="img/necklace-stand.webp" alt="Gold necklace and earrings on a display stand" loading="lazy"></div><h3>Temple &amp; Antique</h3><p>Necklaces, haarams and jhumkas</p></a>
-          <a class="citem" href="#visit"><div class="ph"><img src="img/ring.webp" alt="Ornate gold ring with gemstones" loading="lazy"></div><h3>Rings &amp; Gems</h3><p>Navaratna, solitaires and bands</p></a>
-          <a class="citem" href="#visit"><div class="ph"><img src="img/necklace-velvet.webp" alt="Fine gold necklace on blue velvet" loading="lazy"></div><h3>Everyday Light</h3><p>Chains and pendants from 4 g</p></a>
+          <a class="citem" href="#visit"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/necklace-stand-m.webp"><img src="img/necklace-stand.webp" alt="Gold necklace and earrings on a display stand" loading="lazy"></picture></div><h3>Temple &amp; Antique</h3><p>Necklaces, haarams and jhumkas</p></a>
+          <a class="citem" href="#visit"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/ring-m.webp"><img src="img/ring.webp" alt="Ornate gold ring with gemstones" loading="lazy"></picture></div><h3>Rings &amp; Gems</h3><p>Navaratna, solitaires and bands</p></a>
+          <a class="citem" href="#visit"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/necklace-velvet-m.webp"><img src="img/necklace-velvet.webp" alt="Fine gold necklace on blue velvet" loading="lazy"></picture></div><h3>Everyday Light</h3><p>Chains and pendants from 4 g</p></a>
         </div>
       </div>
     </section>
 
     <section class="bridal" id="bridal">
-      <div class="ph" data-unveil><img src="img/bride.webp" alt="Bride in red wearing gold jewellery" loading="lazy" data-speed="-0.15"></div>
+      <div class="ph" data-unveil><picture><source media="(max-width: 900px)" srcset="img/bride-m.webp"><img src="img/bride.webp" alt="Bride in red wearing gold jewellery" loading="lazy" data-speed="-0.15"></picture></div>
       <div class="copyb">
         <p class="kicker">The bridal room</p>
         <h2 data-split="words">Your wedding, <em>in gold.</em></h2>
@@ -221,7 +222,7 @@
 
     <section class="section section-alt" id="visit">
       <div class="container visit">
-        <div class="ph" data-reveal><img src="img/set-case.webp" alt="Gold necklace and earring set in a showroom case" loading="lazy"></div>
+        <div class="ph" data-reveal><picture><source media="(max-width: 900px)" srcset="img/set-case-m.webp"><img src="img/set-case.webp" alt="Gold necklace and earring set in a showroom case" loading="lazy"></picture></div>
         <div>
           <p class="kicker">Visit the showroom</p>
           <h2 data-split="words">See it <em>in person.</em></h2>
@@ -358,6 +359,7 @@
       }
       (function loop() {
         requestAnimationFrame(loop);
+        if (P.lite && (loop.f = (loop.f || 0) + 1) % 2) return; // phones: 30 fps
         if (!visible) return;
         var t = (performance.now() - t0) / 1000;
         var target = P.inFrame ? (t / 12) % 1 : progress(); sp += (target - sp) * 0.14;

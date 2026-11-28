@@ -9,7 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;800&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="img/hero.webp">
+  <link rel="preload" as="image" href="img/hero-m.webp" media="(max-width: 900px)">
+  <link rel="preload" as="image" href="img/hero.webp" media="(min-width: 901px)">
   <link rel="stylesheet" href="../shared.css">
   <link rel="stylesheet" href="../premium.css">
   <style>
@@ -174,6 +175,7 @@
       .enq-img { max-width: 360px; }
       .flank { display: none; }
     }
+      picture { display: contents; }
   </style>
 </head>
 <body>
@@ -201,7 +203,7 @@
     <section class="hero" id="hero">
       <div class="flank l" aria-hidden="true">Live <em>by</em><small>East Coast Road · Chennai</small></div>
       <div class="flank r" aria-hidden="true">the <em>sea.</em><small>24 private villas</small></div>
-      <div class="hero-img" id="heroImg"><img src="img/hero.webp" alt="White modern villa with glass walls beside a swimming pool" width="1600" height="1067"></div>
+      <div class="hero-img" id="heroImg"><picture><source media="(max-width: 900px)" srcset="img/hero-m.webp"><img src="img/hero.webp" alt="White modern villa with glass walls beside a swimming pool" width="1600" height="1067"></picture></div>
       <div class="hero-title" id="heroTitle">
         <h1 data-split="chars" data-no-auto>Azure Bay <em>residences</em></h1>
         <p>Mediterranean villas · East Coast Road, Chennai</p>
@@ -272,12 +274,12 @@
       </div>
       <div class="hscroll" id="hscroll">
         <div class="htrack" id="htrack">
-          <figure class="hitem w"><div class="frame"><img src="img/modern.webp" alt="Modern white villa with pool and lounge area" loading="lazy"></div><figcaption><b>Pool villa</b><span>01</span></figcaption></figure>
-          <figure class="hitem t"><div class="frame"><img src="img/living.webp" alt="Open-air living room with tropical plants" loading="lazy"></div><figcaption><b>Garden lounge</b><span>02</span></figcaption></figure>
-          <figure class="hitem w"><div class="frame"><img src="img/interior.webp" alt="Bright white dining and living space" loading="lazy"></div><figcaption><b>Living &amp; dining</b><span>03</span></figcaption></figure>
-          <figure class="hitem t"><div class="frame"><img src="img/pool-tall.webp" alt="White villa beside a swimming pool" loading="lazy"></div><figcaption><b>Courtyard pool</b><span>04</span></figcaption></figure>
-          <figure class="hitem w"><div class="frame"><img src="img/bedroom.webp" alt="Minimal bedroom with glass sliding doors" loading="lazy"></div><figcaption><b>Master suite</b><span>05</span></figcaption></figure>
-          <figure class="hitem w"><div class="frame"><img src="img/dusk.webp" alt="Modern house with pool and lounge chairs" loading="lazy"></div><figcaption><b>Sunset deck</b><span>06</span></figcaption></figure>
+          <figure class="hitem w"><div class="frame"><picture><source media="(max-width: 900px)" srcset="img/modern-m.webp"><img src="img/modern.webp" alt="Modern white villa with pool and lounge area" loading="lazy"></picture></div><figcaption><b>Pool villa</b><span>01</span></figcaption></figure>
+          <figure class="hitem t"><div class="frame"><picture><source media="(max-width: 900px)" srcset="img/living-m.webp"><img src="img/living.webp" alt="Open-air living room with tropical plants" loading="lazy"></picture></div><figcaption><b>Garden lounge</b><span>02</span></figcaption></figure>
+          <figure class="hitem w"><div class="frame"><picture><source media="(max-width: 900px)" srcset="img/interior-m.webp"><img src="img/interior.webp" alt="Bright white dining and living space" loading="lazy"></picture></div><figcaption><b>Living &amp; dining</b><span>03</span></figcaption></figure>
+          <figure class="hitem t"><div class="frame"><picture><source media="(max-width: 900px)" srcset="img/pool-tall-m.webp"><img src="img/pool-tall.webp" alt="White villa beside a swimming pool" loading="lazy"></picture></div><figcaption><b>Courtyard pool</b><span>04</span></figcaption></figure>
+          <figure class="hitem w"><div class="frame"><picture><source media="(max-width: 900px)" srcset="img/bedroom-m.webp"><img src="img/bedroom.webp" alt="Minimal bedroom with glass sliding doors" loading="lazy"></picture></div><figcaption><b>Master suite</b><span>05</span></figcaption></figure>
+          <figure class="hitem w"><div class="frame"><picture><source media="(max-width: 900px)" srcset="img/dusk-m.webp"><img src="img/dusk.webp" alt="Modern house with pool and lounge chairs" loading="lazy"></picture></div><figcaption><b>Sunset deck</b><span>06</span></figcaption></figure>
         </div>
       </div>
     </section>
@@ -286,9 +288,9 @@
       <div class="container">
         <div class="section-head"><p class="kicker">Residences</p><h2 data-split="words">Choose your <em>villa.</em></h2><p>Three villa types, each on its own private plot with a pool, garden and covered parking.</p></div>
         <div class="res-grid" data-stagger>
-          <article class="res" data-tilt="6"><span class="avail">4 of 10 left</span><div class="ph"><img src="img/arch.webp" alt="Mediterranean villa with pool" loading="lazy"></div><div class="body"><h3>Garden Villa</h3><div class="spec"><span>3 BHK</span><span>2,850 sq ft</span><span>Private pool</span></div><p class="price"><small>Starting from</small>₹3.2 Cr</p><a href="#enquire" class="btn btn-primary">Enquire</a></div><span class="glare"></span></article>
-          <article class="res" data-tilt="6"><span class="avail">3 of 8 left</span><div class="ph"><img src="img/pool-tall.webp" alt="White villa beside a pool" loading="lazy"></div><div class="body"><h3>Pool Villa</h3><div class="spec"><span>4 BHK</span><span>3,600 sq ft</span><span>Rooftop terrace</span></div><p class="price"><small>Starting from</small>₹4.5 Cr</p><a href="#enquire" class="btn btn-primary">Enquire</a></div><span class="glare"></span></article>
-          <article class="res" data-tilt="6"><span class="avail">2 of 6 left</span><div class="ph"><img src="img/coast.webp" alt="Villas among trees above the sea" loading="lazy"></div><div class="body"><h3>Sea-view Villa</h3><div class="spec"><span>5 BHK</span><span>4,800 sq ft</span><span>Plunge pool &amp; solarium</span></div><p class="price"><small>Starting from</small>₹6.8 Cr</p><a href="#enquire" class="btn btn-bloom">Enquire</a></div><span class="glare"></span></article>
+          <article class="res" data-tilt="6"><span class="avail">4 of 10 left</span><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/arch-m.webp"><img src="img/arch.webp" alt="Mediterranean villa with pool" loading="lazy"></picture></div><div class="body"><h3>Garden Villa</h3><div class="spec"><span>3 BHK</span><span>2,850 sq ft</span><span>Private pool</span></div><p class="price"><small>Starting from</small>₹3.2 Cr</p><a href="#enquire" class="btn btn-primary">Enquire</a></div><span class="glare"></span></article>
+          <article class="res" data-tilt="6"><span class="avail">3 of 8 left</span><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/pool-tall-m.webp"><img src="img/pool-tall.webp" alt="White villa beside a pool" loading="lazy"></picture></div><div class="body"><h3>Pool Villa</h3><div class="spec"><span>4 BHK</span><span>3,600 sq ft</span><span>Rooftop terrace</span></div><p class="price"><small>Starting from</small>₹4.5 Cr</p><a href="#enquire" class="btn btn-primary">Enquire</a></div><span class="glare"></span></article>
+          <article class="res" data-tilt="6"><span class="avail">2 of 6 left</span><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/coast-m.webp"><img src="img/coast.webp" alt="Villas among trees above the sea" loading="lazy"></picture></div><div class="body"><h3>Sea-view Villa</h3><div class="spec"><span>5 BHK</span><span>4,800 sq ft</span><span>Plunge pool &amp; solarium</span></div><p class="price"><small>Starting from</small>₹6.8 Cr</p><a href="#enquire" class="btn btn-bloom">Enquire</a></div><span class="glare"></span></article>
         </div>
       </div>
     </section>
@@ -296,7 +298,7 @@
     <section class="section section-alt">
       <div class="container amen-grid">
         <div class="amen-img" data-reveal>
-          <div class="arch"><img src="img/shutters.webp" alt="Pink bougainvillea climbing a white wall with blue shutters" loading="lazy" data-speed="-0.12"></div>
+          <div class="arch"><picture><source media="(max-width: 900px)" srcset="img/shutters-m.webp"><img src="img/shutters.webp" alt="Pink bougainvillea climbing a white wall with blue shutters" loading="lazy" data-speed="-0.12"></picture></div>
           <img class="mini" src="img/bloom.webp" alt="" aria-hidden="true" loading="lazy">
         </div>
         <div>
@@ -334,7 +336,7 @@
 
     <section class="section enquire" id="enquire">
       <div class="container enq-grid">
-        <div class="enq-img" data-reveal><img src="img/coast.webp" alt="Villas nestled among trees by the blue sea" loading="lazy"></div>
+        <div class="enq-img" data-reveal><picture><source media="(max-width: 900px)" srcset="img/coast-m.webp"><img src="img/coast.webp" alt="Villas nestled among trees by the blue sea" loading="lazy"></picture></div>
         <div>
           <p class="kicker" style="color:#ffd1e6">Private viewing</p>
           <h2 data-split="words">Come and <em>stay a while.</em></h2>

@@ -9,7 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;800&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="img/hero-red.webp">
+  <link rel="preload" as="image" href="img/hero-red-m.webp" media="(max-width: 900px)">
+  <link rel="preload" as="image" href="img/hero-red.webp" media="(min-width: 901px)">
   <link rel="stylesheet" href="../shared.css">
   <link rel="stylesheet" href="../premium.css">
   <style>
@@ -46,6 +47,7 @@
     /* ---------- Hero ---------- */
     .hero { position: relative; min-height: 100vh; min-height: 100svh; overflow: hidden; color: var(--ivory); display: grid; align-items: center;
       background: var(--maroon) url("img/silk.webp") center/cover; }
+    @media (max-width: 900px) { .hero { background-image: url("img/silk-m.webp"); } }
     .hero::before { content: ""; position: absolute; inset: 0; background: rgba(59, 10, 18, .75); mix-blend-mode: multiply; }
     #silk { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
     .hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(29, 6, 9, .88) 0%, rgba(29, 6, 9, .45) 55%, rgba(29, 6, 9, .1) 100%), linear-gradient(0deg, rgba(29, 6, 9, .7), transparent 40%); }
@@ -169,6 +171,7 @@
       .visit-grid { grid-template-columns: 1fr; }
       .visit-media .note { right: 8px; }
     }
+      picture { display: contents; }
   </style>
 </head>
 <body>
@@ -207,7 +210,7 @@
           </div>
         </div>
         <div class="portrait" data-reveal data-delay=".2">
-          <div class="arch" id="arch"><img src="img/hero-red.webp" alt="Woman wearing a red and gold silk saree" width="1100" height="1650"></div>
+          <div class="arch" id="arch"><picture><source media="(max-width: 900px)" srcset="img/hero-red-m.webp"><img src="img/hero-red.webp" alt="Woman wearing a red and gold silk saree" width="1100" height="1650"></picture></div>
           <svg class="badge-spin" viewBox="0 0 120 120" aria-hidden="true">
             <defs><path id="circ" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs>
             <text><textPath href="#circ">PURE ZARI · HANDWOVEN · KANCHIPURAM ·</textPath></text>
@@ -232,13 +235,13 @@
       </div>
       <div class="stage" id="stage">
         <div class="track" id="track">
-          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/red.webp" alt="Kumkum red silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹18,500</small><h3>Kumkum Red</h3></div><span class="dot" style="background:#b3122b"></span></div></a>
-          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/purple.webp" alt="Royal purple silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹21,000</small><h3>Royal Purple</h3></div><span class="dot" style="background:#6b2c8f"></span></div></a>
-          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/teal.webp" alt="Peacock teal silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹19,800</small><h3>Peacock Teal</h3></div><span class="dot" style="background:#1d5c63"></span></div></a>
-          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/gold.webp" alt="Temple gold silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹24,500</small><h3>Temple Gold</h3></div><span class="dot" style="background:#c9a24b"></span></div></a>
-          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/magenta.webp" alt="Rani pink silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹16,900</small><h3>Rani Pink</h3></div><span class="dot" style="background:#c2186b"></span></div></a>
-          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/blue.webp" alt="Midnight blue silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹17,600</small><h3>Midnight Blue</h3></div><span class="dot" style="background:#1f3a7a"></span></div></a>
-          <a class="swatch-card" href="#bestsellers"><div class="ph"><img src="img/ivory.webp" alt="Ivory and red silk saree" loading="lazy" width="1100" height="1650"></div><div class="meta"><div><small>From ₹15,400</small><h3>Ivory Grace</h3></div><span class="dot" style="background:#efe3c8"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/red-m.webp"><img src="img/red.webp" alt="Kumkum red silk saree" loading="lazy" width="1100" height="1650"></picture></div><div class="meta"><div><small>From ₹18,500</small><h3>Kumkum Red</h3></div><span class="dot" style="background:#b3122b"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/purple-m.webp"><img src="img/purple.webp" alt="Royal purple silk saree" loading="lazy" width="1100" height="1650"></picture></div><div class="meta"><div><small>From ₹21,000</small><h3>Royal Purple</h3></div><span class="dot" style="background:#6b2c8f"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/teal-m.webp"><img src="img/teal.webp" alt="Peacock teal silk saree" loading="lazy" width="1100" height="1650"></picture></div><div class="meta"><div><small>From ₹19,800</small><h3>Peacock Teal</h3></div><span class="dot" style="background:#1d5c63"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/gold-m.webp"><img src="img/gold.webp" alt="Temple gold silk saree" loading="lazy" width="1100" height="1650"></picture></div><div class="meta"><div><small>From ₹24,500</small><h3>Temple Gold</h3></div><span class="dot" style="background:#c9a24b"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/magenta-m.webp"><img src="img/magenta.webp" alt="Rani pink silk saree" loading="lazy" width="1100" height="1650"></picture></div><div class="meta"><div><small>From ₹16,900</small><h3>Rani Pink</h3></div><span class="dot" style="background:#c2186b"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/blue-m.webp"><img src="img/blue.webp" alt="Midnight blue silk saree" loading="lazy" width="1100" height="1650"></picture></div><div class="meta"><div><small>From ₹17,600</small><h3>Midnight Blue</h3></div><span class="dot" style="background:#1f3a7a"></span></div></a>
+          <a class="swatch-card" href="#bestsellers"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/ivory-m.webp"><img src="img/ivory.webp" alt="Ivory and red silk saree" loading="lazy" width="1100" height="1650"></picture></div><div class="meta"><div><small>From ₹15,400</small><h3>Ivory Grace</h3></div><span class="dot" style="background:#efe3c8"></span></div></a>
         </div>
       </div>
     </section>
@@ -249,10 +252,10 @@
         <h2 data-split="words" style="max-width:12em">Twenty-one days, <em>one saree.</em></h2>
         <div class="craft-grid">
           <div class="craft-media" id="craftMedia">
-            <img src="img/silk.webp" alt="Close-up of lustrous silk fabric" class="on" loading="lazy">
-            <img src="img/loom.webp" alt="Traditional wooden handloom" loading="lazy">
-            <img src="img/weaver.webp" alt="Weaver at work on a handloom" loading="lazy">
-            <img src="img/navy.webp" alt="Finished silk saree with gold border" loading="lazy">
+            <picture><source media="(max-width: 900px)" srcset="img/silk-m.webp"><img src="img/silk.webp" alt="Close-up of lustrous silk fabric" class="on" loading="lazy"></picture>
+            <picture><source media="(max-width: 900px)" srcset="img/loom-m.webp"><img src="img/loom.webp" alt="Traditional wooden handloom" loading="lazy"></picture>
+            <picture><source media="(max-width: 900px)" srcset="img/weaver-m.webp"><img src="img/weaver.webp" alt="Weaver at work on a handloom" loading="lazy"></picture>
+            <picture><source media="(max-width: 900px)" srcset="img/navy-m.webp"><img src="img/navy.webp" alt="Finished silk saree with gold border" loading="lazy"></picture>
             <span class="count" id="craftCount">01</span>
           </div>
           <div class="craft-steps">
@@ -272,16 +275,16 @@
           <a href="#visit" class="btn btn-primary" data-reveal>View all sarees</a>
         </div>
         <div class="products" data-stagger>
-          <article class="product"><div class="ph" data-tilt="8"><span class="tag">Bridal</span><img src="img/red.webp" alt="Kumkum red korvai silk saree" loading="lazy"><span class="glare"></span><button class="btn btn-gold add">Add to bag</button></div><h3>Kumkum Red Korvai</h3><p>Pure zari · 6.2 m with blouse</p><p class="price">₹24,500</p></article>
-          <article class="product"><div class="ph" data-tilt="8"><span class="tag">New</span><img src="img/purple.webp" alt="Royal purple brocade silk saree" loading="lazy"><span class="glare"></span><button class="btn btn-gold add">Add to bag</button></div><h3>Royal Purple Brocade</h3><p>Butta body · temple border</p><p class="price">₹21,000</p></article>
-          <article class="product"><div class="ph" data-tilt="8"><img src="img/teal.webp" alt="Peacock teal silk saree with magenta border" loading="lazy"><span class="glare"></span><button class="btn btn-gold add">Add to bag</button></div><h3>Peacock &amp; Rani</h3><p>Contrast korvai border</p><p class="price">₹19,800</p></article>
-          <article class="product"><div class="ph" data-tilt="8"><span class="tag">Heirloom</span><img src="img/gold.webp" alt="Temple gold tissue silk saree" loading="lazy"><span class="glare"></span><button class="btn btn-gold add">Add to bag</button></div><h3>Temple Gold Tissue</h3><p>Full zari body</p><p class="price">₹38,000</p></article>
+          <article class="product"><div class="ph" data-tilt="8"><span class="tag">Bridal</span><picture><source media="(max-width: 900px)" srcset="img/red-m.webp"><img src="img/red.webp" alt="Kumkum red korvai silk saree" loading="lazy"></picture><span class="glare"></span><button class="btn btn-gold add">Add to bag</button></div><h3>Kumkum Red Korvai</h3><p>Pure zari · 6.2 m with blouse</p><p class="price">₹24,500</p></article>
+          <article class="product"><div class="ph" data-tilt="8"><span class="tag">New</span><picture><source media="(max-width: 900px)" srcset="img/purple-m.webp"><img src="img/purple.webp" alt="Royal purple brocade silk saree" loading="lazy"></picture><span class="glare"></span><button class="btn btn-gold add">Add to bag</button></div><h3>Royal Purple Brocade</h3><p>Butta body · temple border</p><p class="price">₹21,000</p></article>
+          <article class="product"><div class="ph" data-tilt="8"><picture><source media="(max-width: 900px)" srcset="img/teal-m.webp"><img src="img/teal.webp" alt="Peacock teal silk saree with magenta border" loading="lazy"></picture><span class="glare"></span><button class="btn btn-gold add">Add to bag</button></div><h3>Peacock &amp; Rani</h3><p>Contrast korvai border</p><p class="price">₹19,800</p></article>
+          <article class="product"><div class="ph" data-tilt="8"><span class="tag">Heirloom</span><picture><source media="(max-width: 900px)" srcset="img/gold-m.webp"><img src="img/gold.webp" alt="Temple gold tissue silk saree" loading="lazy"></picture><span class="glare"></span><button class="btn btn-gold add">Add to bag</button></div><h3>Temple Gold Tissue</h3><p>Full zari body</p><p class="price">₹38,000</p></article>
         </div>
       </div>
     </section>
 
     <section class="bridal" id="bridal">
-      <div class="bridal-bg" data-unveil><img src="img/bridal.webp" alt="Bride seated in a magenta and gold silk saree" loading="lazy" data-speed="-0.15"></div>
+      <div class="bridal-bg" data-unveil><picture><source media="(max-width: 900px)" srcset="img/bridal-m.webp"><img src="img/bridal.webp" alt="Bride seated in a magenta and gold silk saree" loading="lazy" data-speed="-0.15"></picture></div>
       <div class="container">
         <p class="kicker" style="color:var(--gold-2)">By appointment</p>
         <h2 data-split="chars">The Bridal <em>Edit</em></h2>
@@ -309,7 +312,7 @@
     <section class="section section-alt" id="visit">
       <div class="container visit-grid">
         <div class="visit-media" data-reveal>
-          <img src="img/ivory.webp" alt="Woman in an ivory silk saree with red border" loading="lazy">
+          <picture><source media="(max-width: 900px)" srcset="img/ivory-m.webp"><img src="img/ivory.webp" alt="Woman in an ivory silk saree with red border" loading="lazy"></picture>
           <div class="note"><small>Visit the store</small>Gandhi Road, Kanchipuram</div>
         </div>
         <div>
@@ -403,7 +406,7 @@
       });
       var mesh = new THREE.Mesh(new THREE.PlaneGeometry(4, 2.6, P.lite ? 90 : 160, P.lite ? 60 : 110), mat);
       scene.add(mesh);
-      new THREE.TextureLoader().load("img/silk.webp", function (tex) { uniforms.uTex.value = tex; canvas.style.opacity = 1; });
+      new THREE.TextureLoader().load(P.lite ? "img/silk-m.webp" : "img/silk.webp", function (tex) { uniforms.uTex.value = tex; canvas.style.opacity = 1; });
       canvas.style.opacity = 0; canvas.style.transition = "opacity 1.2s";
       function resize() {
         var w = canvas.clientWidth, h = canvas.clientHeight;
@@ -422,6 +425,7 @@
       var start = performance.now();
       (function loop() {
         requestAnimationFrame(loop);
+        if (P.lite && (loop.f = (loop.f || 0) + 1) % 2) return; // phones: 30 fps
         if (!visible) return;
         uniforms.uTime.value = P.reduce ? 2 : (performance.now() - start) / 1000;
         uniforms.uMouse.value.lerp(target, 0.06);

@@ -135,7 +135,7 @@
     var s = parseFloat(el.dataset.speed) || 0;
     gsap.fromTo(el, { yPercent: -s * 50 }, {
       yPercent: s * 50, ease: "none",
-      scrollTrigger: { trigger: el.parentElement, start: "top bottom", end: "bottom top", scrub: true }
+      scrollTrigger: { trigger: el.parentElement.tagName === "PICTURE" ? el.parentElement.parentElement : el.parentElement, start: "top bottom", end: "bottom top", scrub: true }
     });
   });
   // Scrubbed word-by-word highlight: <p data-scrub-words>

@@ -125,6 +125,7 @@
     .chips2 input:checked + span { background: var(--violet); border-color: var(--violet); color: #fff; }
     .chips2 input:focus-visible + span { outline: 2px solid var(--cyan); outline-offset: 2px; }
     @media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+      picture { display: contents; }
   </style>
 </head>
 <body>
@@ -210,10 +211,10 @@
       </div>
       <div class="cview" id="cview">
         <div class="ctrack" id="ctrack">
-          <article class="case"><div class="ph"><img src="img/team.webp" alt="Team collaborating around a screen" loading="lazy"></div><div class="body"><small>Fintech · Web platform</small><h3>Loan origination portal</h3><p>Paperless loan applications with instant KYC checks for an NBFC.</p><div class="kpi"><div><b>6 min</b><span>approval time</span></div><div><b>3×</b><span>applications</span></div></div></div></article>
-          <article class="case"><div class="ph"><img src="img/coding.webp" alt="Developer writing code" loading="lazy"></div><div class="body"><small>Retail · Mobile app</small><h3>Grocery delivery app</h3><p>A Flutter app with live order tracking for a supermarket chain.</p><div class="kpi"><div><b>200K</b><span>downloads</span></div><div><b>4.7★</b><span>rating</span></div></div></div></article>
-          <article class="case"><div class="ph"><img src="img/datacenter.webp" alt="Rows of server cabinets in a data centre" loading="lazy"></div><div class="body"><small>Logistics · Cloud</small><h3>Fleet data platform</h3><p>Real-time tracking for 4,000 trucks, migrated to the cloud with zero downtime.</p><div class="kpi"><div><b>42%</b><span>lower cloud cost</span></div><div><b>99.98%</b><span>uptime</span></div></div></div></article>
-          <article class="case"><div class="ph"><img src="img/office.webp" alt="Modern open-plan office" loading="lazy"></div><div class="body"><small>Healthcare · AI</small><h3>Clinic assistant chatbot</h3><p>A WhatsApp assistant that books appointments and answers patient questions.</p><div class="kpi"><div><b>70%</b><span>queries automated</span></div><div><b>24×7</b><span>availability</span></div></div></div></article>
+          <article class="case"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/team-m.webp"><img src="img/team.webp" alt="Team collaborating around a screen" loading="lazy"></picture></div><div class="body"><small>Fintech · Web platform</small><h3>Loan origination portal</h3><p>Paperless loan applications with instant KYC checks for an NBFC.</p><div class="kpi"><div><b>6 min</b><span>approval time</span></div><div><b>3×</b><span>applications</span></div></div></div></article>
+          <article class="case"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/coding-m.webp"><img src="img/coding.webp" alt="Developer writing code" loading="lazy"></picture></div><div class="body"><small>Retail · Mobile app</small><h3>Grocery delivery app</h3><p>A Flutter app with live order tracking for a supermarket chain.</p><div class="kpi"><div><b>200K</b><span>downloads</span></div><div><b>4.7★</b><span>rating</span></div></div></div></article>
+          <article class="case"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/datacenter-m.webp"><img src="img/datacenter.webp" alt="Rows of server cabinets in a data centre" loading="lazy"></picture></div><div class="body"><small>Logistics · Cloud</small><h3>Fleet data platform</h3><p>Real-time tracking for 4,000 trucks, migrated to the cloud with zero downtime.</p><div class="kpi"><div><b>42%</b><span>lower cloud cost</span></div><div><b>99.98%</b><span>uptime</span></div></div></div></article>
+          <article class="case"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/office-m.webp"><img src="img/office.webp" alt="Modern open-plan office" loading="lazy"></picture></div><div class="body"><small>Healthcare · AI</small><h3>Clinic assistant chatbot</h3><p>A WhatsApp assistant that books appointments and answers patient questions.</p><div class="kpi"><div><b>70%</b><span>queries automated</span></div><div><b>24×7</b><span>availability</span></div></div></div></article>
         </div>
       </div>
     </section>
@@ -248,7 +249,7 @@
           <p class="kicker">Start a project</p>
           <h2 data-split="words">Let's build <span class="grad">something great.</span></h2>
           <p>Tell us about your idea. A senior engineer replies within one working day, with no sales pitch.</p>
-          <div class="office" data-unveil><img src="img/team.webp" alt="" aria-hidden="true" loading="lazy"></div>
+          <div class="office" data-unveil><picture><source media="(max-width: 900px)" srcset="img/team-m.webp"><img src="img/team.webp" alt="" aria-hidden="true" loading="lazy"></picture></div>
         </div>
         <form class="form" data-demo data-demo-msg="Thanks! This is a demo — on your live website, the brief goes straight to your inbox and WhatsApp.">
           <div class="row"><label>Name<input type="text" required></label><label>Work email<input type="email" required></label></div>
@@ -353,6 +354,7 @@
       var ease = function (t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
       (function loop() {
         requestAnimationFrame(loop);
+        if (P.lite && (loop.f = (loop.f || 0) + 1) % 2) return; // phones: 30 fps
         if (!visible) return;
         var t = (performance.now() - t0) / 1000;
         var target = P.inFrame ? (t / 3.5) % 4 / 4 : progress();

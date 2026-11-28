@@ -110,6 +110,7 @@
 
     .enq { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 70px); align-items: center; background: linear-gradient(140deg, #fff7e3, #fff); border: 1px solid var(--line); border-radius: 28px; padding: clamp(26px, 5vw, 56px); }
     @media (max-width: 860px) { .enq { grid-template-columns: 1fr; } }
+      picture { display: contents; }
   </style>
 </head>
 <body>
@@ -265,11 +266,11 @@
       <div class="container">
         <div class="section-head"><p class="kicker">Recent projects</p><h2 data-split="words">Roofs that <span class="sun">earn.</span></h2></div>
         <div class="proj">
-          <figure><img src="img/farm.webp" alt="Aerial view of a solar farm" loading="lazy" data-speed="-0.1"><figcaption>2 MW solar farm · Erode</figcaption></figure>
-          <figure><img src="img/roof-house.webp" alt="House with solar panels on its roof" loading="lazy" data-speed="0.1"><figcaption>5 kW home · Coimbatore</figcaption></figure>
-          <figure><img src="img/tiled-roof.webp" alt="Solar panels on a tiled roof" loading="lazy" data-speed="-0.1"><figcaption>8 kW villa · Salem</figcaption></figure>
-          <figure><img src="img/install.webp" alt="Technician installing a solar panel" loading="lazy" data-speed="0.1"><figcaption>Installation crew</figcaption></figure>
-          <figure><img src="img/panels-sky.webp" alt="Solar panels under a blue sky" loading="lazy" data-speed="-0.1"><figcaption>120 kW factory · Tiruppur</figcaption></figure>
+          <figure><picture><source media="(max-width: 900px)" srcset="img/farm-m.webp"><img src="img/farm.webp" alt="Aerial view of a solar farm" loading="lazy" data-speed="-0.1"></picture><figcaption>2 MW solar farm · Erode</figcaption></figure>
+          <figure><picture><source media="(max-width: 900px)" srcset="img/roof-house-m.webp"><img src="img/roof-house.webp" alt="House with solar panels on its roof" loading="lazy" data-speed="0.1"></picture><figcaption>5 kW home · Coimbatore</figcaption></figure>
+          <figure><picture><source media="(max-width: 900px)" srcset="img/tiled-roof-m.webp"><img src="img/tiled-roof.webp" alt="Solar panels on a tiled roof" loading="lazy" data-speed="-0.1"></picture><figcaption>8 kW villa · Salem</figcaption></figure>
+          <figure><picture><source media="(max-width: 900px)" srcset="img/install-m.webp"><img src="img/install.webp" alt="Technician installing a solar panel" loading="lazy" data-speed="0.1"></picture><figcaption>Installation crew</figcaption></figure>
+          <figure><picture><source media="(max-width: 900px)" srcset="img/panels-sky-m.webp"><img src="img/panels-sky.webp" alt="Solar panels under a blue sky" loading="lazy" data-speed="-0.1"></picture><figcaption>120 kW factory · Tiruppur</figcaption></figure>
         </div>
       </div>
     </section>

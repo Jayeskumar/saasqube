@@ -108,6 +108,7 @@
     .plan .ph { border-radius: 999px 999px 24px 24px; overflow: hidden; aspect-ratio: 4 / 5; }
     .plan .ph img { width: 100%; height: 115%; object-fit: cover; }
     @media (max-width: 860px) { .plan { grid-template-columns: 1fr; } .plan .ph { max-width: 380px; } }
+      picture { display: contents; }
   </style>
 </head>
 <body>
@@ -225,11 +226,11 @@
       </div>
       <div class="tview" id="tview">
         <div class="ttrack" id="ttrack">
-          <article class="tour"><div class="ph"><img src="img/train.webp" alt="Blue mountain train winding past hillside houses" loading="lazy"><span class="days">2 days</span></div><div class="body"><h3>Toy Train Weekend</h3><p>The heritage railway, botanical garden and Ooty lake.</p><div class="foot"><span class="price">₹6,499 <small>/ person</small></span><a href="#plan" class="btn btn-primary btn-sm">Enquire</a></div></div></article>
-          <article class="tour"><div class="ph"><img src="img/tea-range.webp" alt="Tea estates in a mountain valley" loading="lazy"><span class="days">3 days</span></div><div class="body"><h3>Tea Country Trail</h3><p>Estate walks, a factory tour and tasting in Coonoor.</p><div class="foot"><span class="price">₹9,999 <small>/ person</small></span><a href="#plan" class="btn btn-primary btn-sm">Enquire</a></div></div></article>
-          <article class="tour"><div class="ph"><img src="img/lake-2.webp" alt="Lake below green mountain slopes" loading="lazy"><span class="days">4 days</span></div><div class="body"><h3>Lakes &amp; Viewpoints</h3><p>Avalanche, Pykara and Emerald lakes with sunrise points.</p><div class="foot"><span class="price">₹12,499 <small>/ person</small></span><a href="#plan" class="btn btn-primary btn-sm">Enquire</a></div></div></article>
-          <article class="tour"><div class="ph"><img src="img/jeep.webp" alt="Friends beside a yellow jeep in the hills" loading="lazy"><span class="days">2 days</span></div><div class="body"><h3>Jeep Safari &amp; Camp</h3><p>Off-road trails, a bonfire night and a forest camp.</p><div class="foot"><span class="price">₹7,999 <small>/ person</small></span><a href="#plan" class="btn btn-primary btn-sm">Enquire</a></div></div></article>
-          <article class="tour"><div class="ph"><img src="img/waterfall.webp" alt="Waterfall in a misty forest" loading="lazy"><span class="days">5 days</span></div><div class="body"><h3>Grand Nilgiris</h3><p>Ooty, Coonoor and Kotagiri with waterfalls and tribal villages.</p><div class="foot"><span class="price">₹18,999 <small>/ person</small></span><a href="#plan" class="btn btn-primary btn-sm">Enquire</a></div></div></article>
+          <article class="tour"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/train-m.webp"><img src="img/train.webp" alt="Blue mountain train winding past hillside houses" loading="lazy"></picture><span class="days">2 days</span></div><div class="body"><h3>Toy Train Weekend</h3><p>The heritage railway, botanical garden and Ooty lake.</p><div class="foot"><span class="price">₹6,499 <small>/ person</small></span><a href="#plan" class="btn btn-primary btn-sm">Enquire</a></div></div></article>
+          <article class="tour"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/tea-range-m.webp"><img src="img/tea-range.webp" alt="Tea estates in a mountain valley" loading="lazy"></picture><span class="days">3 days</span></div><div class="body"><h3>Tea Country Trail</h3><p>Estate walks, a factory tour and tasting in Coonoor.</p><div class="foot"><span class="price">₹9,999 <small>/ person</small></span><a href="#plan" class="btn btn-primary btn-sm">Enquire</a></div></div></article>
+          <article class="tour"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/lake-2-m.webp"><img src="img/lake-2.webp" alt="Lake below green mountain slopes" loading="lazy"></picture><span class="days">4 days</span></div><div class="body"><h3>Lakes &amp; Viewpoints</h3><p>Avalanche, Pykara and Emerald lakes with sunrise points.</p><div class="foot"><span class="price">₹12,499 <small>/ person</small></span><a href="#plan" class="btn btn-primary btn-sm">Enquire</a></div></div></article>
+          <article class="tour"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/jeep-m.webp"><img src="img/jeep.webp" alt="Friends beside a yellow jeep in the hills" loading="lazy"></picture><span class="days">2 days</span></div><div class="body"><h3>Jeep Safari &amp; Camp</h3><p>Off-road trails, a bonfire night and a forest camp.</p><div class="foot"><span class="price">₹7,999 <small>/ person</small></span><a href="#plan" class="btn btn-primary btn-sm">Enquire</a></div></div></article>
+          <article class="tour"><div class="ph"><picture><source media="(max-width: 900px)" srcset="img/waterfall-m.webp"><img src="img/waterfall.webp" alt="Waterfall in a misty forest" loading="lazy"></picture><span class="days">5 days</span></div><div class="body"><h3>Grand Nilgiris</h3><p>Ooty, Coonoor and Kotagiri with waterfalls and tribal villages.</p><div class="foot"><span class="price">₹18,999 <small>/ person</small></span><a href="#plan" class="btn btn-primary btn-sm">Enquire</a></div></div></article>
         </div>
       </div>
     </section>
@@ -238,17 +239,17 @@
       <div class="container">
         <div class="section-head"><p class="kicker">Experiences</p><h2 data-split="words">Slow mornings, <em>misty roads.</em></h2></div>
         <div class="exp" data-stagger>
-          <figure class="big"><img src="img/tea.webp" alt="Tea gardens on rolling hills in morning light" loading="lazy"><figcaption><b>Tea estate sunrise</b><span>Walk the rows before the pickers arrive.</span></figcaption></figure>
-          <figure class="tall"><img src="img/mist-trees.webp" alt="Tall trees in mist" loading="lazy"><figcaption><b>Eucalyptus walks</b><span>Forest trails in the clouds.</span></figcaption></figure>
-          <figure><img src="img/lake.webp" alt="Lake among green hills" loading="lazy"><figcaption><b>Lake picnics</b></figcaption></figure>
-          <figure><img src="img/mist-hills.webp" alt="Rocky peaks in clouds" loading="lazy"><figcaption><b>Peak treks</b></figcaption></figure>
+          <figure class="big"><picture><source media="(max-width: 900px)" srcset="img/tea-m.webp"><img src="img/tea.webp" alt="Tea gardens on rolling hills in morning light" loading="lazy"></picture><figcaption><b>Tea estate sunrise</b><span>Walk the rows before the pickers arrive.</span></figcaption></figure>
+          <figure class="tall"><picture><source media="(max-width: 900px)" srcset="img/mist-trees-m.webp"><img src="img/mist-trees.webp" alt="Tall trees in mist" loading="lazy"></picture><figcaption><b>Eucalyptus walks</b><span>Forest trails in the clouds.</span></figcaption></figure>
+          <figure><picture><source media="(max-width: 900px)" srcset="img/lake-m.webp"><img src="img/lake.webp" alt="Lake among green hills" loading="lazy"></picture><figcaption><b>Lake picnics</b></figcaption></figure>
+          <figure><picture><source media="(max-width: 900px)" srcset="img/mist-hills-m.webp"><img src="img/mist-hills.webp" alt="Rocky peaks in clouds" loading="lazy"></picture><figcaption><b>Peak treks</b></figcaption></figure>
         </div>
       </div>
     </section>
 
     <section class="section section-alt" id="plan">
       <div class="container plan">
-        <div class="ph" data-reveal><img src="img/train-2.webp" alt="Blue mountain train coaches passing through a forest" loading="lazy" data-speed="-0.12"></div>
+        <div class="ph" data-reveal><picture><source media="(max-width: 900px)" srcset="img/train-2-m.webp"><img src="img/train-2.webp" alt="Blue mountain train coaches passing through a forest" loading="lazy" data-speed="-0.12"></picture></div>
         <div>
           <p class="kicker">Plan my trip</p>
           <h2 data-split="words">Your hills, <em>your pace.</em></h2>

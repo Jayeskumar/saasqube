@@ -1,6 +1,6 @@
 /* Shared bits for SaaSQube premium 3D templates (used with shared.css). */
 .sw { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
-.sc { display: inline-block; will-change: transform; }
+.sc { display: inline-block; }
 [data-split] em .sw, [data-split] em .sc { font-style: inherit; }
 
 /* Film grain overlay */
@@ -31,6 +31,11 @@
 .reel-native::-webkit-scrollbar { display: none; }
 .reel-native > * > * { scroll-snap-align: center; }
 
-@media (prefers-reduced-motion: reduce), (max-width: 900px) {
+@media (prefers-reduced-motion: reduce) {
   .grain::after { animation: none; }
+}
+/* Phones and tablets: drop the costliest compositing effects to keep memory per tab low. */
+@media (max-width: 900px) {
+  .grain::after { display: none; }
+  * { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
 }
